@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+packages:
+  remote_pkgs: {}
+  pkgs:
+    wanted: []
+    unwanted: []
+    required:
+      states: []
+      pkgs: []
+  pips:
+    wanted: []
+    unwanted: []
+    required:
+      states: []
+      pkgs: []
+  gems:
+    wanted: []
+    unwanted: []
+    required:
+      states: []
+      pkgs: []

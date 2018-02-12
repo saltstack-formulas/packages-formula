@@ -1,0 +1,31 @@
+packages:
+  pkgs:
+    wanted:
+      - git
+      - less
+      - bc
+      - curl
+      - fail2ban
+    unwanted:
+      - avahi-daemon
+    required:
+      pkgs:
+        - git
+  pips:
+    wanted:
+      - dxpy
+      - makerlabs
+    unwanted:
+      - campbel
+      - reverse_geocode
+      - indy-crypto
+  gems:
+    wanted:
+      - progressbar
+      - aws-sdk
+    unwanted:
+      - diff-lcs
+      - kitchen-vagrant
+      - kwalify
+  remote_pkgs:
+    zoom: 'https://zoom.us/client/latest/zoom_x86_64.rpm'
