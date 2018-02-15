@@ -1,7 +1,6 @@
 sudo: required
-
-
-language: python
+cache: bundler
+language: ruby
 
 services:
   - docker
