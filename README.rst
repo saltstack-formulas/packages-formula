@@ -5,7 +5,7 @@ packages-formula
 A simple 'packages manager' formula, to install/remove packages without further
 ado.
 
-Travis {<img src="https://travis-ci.org/saltstack-formulas/packages-formula.svg?branch=master alt="Build Status" />}[https://travis-ci.org/saltstack-formulas/packages-formula]
+.. image:: https://travis-ci.org/saltstack-formulas/packages-formula.svg?branch=master
 
 What this formula can do
 ========================
@@ -98,6 +98,12 @@ Testing
 =======
 
 Testing is done with `Test Kitchen <http://kitchen.ci/>`_
-for machine setup and `testinfra <https://testinfra.readthedocs.io/en/latest/>`_
+for machine setup and `inspec <https://www.inspec.io/docs/>`_
 for integration tests.
+
+Tested on
+
+* Debian/9
+* Centos/7
+* Ubuntu/17.10
 
