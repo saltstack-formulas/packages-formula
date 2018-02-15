@@ -5,6 +5,8 @@ packages-formula
 A simple 'packages manager' formula, to install/remove packages without further
 ado.
 
+Travis {<img src="https://travis-ci.org/saltstack-formulas/packages-formula.svg?branch=master alt="Build Status" />}[https://travis-ci.org/saltstack-formulas/packages-formula]
+
 What this formula can do
 ========================
 
