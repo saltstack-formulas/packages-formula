@@ -20,6 +20,7 @@ pip_req_pkgs:
 {% for pn in wanted_pips %}
 {{ pn }}:
   pip.installed:
+    - reload_modules: true
     - require:
       - pkg: pip_req_pkgs
       {% if req_states %}
