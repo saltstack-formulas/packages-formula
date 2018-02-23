@@ -16,8 +16,12 @@ RedHat:
         - epel
       pkgs:
         - gcc
-        - python-devel
         - python2-pip
+     {% if salt['grains.get']('os') == 'Fedora' %}
+        - python2-devel
+     {%- else %}
+        - python-devel
+     {%- endif %}
   gems:
     required:
       pkgs:
