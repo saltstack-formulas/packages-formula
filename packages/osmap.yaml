@@ -1,0 +1,9 @@
+Fedora:
+  pips:
+    required:
+      states: []
+      pkgs:
+        - gcc
+        - python2-pip
+        - python2-devel
+
