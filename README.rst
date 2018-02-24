@@ -40,7 +40,7 @@ Available states
     :local:
 
 ``packages``
---=---------
+------------
 
 Runs all the other states in the formula.
 
