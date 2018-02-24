@@ -9,10 +9,11 @@ driver_config:
 
 platforms:
   - name: debian-9
+  - name: ubuntu-17.10
+  - name: fedora-27
   - name: centos-7
     driver_config:
       image: saltstack/centos-7-minimal
-  - name: ubuntu-17.10
 
 provisioner:
   name: salt_solo
@@ -30,6 +31,10 @@ provisioner:
       base:
         '*':
           - packages
+  state_top:
+    base:
+      '*':
+        - packages
 
 verifier:
   name: inspec
@@ -41,14 +46,24 @@ verifier:
 
 suites:
   - name: deb
-    provisioner:
-      state_top:
-        base:
-          '*':
-            - packages
     excludes:
       - centos-7
-  - name: rpm
+      - fedora-27
+
+  - name: fedora
+    excludes:
+      - debian-9
+      - ubuntu-17.10
+      - centos-7
+    provisioner:
+      pillars-from-files:
+        packages.sls: test/integration/default/pillar.example.redhat
+
+  - name: centos
+    excludes:
+      - debian-9
+      - ubuntu-17.10
+      - fedora-27
     provisioner:
       dependencies:
         - name: epel
@@ -69,7 +84,3 @@ suites:
             - packages
         epel.sls:
           disabled: false
-    excludes:
-      - debian-9
-      - ubuntu-17.10
-

@@ -105,5 +105,6 @@ Tested on
 
 * Debian/9
 * Centos/7
+* Fedora/27
 * Ubuntu/17.10
 
