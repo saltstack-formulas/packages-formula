@@ -8,11 +8,9 @@
 {% set unwanted_gems = packages.gems.unwanted %}
 
 ### REQ PKGS (without these, some of the WANTED GEMS will fail to install)
-{% if req_pkgs != {} %}
 gem_req_pkgs:
   pkg.installed:
     - pkgs: {{ req_pkgs }}
-{% endif %}
 
 ### GEMS to install
 # (requires the ruby/rubygem deb/rpm installed, either by the system or listed in

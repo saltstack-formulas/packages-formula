@@ -8,11 +8,9 @@
 {% set unwanted_pips = packages.pips.unwanted %}
 
 ### REQ PKGS (without these, some of the WANTED PIPS will fail to install)
-{% if req_pkgs != {} %}
 pip_req_pkgs:
   pkg.installed:
     - pkgs: {{ req_pkgs }}
-{% endif %}
 
 ### PYTHON PKGS to install using PIP
 # (requires the python-pip deb/rpm installed, either by the system or listed in
