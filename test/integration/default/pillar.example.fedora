@@ -1,8 +1,8 @@
 packages:
   pkgs:
     held:
-      alien: 8.95
-      iotop: 0.6-2
+      alien: 8.95-5.fc27
+      iotop: 0.6-15.fc27
     wanted:
       - git
       - less
@@ -14,6 +14,8 @@ packages:
     required:
       pkgs:
         - git
+        - python2-dnf-plugin-versionlock
+        - python3-dnf-plugin-versionlock
   pips:
     wanted:
       - dxpy
@@ -31,5 +33,4 @@ packages:
       - kitchen-vagrant
       - kwalify
   remote_pkgs:
-    zoom: 'https://zoom.us/client/latest/zoom_amd64.deb'
-
+    zoom: 'https://zoom.us/client/latest/zoom_x86_64.rpm'

@@ -47,9 +47,48 @@ Runs all the other states in the formula.
 ``packages.pkgs``
 -----------------
 
-You can specify:
+Allows you to manage system's packages. You can specify:
 
-* ``wanted`` system packages, which will be installed.
+* ``held``: a dict of `package: version` which will be installed and pinned
+  to that version using SaltStack's `hold/unhold` capability. When upgrading a
+  version, the package will be temporarily unheld, upgraded and then held
+  again.
+
+  In the RedHat family, helding packages depend on a yum plugin that you
+  need to install. In order to do this, you can add it using this formula, adding
+  to your ``pkgs.required.pkgs`` one of the following packages:
+
+  + CentOS
+  ```
+  packages:
+    pkgs:
+      required:
+        pkgs:
+          - yum-plugin-versionlock
+  ```
+
+  + Fedora > 26 with Python3:
+  ```
+  packages:
+    pkgs:
+      required:
+        pkgs:
+          - python3-dnf-plugin-versionlock
+  ```
+
+  + Fedora > 26 with Python2:
+  ```
+  packages:
+    pkgs:
+      required:
+        pkgs:
+          - python2-dnf-plugin-versionlock
+  ```
+
+* ``wanted``: a list of packages which will be installed. Packages in this
+  list will be automatically unheld so, if you want to permanently unheld a
+  package you were previously helding to a version, just move it from the
+  ``held`` dict to this list.
 * ``unwanted`` system packages, which will be uninstalled.
 * ``required system packages`` on which any of the ``wanted`` packages depend
   for their correct installation.

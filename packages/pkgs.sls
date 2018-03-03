@@ -5,12 +5,12 @@
 
 {% set req_states = packages.pkgs.required.states %}
 {% set req_packages = packages.pkgs.required.pkgs %}
+{% set held_packages = packages.pkgs.held %}
 {% set wanted_packages = packages.pkgs.wanted %}
 {% set unwanted_packages = packages.pkgs.unwanted %}
 
 ### PRE-REQ PKGS (without these, some of the WANTED PKGS will fail to install)
-{% if req_packages != {} %}
-prereq_packages:
+pkg_req_pkgs:
   pkg.installed:
     - pkgs: {{ req_packages }}
     {% if req_states %}
@@ -19,24 +19,36 @@ prereq_packages:
       - sls: {{ dep }}
       {% endfor %}
     {% endif %}
+
+{% if held_packages != {} %}
+held_pkgs:
+  pkg.installed:
+    - pkgs:
+      {% for p, v in held_packages.items() %}
+      - {{ p }}: {{ v }}
+      {% endfor %}
+    - hold: true
+    - update_holds: true
+    - require:
+      - pkg: pkg_req_pkgs
+        {% for dep in req_states %}
+      - sls: {{ dep }}
+        {% endfor %}
 {% endif %}
 
-{% if wanted_packages != {} %}
-wanted_packages:
+wanted_pkgs:
   pkg.installed:
     - pkgs: {{ wanted_packages }}
+    - hold: false
     - require:
-      - pkg: prereq_packages
+      - pkg: pkg_req_pkgs
       {% if req_states %}
         {% for dep in req_states %}
       - sls: {{ dep }}
         {% endfor %}
       {% endif %}
-{% endif %}
 
-{% if unwanted_packages != {} %}
-unwanted_packages:
+unwanted_pkgs:
   pkg.purged:
     - pkgs: {{ unwanted_packages }}
-{% endif %}
 

@@ -1,26 +1,26 @@
 ### WANTED/REQUIRED
-control 'Wanted/Required python packages' do
+control 'Wanted/Required gems' do
   title 'should be installed'
 
   %w{
-    dxpy
-    makerlabs
+    progressbar
+    aws-sdk
   }.each do |p|
-    describe pip(p) do
+    describe gem(p) do
       it { should be_installed }
     end
   end
 end
 
 ### UNWANTED
-control 'Unwanted python packages' do
+control 'Unwanted gems' do
   title 'should be uninstalled'
   %w{
-    campbel
-    reverse_geocode
-    indy-crypto
+    diff-lcs
+    kwalify
+    kitchen-vagrant
   }.each do |p|
-    describe pip(p) do
+    describe gem(p) do
       it { should_not be_installed }
     end
   end

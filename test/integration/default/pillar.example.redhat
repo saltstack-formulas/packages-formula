@@ -1,5 +1,8 @@
 packages:
   pkgs:
+    held:
+      alien: 8.95
+      iotop: 0.6-2.el7
     wanted:
       - git
       - less
@@ -11,6 +14,7 @@ packages:
     required:
       pkgs:
         - git
+        - yum-plugin-versionlock
   pips:
     wanted:
       - dxpy

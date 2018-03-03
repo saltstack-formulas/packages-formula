@@ -40,7 +40,7 @@ verifier:
   name: inspec
   sudo: false
   # cli, documentation, html, progress, json, json-min, json-rspec, junit
-  format: cli
+  reporter: cli
   inspec_tests:
     - path: test/integration/default
 
@@ -57,7 +57,7 @@ suites:
       - centos-7
     provisioner:
       pillars-from-files:
-        packages.sls: test/integration/default/pillar.example.redhat
+        packages.sls: test/integration/default/pillar.example.fedora
 
   - name: centos
     excludes:
