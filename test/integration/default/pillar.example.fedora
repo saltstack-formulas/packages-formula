@@ -15,6 +15,7 @@ packages:
       pkgs:
         - git
         - python2-dnf-plugin-versionlock
+        - python3-dnf-plugin-versionlock
   pips:
     wanted:
       - dxpy
