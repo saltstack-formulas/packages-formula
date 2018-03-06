@@ -13,3 +13,7 @@ packages formula
 
 - Allow to hold/unhold system packages (#8)
 - Add more tests
+
+0.0.4 (2018-03-06)
+
+- Allow to specify held system packages also as a list (#10)

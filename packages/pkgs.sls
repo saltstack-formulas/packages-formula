@@ -23,10 +23,14 @@ pkg_req_pkgs:
 {% if held_packages != {} %}
 held_pkgs:
   pkg.installed:
+    {% if held_packages is mapping %}
     - pkgs:
       {% for p, v in held_packages.items() %}
       - {{ p }}: {{ v }}
       {% endfor %}
+    {% else %}
+    - pkgs: {{ held_packages }}
+    {% endif %}
     - hold: true
     - update_holds: true
     - require:
