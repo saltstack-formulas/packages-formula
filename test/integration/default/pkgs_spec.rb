@@ -11,8 +11,10 @@ case os[:name]
 when 'redhat', 'centos'
   os_packages = %w(yum-plugin-versionlock)
   held_packages = {
-    'alien': '8.95',
-    'iotop': '0.6-2.el7'
+    # We use this test for held packages in a list,
+    # with no version (current version).
+    'alien': '',
+    'iotop': ''
   }
   lock_file = '/etc/yum/pluginconf.d/versionlock.list'
 when 'fedora'

@@ -49,10 +49,12 @@ Runs all the other states in the formula.
 
 Allows you to manage system's packages. You can specify:
 
-* ``held``: a dict of `package: version` which will be installed and pinned
-  to that version using SaltStack's `hold/unhold` capability. When upgrading a
-  version, the package will be temporarily unheld, upgraded and then held
-  again.
+* ``held``: either a list of packages or a dict of `package: version`,
+  which will be installed and pinned to the installed version using
+  SaltStack's `hold/unhold` capability.
+
+  When upgrading a version, the package will be temporarily unheld,
+  upgraded and then held again.
 
   In the RedHat family, helding packages depend on a yum plugin that you
   need to install. In order to do this, you can add it using this formula, adding

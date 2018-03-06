@@ -1,8 +1,8 @@
 packages:
   pkgs:
     held:
-      alien: 8.95
-      iotop: 0.6-2.el7
+      - alien
+      - iotop
     wanted:
       - git
       - less
