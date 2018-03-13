@@ -23,8 +23,9 @@ packages:
       pkgs: []
   snaps:
     package: snapd
-    collides: ['snap',]
-    service: ['snapd.service', 'snapd.socket',]
+    collides: []
+    symlink: False
+    service: ['snapd',]
     wanted: []
     unwanted: []
     required:

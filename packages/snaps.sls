@@ -6,7 +6,9 @@
 {% set wanted_snaps = packages.snaps.wanted %}
 {% set unwanted_snaps = packages.snaps.unwanted %}
 
-### REQ PKGS (without these, some WANTED SNAPS fail to install/uninstall)
+{% if packages.snaps.wanted or packages.snaps.unwanted %}
+
+### REQ PKGS (without this, SNAPS can fail to install/uninstall)
 include:
   - packages.pkgs
 
@@ -30,7 +32,20 @@ extend:
       {% endfor %}
     {% endif %}
 
-{% for snap in packages.snaps.service %}
+   {% if packages.snaps.symlink %}
+     {# classic confinement requires snaps under /snap or symlink from #}
+     {# /snap to /var/lib/snapd/snap #}
+packages-snap-classic-symlink:
+  file.symlink:
+    - name: /snap
+    - target: /var/lib/snapd/snap
+    - unless: test -d /snap
+    - require:
+      - pkg: pkg_req_pkgs
+      - pkg: unwanted_pkgs
+   {% endif %}
+
+   {% for snap in packages.snaps.service %}
 packages-{{ snap }}-service:
   service.running:
     - name: {{ snap }}
@@ -38,11 +53,11 @@ packages-{{ snap }}-service:
     - require:
       - pkg: pkg_req_pkgs
       - pkg: unwanted_pkgs
-{% endfor %}
+   {% endfor %}
   
 ### SNAPS to install
 
-{% for snap in wanted_snaps %}
+  {% for snap in wanted_snaps %}
 packages-snapd-{{ snap }}-wanted:
   cmd.run:
     - name: snap install {{ snap }}
@@ -51,11 +66,11 @@ packages-snapd-{{ snap }}-wanted:
     - require:
       - pkg: pkg_req_pkgs
       - pkg: unwanted_pkgs
-{% endfor %}
+  {% endfor %}
 
 ### SNAPS to uninstall
 
-{% for snap in unwanted_snaps %}
+  {% for snap in unwanted_snaps %}
 packages-snapd-{{ snap }}-unwanted:
   cmd.run:
     - name: snap remove {{ snap }}
@@ -64,5 +79,6 @@ packages-snapd-{{ snap }}-unwanted:
     - require:
       - pkg: pkg_req_pkgs
       - pkg: unwanted_pkgs
-{% endfor %}
+  {% endfor %}
 
+{% endif %}
