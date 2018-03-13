@@ -127,6 +127,18 @@ You can specify:
 * ``required states`` on which any of the ``wanted`` packages depend for their
   correct installation (ie, ``epel`` for RedHat families).
 
+``packages.snaps``
+-----------------
+
+You can specify:
+
+* ``wanted`` snapd packages, which will be installed using snap.
+* ``unwanted`` snapd packages, which will be uninstalled using snap.
+* ``required system packages`` on which any of the ``wanted`` snapd packages
+  depend for their correct installation.
+* ``required states`` on which any of the ``wanted`` packages depend for their
+  correct installation (ie, ``epel`` for RedHat families).
+
 ``packages.remote_pkgs``
 ------------------------
 

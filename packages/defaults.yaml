@@ -21,3 +21,12 @@ packages:
     required:
       states: []
       pkgs: []
+  snaps:
+    package: snapd
+    collides: ['snap',]
+    service: ['snapd.service', 'snapd.socket',]
+    wanted: []
+    unwanted: []
+    required:
+      states: []
+      pkgs: []
