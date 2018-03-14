@@ -10,4 +10,6 @@ Fedora:
         - gcc
         - python2-pip
         - python2-devel
-
+  snaps:
+    collides: ['snap',]
+    symlink: True

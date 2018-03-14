@@ -21,3 +21,13 @@ packages:
     required:
       states: []
       pkgs: []
+  snaps:
+    package: snapd
+    collides: []
+    symlink: False
+    service: ['snapd',]
+    wanted: []
+    unwanted: []
+    required:
+      states: []
+      pkgs: []

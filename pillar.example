@@ -38,6 +38,12 @@ packages:
       - diff-lcs
       - kitchen-vagrant
       - kwalify
+  snaps:
+    wanted:
+      - hello-world
+    unwanted:
+      - goodbye-world
+
   remote_pkgs:
     zoom: 'https://zoom.us/client/latest/zoom_amd64.deb'
 
