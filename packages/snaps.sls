@@ -6,7 +6,8 @@
 {% set wanted_snaps = packages.snaps.wanted %}
 {% set unwanted_snaps = packages.snaps.unwanted %}
 
-{% if packages.snaps.wanted or packages.snaps.unwanted %}
+{%- if packages.snaps.package %}
+  {% if packages.snaps.wanted or packages.snaps.unwanted %}
 
 ### REQ PKGS (without this, SNAPS can fail to install/uninstall)
 include:
@@ -81,4 +82,5 @@ packages-snapd-{{ snap }}-unwanted:
       - pkg: unwanted_pkgs
   {% endfor %}
 
+  {% endif %}
 {% endif %}
