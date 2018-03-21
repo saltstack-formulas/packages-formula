@@ -139,6 +139,10 @@ You can specify:
 * ``required states`` on which any of the ``wanted`` packages depend for their
   correct installation (ie, ``epel`` for RedHat families).
 
+.. note::
+
+    Centos has no native ``snapd`` package at this time.
+
 ``packages.remote_pkgs``
 ------------------------
 

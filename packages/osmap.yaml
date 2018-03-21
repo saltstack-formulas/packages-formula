@@ -13,3 +13,8 @@ Fedora:
   snaps:
     collides: ['snap',]
     symlink: True
+
+Centos:
+  snaps:
+    package:
+
