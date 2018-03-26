@@ -2,7 +2,12 @@
 # vim: ft=sls
 {% from "packages/map.jinja" import packages with context %}
 
-{% set req_states = packages.snaps.required.states %}
+# As we are 'extend'ing pkg_req_pkgs and unwanted_pkgs, we need to concatenate
+# the attributes correctly (see #17)
+{% set req_packages = packages.pkgs.required.pkgs + [packages.snaps.package] %}
+{% set req_states = packages.pkgs.required.states + packages.snaps.required.states %}
+{% set unwanted_packages = packages.pkgs.unwanted + packages.snaps.collides %}
+
 {% set wanted_snaps = packages.snaps.wanted %}
 {% set unwanted_snaps = packages.snaps.unwanted %}
 
@@ -15,17 +20,12 @@ include:
 
 extend: 
   unwanted_pkgs:
-    pkg.removed:
-      - pkgs: {{ packages.snaps.collides }}
-    {% if req_states %}
-      - require:
-      {% for dep in req_states %}
-        - sls: {{ dep }}
-      {% endfor %}
-    {% endif %}
+    pkg.purged:
+      - pkgs: {{ unwanted_packages }}
+
   pkg_req_pkgs:
     pkg.installed:
-      - pkgs: [ {{ packages.snaps.package }}, ]
+      - pkgs: {{ req_packages }}
     {% if req_states %}
       - require:
       {% for dep in req_states %}
@@ -33,9 +33,9 @@ extend:
       {% endfor %}
     {% endif %}
 
-   {% if packages.snaps.symlink %}
-     {# classic confinement requires snaps under /snap or symlink from #}
-     {# /snap to /var/lib/snapd/snap #}
+{% if packages.snaps.symlink %}
+{# classic confinement requires snaps under /snap or symlink from #}
+{# /snap to /var/lib/snapd/snap #}
 packages-snap-classic-symlink:
   file.symlink:
     - name: /snap
@@ -44,9 +44,9 @@ packages-snap-classic-symlink:
     - require:
       - pkg: pkg_req_pkgs
       - pkg: unwanted_pkgs
-   {% endif %}
+{% endif %}
 
-   {% for snap in packages.snaps.service %}
+{% for snap in packages.snaps.service %}
 packages-{{ snap }}-service:
   service.running:
     - name: {{ snap }}
@@ -54,11 +54,10 @@ packages-{{ snap }}-service:
     - require:
       - pkg: pkg_req_pkgs
       - pkg: unwanted_pkgs
-   {% endfor %}
+{% endfor %}
   
 ### SNAPS to install
-
-  {% for snap in wanted_snaps %}
+{% for snap in wanted_snaps %}
 packages-snapd-{{ snap }}-wanted:
   cmd.run:
     - name: snap install {{ snap }}
@@ -67,11 +66,10 @@ packages-snapd-{{ snap }}-wanted:
     - require:
       - pkg: pkg_req_pkgs
       - pkg: unwanted_pkgs
-  {% endfor %}
+{% endfor %}
 
 ### SNAPS to uninstall
-
-  {% for snap in unwanted_snaps %}
+{% for snap in unwanted_snaps %}
 packages-snapd-{{ snap }}-unwanted:
   cmd.run:
     - name: snap remove {{ snap }}
@@ -80,7 +78,7 @@ packages-snapd-{{ snap }}-unwanted:
     - require:
       - pkg: pkg_req_pkgs
       - pkg: unwanted_pkgs
-  {% endfor %}
+{% endfor %}
 
   {% endif %}
 {% endif %}
