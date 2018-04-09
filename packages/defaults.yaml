@@ -27,6 +27,7 @@ packages:
     symlink: False
     service: ['snapd',]
     wanted: []
+    classic: []
     unwanted: []
     required:
       states: []

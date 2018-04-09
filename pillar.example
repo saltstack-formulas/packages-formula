@@ -41,6 +41,8 @@ packages:
   snaps:
     wanted:
       - hello-world
+    classic:
+      - classic-hello
     unwanted:
       - goodbye-world
 

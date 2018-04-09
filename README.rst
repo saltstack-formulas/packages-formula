@@ -133,6 +133,7 @@ You can specify:
 You can specify:
 
 * ``wanted`` snapd packages, which will be installed using snap.
+* ``classic`` snapd packages, chich will be installed using snap with classic confinement.
 * ``unwanted`` snapd packages, which will be uninstalled using snap.
 * ``required system packages`` on which any of the ``wanted`` snapd packages
   depend for their correct installation.
