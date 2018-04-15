@@ -42,7 +42,7 @@ packages:
     wanted:
       - hello-world
     classic:
-      - classic-hello
+      - test-snapd-hello-classic
     unwanted:
       - goodbye-world
 
