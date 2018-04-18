@@ -9,6 +9,7 @@
 {% set unwanted_packages = packages.pkgs.unwanted + packages.snaps.collides %}
 
 {% set wanted_snaps = packages.snaps.wanted %}
+{% set classic_snaps = packages.snaps.classic %}
 {% set unwanted_snaps = packages.snaps.unwanted %}
 
 {%- if packages.snaps.package %}
@@ -61,6 +62,18 @@ packages-{{ snap }}-service:
 packages-snapd-{{ snap }}-wanted:
   cmd.run:
     - name: snap install {{ snap }}
+    - unless: snap list {{ snap }}
+    - output_loglevel: quiet
+    - require:
+      - pkg: pkg_req_pkgs
+      - pkg: unwanted_pkgs
+{% endfor %}
+
+### SNAPS to install in classic mode
+{% for snap in classic_snaps %}
+packages-snapd-{{ snap }}-classic:
+  cmd.run:
+    - name: snap install --classic {{ snap }}
     - unless: snap list {{ snap }}
     - output_loglevel: quiet
     - require:
