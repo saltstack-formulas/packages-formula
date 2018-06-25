@@ -10,10 +10,10 @@ before_install:
 
 env:
   matrix:
-    - INSTANCE: deb-debian-9
-    - INSTANCE: deb-ubuntu-1804
-    - INSTANCE: fedora-fedora-27
-    - INSTANCE: centos-centos-7
+    - INSTANCE: deb-bento-debian-9
+    - INSTANCE: deb-bento-ubuntu-1804
+    - INSTANCE: fedora-bento-fedora-27
+    - INSTANCE: centos-bento-centos-7
 
 script:
   - bundle exec kitchen verify ${INSTANCE}
