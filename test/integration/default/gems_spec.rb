@@ -4,7 +4,7 @@ control 'Wanted/Required gems' do
 
   %w{
     progressbar
-    aws-sdk
+    deep_merge
   }.each do |p|
     describe gem(p) do
       it { should be_installed }
