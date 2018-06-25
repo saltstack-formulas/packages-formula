@@ -1,30 +1,12 @@
 ---
 driver:
-  name: docker
-
-driver_config:
-  use_sudo: false
-  privileged: true
-  provision_command: mkdir -p /run/sshd
+  name: vagrant
 
 platforms:
-  - name: debian-9
-    driver_config:
-      run_command: /lib/systemd/systemd
-      provision_command:
-        - apt-get install udev -y
-  - name: ubuntu-17.10
-    driver_config:
-      run_command: /lib/systemd/systemd
-      provision_command:
-        - apt-get install udev -y
-  - name: fedora-27
-    driver_config:
-      run_command: /usr/lib/systemd/systemd
-  - name: centos-7
-    driver_config:
-      image: saltstack/centos-7-minimal
-      run_command: /usr/lib/systemd/systemd
+  - name: bento/ubuntu-18.04
+  - name: bento/debian-9
+  - name: bento/centos-7
+  - name: bento/fedora-27
 
 provisioner:
   name: salt_solo
@@ -58,23 +40,22 @@ verifier:
 suites:
   - name: deb
     excludes:
-      - centos-7
-      - fedora-27
-
+      - bento/centos-7
+      - bento/fedora-27
   - name: fedora
     excludes:
-      - debian-9
-      - ubuntu-17.10
-      - centos-7
+      - bento/ubuntu-18.04
+      - bento/debian-9
+      - bento/centos-7
     provisioner:
       pillars-from-files:
         packages.sls: test/integration/default/pillar.example.fedora
 
   - name: centos
     excludes:
-      - debian-9
-      - ubuntu-17.10
-      - fedora-27
+      - bento/ubuntu-18.04
+      - bento/debian-9
+      - bento/fedora-27
     provisioner:
       dependencies:
         - name: epel

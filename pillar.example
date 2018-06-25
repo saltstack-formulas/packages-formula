@@ -33,7 +33,7 @@ packages:
   gems:
     wanted:
       - progressbar
-      - aws-sdk
+      - deep_merge
     unwanted:
       - diff-lcs
       - kitchen-vagrant
