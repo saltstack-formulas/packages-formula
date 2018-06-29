@@ -22,7 +22,7 @@ packages:
       states: []
       pkgs: []
   snaps:
-    package: snapd
+    packages: ['snapd', 'fuse',]
     collides: []
     symlink: False
     service: ['snapd',]
