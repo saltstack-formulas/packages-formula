@@ -25,7 +25,7 @@ packages:
   pips:
     wanted:
       - dxpy
-      - makerlabs
+      - attrs
     unwanted:
       - campbel
       - reverse_geocode
@@ -33,7 +33,7 @@ packages:
   gems:
     wanted:
       - progressbar
-      - aws-sdk
+      - minitest
     unwanted:
       - diff-lcs
       - kitchen-vagrant

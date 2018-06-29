@@ -4,7 +4,7 @@
 
 # As we are 'extend'ing pkg_req_pkgs and unwanted_pkgs, we need to concatenate
 # the attributes correctly (see #17)
-{% set req_packages = packages.pkgs.required.pkgs + [packages.snaps.package] %}
+{% set req_packages = packages.pkgs.required.pkgs + packages.snaps.packages %}
 {% set req_states = packages.pkgs.required.states + packages.snaps.required.states %}
 {% set unwanted_packages = packages.pkgs.unwanted + packages.snaps.collides %}
 
@@ -12,8 +12,8 @@
 {% set classic_snaps = packages.snaps.classic %}
 {% set unwanted_snaps = packages.snaps.unwanted %}
 
-{%- if packages.snaps.package %}
-  {% if packages.snaps.wanted or packages.snaps.unwanted %}
+{%- if packages.snaps.packages %}
+  {% if wanted_snaps or classic_snaps or unwanted_snaps %}
 
 ### REQ PKGS (without this, SNAPS can fail to install/uninstall)
 include:
@@ -56,7 +56,7 @@ packages-{{ snap }}-service:
       - pkg: pkg_req_pkgs
       - pkg: unwanted_pkgs
 {% endfor %}
-  
+
 ### SNAPS to install
 {% for snap in wanted_snaps %}
 packages-snapd-{{ snap }}-wanted:

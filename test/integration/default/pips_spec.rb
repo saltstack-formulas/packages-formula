@@ -4,7 +4,7 @@ control 'Wanted/Required python packages' do
 
   %w{
     dxpy
-    makerlabs
+    attrs
   }.each do |p|
     describe pip(p) do
       it { should be_installed }
