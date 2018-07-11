@@ -28,11 +28,12 @@ RedHat:
         - rubygems
 
 FreeBSD:
-  pkgs:
+  pips:
     required:
       pkgs:
         - devel/py-pip
-        - lang/ruby25
   gems:
     required:
-      - devel/ruby-gems
+      pkgs:
+        - lang/ruby25
+        - devel/ruby-gems
