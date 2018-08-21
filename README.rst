@@ -127,6 +127,18 @@ You can specify:
 * ``required states`` on which any of the ``wanted`` packages depend for their
   correct installation (ie, ``epel`` for RedHat families).
 
+``packages.archives``
+-------------------
+
+'Archive file` handler for common 'download' and 'checksum' states; extraction state based on `format` value.
+
+* ``wanted`` archive package software, which will be installed by extraction.
+* ``unwanted`` archive package software, which are uninstalled by directory removal.
+* ``required archive packages`` on which any of the ``wanted`` items depend on. Optional.
+
+.. note:: Supports `tar` formats that `salt.states.archive.extracted` understands (tar, rar, zip, etc). The `packages.archives` state can be extended.
+
+
 ``packages.snaps``
 -----------------
 
@@ -164,5 +176,5 @@ Tested on
 * Debian/9
 * Centos/7
 * Fedora/27
-* Ubuntu/17.10
+* Ubuntu/18.04
 

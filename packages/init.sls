@@ -6,4 +6,5 @@ include:
   - packages.remote_pkgs
   - packages.pips
   - packages.gems
+  - packages.archives
   - packages.snaps
