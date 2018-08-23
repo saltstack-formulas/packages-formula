@@ -13,7 +13,7 @@ platforms:
       run_command: /lib/systemd/systemd
       provision_command:
         - apt-get install udev -y
-  - name: ubuntu-17.10
+  - name: ubuntu-18.04
     driver_config:
       run_command: /lib/systemd/systemd
       provision_command:
@@ -64,7 +64,7 @@ suites:
   - name: fedora
     excludes:
       - debian-9
-      - ubuntu-17.10
+      - ubuntu-18.04
       - centos-7
     provisioner:
       pillars-from-files:
@@ -73,7 +73,7 @@ suites:
   - name: centos
     excludes:
       - debian-9
-      - ubuntu-17.10
+      - ubuntu-18.04
       - fedora-27
     provisioner:
       dependencies:
