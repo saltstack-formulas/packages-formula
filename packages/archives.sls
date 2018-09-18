@@ -24,83 +24,86 @@ packages-archive-unwanted-{{ file_or_directory }}:
 
   # wanted 'archive' software
 {% for package, archive in wanted_archives.items() %}
+   {%- set archivename = archive.dl.source.split('/')[-1] %}
 
-packages-archive-wanted-remove-prev-{{ package }}:
-  file.absent:
-    - name: {{ packages.tmpdir }}/{{ package }}
-    - require_in:
-      - packages-archive-wanted-extract-{{ package }}-directory
-
-packages-archive-wanted-extract-{{ package }}-directory:
+packages-archive-wanted-target-{{ package }}-directory:
   file.directory:
     - names:
       - {{ packages.tmpdir }}/tmp
       - {{ archive.dest }}
-    - user: {{ 'root' if "user" not in archive else archive.user }}
-    - mode: {{ '0755' if "mode" not in archive else archive.mode }}
+    - user: {{ 'root' if 'user' not in archive else archive.user }}
+    - mode: {{ '0755' if 'mode' not in archive else archive.mode }}
     - makedirs: True
     - require_in:
-      - cmd: packages-archive-wanted-download-{{ package }}
+      - packages-archive-wanted-download-{{ package }}
+
+   {%- if 'format' in archive.dl.format and archive.dl.format in packages.archives.types %}
+
+packages-archive-wanted-remove-prev-{{ package }}:
+  file.absent:
+    - name: {{ packages.tmpdir }}/{{ archivename }}
+    - require_in:
+      - packages-archive-wanted-target-{{ package }}-directory
 
 packages-archive-wanted-download-{{ package }}:
   cmd.run:
-    - name: curl -s -L -o {{ packages.tmpdir }}/{{ package }} {{ archive.dl.source }}
-    - unless: test -f {{ packages.tmpdir }}/{{ package }}
+    - name: curl -s -L -o {{ packages.tmpdir }}/{{ archivename }} {{ archive.dl.source }}
+    - unless: test -f {{ packages.tmpdir }}/{{ archivename }}/
 
-  {%- if "hashsum" in archive.dl and archive.dl.hashsum %}
-    {# refer to https://github.com/saltstack/salt/pull/41914 #}
+      {%- if 'hashsum' in archive.dl and archive.dl.hashsum %}
+         {# see https://github.com/saltstack/salt/pull/41914 #}
 
 packages-archive-wanted-{{ package }}-check-hashsum:
   module.run:
     - name: file.check_hash
-    - path: {{ packages.tmpdir }}/{{ package }}
+    - path: {{ packages.tmpdir }}/{{ archivename }}
     - file_hash: {{ archive.dl.hashsum }}
     - require:
-      - cmd: packages-archive-wanted-download-{{ package }}
+      - packages-archive-wanted-download-{{ package }}
     - require_in:
       - archive: packages-archive-wanted-install-{{ package }}
-  cmd.run:
-    - name: rm {{ packages.tmpdir }}/{{ package }}
-    - onfail:
-      - module: packages-archive-wanted-{{ package }}-check-hashsum
-  {%- endif %}
+
+      {%- endif %}
 
 packages-archive-wanted-install-{{ package }}:
-  {% if archive.dl.format|trim|lower in ('tar','zip', 'rar',) %}
-
   archive.extracted:
-    - source: file://{{ packages.tmpdir }}/{{ package }}
-    - name: {{ archive.dest }}
+    - source: file://{{ packages.tmpdir }}/{{ archivename }}
+    - name: {{ archive.dest }}/
     - archive_format: {{ archive.dl.format }}
-       {%- if 'hashurl' in archive.dl and archive.dl.hashurl %}
+         {%- if 'hashurl' in archive.dl and archive.dl.hashurl %}
     - source_hash: {{ archive.dl.hashurl }}
-       {%- endif %}
-       {%- if 'options' in archive and archive.options %}
+         {%- endif %}
+         {%- if 'options' in archive and archive.options %}
     - options: {{ archive.options }}
-    - enforce_toplevel: {{ 'False' if "strip-components" in archive.options else 'True' }}
-       {%- endif %}
+    - enforce_toplevel: {{ 'False' if 'strip-components' in archive.options else 'True' }}
+         {%- endif %}
     - unless: test -d {{ archive.dest }}
-  cmd.run:
-    - name: rm {{ packages.tmpdir }}/{{ package }}
-    - onfail:
-      - archive: packages-archive-wanted-install-{{ package }}
-
-  {% else %}
-
-  test.show_notification:
-    - text: |
-        The value of "packages.archives.wanted.{{ package }}.dl.format' is unsupported (skipping {{ package }}).
-
-  {% endif %} 
-    - onchanges:
+    - require:
       - packages-archive-wanted-download-{{ package }}
+      - module: packages-archive-wanted-{{ package }}-check-hashsum
     - require_in:
       - packages-archive-wanted-cleanup-{{ package }}
 
 packages-archive-wanted-cleanup-{{ package }}:
   file.absent:
-    - name: {{ packages.tmpdir }}/{{ package }}
+    - name: {{ packages.tmpdir }}/{{ archivename }}
     - onchanges:
       - packages-archive-wanted-install-{{ package }}
 
+   {%- else %}
+
+packages-archive-wanted-download-{{ package }}:
+  file.managed:
+    - name: {{ archive.dest }}/{{ archivename }}
+    - source: {{ archive.dl.source }}
+    - mode: {{ '0755' if archive.dl.format in ('bin',) else '0644' if 'mode' not in archive else archive.mode }}
+    - user: {{ 'root' if 'user' not in archive else archive.user }}
+    - makedirs: True
+       {%- if 'hashsum' in archive.dl and archive.dl.hashsum %}
+    - source_hash: {{ archive.dl.hashsum }}
+       {%- else %}
+    - skip_verify: True
+       {%- endif %}
+
+   {% endif %} 
 {%- endfor %}
