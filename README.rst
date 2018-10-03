@@ -130,13 +130,11 @@ You can specify:
 ``packages.archives``
 -------------------
 
-'Archive file` handler for common 'download' and 'checksum' states; extraction state based on `format` value.
+'Archive file` handler for common 'download' and 'checksum' states. All formats recognized by `salt.states.archive.extracted` (tar, rar, zip, etc) will be extracted. Alternatively `raw` formats are supported (`raw`, `bin`,) for standard and binary executable files.
 
 * ``wanted`` archive package software, which will be installed by extraction.
 * ``unwanted`` archive package software, which are uninstalled by directory removal.
 * ``required archive packages`` on which any of the ``wanted`` items depend on. Optional.
-
-.. note:: Supports `tar` formats that `salt.states.archive.extracted` understands (tar, rar, zip, etc). The `packages.archives` state can be extended.
 
 
 ``packages.snaps``
