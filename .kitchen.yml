@@ -51,7 +51,8 @@ verifier:
   name: inspec
   sudo: false
   # cli, documentation, html, progress, json, json-min, json-rspec, junit
-  reporter: cli
+  reporter:
+    - cli
   inspec_tests:
     - path: test/integration/default
 
