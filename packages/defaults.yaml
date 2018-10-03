@@ -34,6 +34,8 @@ packages:
       states: []
       pkgs: []
   archives:
+    pkgs:
+      required: ['curl', 'bzip2', 'gzip']
     wanted: {}    #note: dict
     unwanted: []
     required:

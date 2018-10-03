@@ -2,7 +2,7 @@
 # vim: ft=sls
 {% from "packages/map.jinja" import packages with context %}
 
-{% set req_packages = packages.pkgs.required.pkgs + ['curl', 'tar', 'bzip2', 'gzip',] %}
+{% set req_packages = packages.pkgs.required.pkgs + packages.archives.pkgs.required %}
 include:
   - packages.pkgs
 
