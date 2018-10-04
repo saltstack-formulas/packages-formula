@@ -49,7 +49,7 @@ provisioner:
 
 verifier:
   name: inspec
-  sudo: false
+  sudo: true
   # cli, documentation, html, progress, json, json-min, json-rspec, junit
   reporter:
     - cli
