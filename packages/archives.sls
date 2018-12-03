@@ -29,8 +29,10 @@ packages-archive-unwanted-{{ file_or_directory }}:
 packages-archive-wanted-target-{{ package }}-directory:
   file.directory:
     - names:
-      - {{ packages.tmpdir }}/tmp
       - {{ archive.dest }}
+      {%- if packages.tmpdir != '/tmp' %}
+      - {{ packages.tmpdir }}
+      {%- endif %}
     - user: {{ 'root' if 'user' not in archive else archive.user }}
     - mode: {{ '0755' if 'mode' not in archive else archive.mode }}
     - makedirs: True
