@@ -39,7 +39,7 @@ packages-archive-wanted-target-{{ package }}-directory:
     - require_in:
       - packages-archive-wanted-download-{{ package }}
 
-   {%- if 'format' in archive.dl.format and archive.dl.format in packages.archives.types %}
+   {%- if 'format' in archive.dl and archive.dl.format in packages.archives.types %}
 
 packages-archive-wanted-remove-prev-{{ package }}:
   file.absent:
@@ -52,7 +52,7 @@ packages-archive-wanted-download-{{ package }}:
     - name: curl -s -L -o {{ packages.tmpdir }}/{{ archivename }} {{ archive.dl.source }}
     - unless: test -f {{ packages.tmpdir }}/{{ archivename }}/
     - retry:
-        attempts: 5
+        attempts: 2
         until: True
         interval: 60
         splay: 10
@@ -84,18 +84,15 @@ packages-archive-wanted-install-{{ package }}:
     - options: {{ archive.options }}
     - enforce_toplevel: {{ 'False' if 'strip-components' in archive.options else 'True' }}
          {%- endif %}
-    - unless: test -d {{ archive.dest }}
+    - onlyif: test -d {{ archive.dest }}
     - require:
       - packages-archive-wanted-download-{{ package }}
-      - module: packages-archive-wanted-{{ package }}-check-hashsum
-    - require_in:
-      - packages-archive-wanted-cleanup-{{ package }}
 
 packages-archive-wanted-cleanup-{{ package }}:
   file.absent:
     - name: {{ packages.tmpdir }}/{{ archivename }}
     - onchanges:
-      - packages-archive-wanted-install-{{ package }}
+      - archive: packages-archive-wanted-install-{{ package }}
 
    {%- else %}
 

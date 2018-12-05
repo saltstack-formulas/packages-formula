@@ -9,7 +9,7 @@ control 'Archive packages' do
 
   %w(
     docker-compose.yml
-    phantomjs-2.1.1-linux-x86_64.tar.bz2
+    phantomjs-2.1.1-linux-x86_64/bin
   ).each do |f|
     describe file("/usr/local/src/#{f}") do
       it { should exist }
