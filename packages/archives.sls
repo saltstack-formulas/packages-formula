@@ -52,7 +52,7 @@ packages-archive-wanted-download-{{ package }}:
     - name: curl -s -L -o {{ packages.tmpdir }}/{{ archivename }} {{ archive.dl.source }}
     - unless: test -f {{ packages.tmpdir }}/{{ archivename }}/
     - retry:
-        attempts: 5
+        attempts: 2
         until: True
         interval: 60
         splay: 10
