@@ -41,16 +41,10 @@ packages-archive-wanted-target-{{ package }}-directory:
 
    {%- if 'format' in archive.dl and archive.dl.format in packages.archives.types %}
 
-packages-archive-wanted-remove-prev-{{ package }}:
-  file.absent:
-    - name: {{ packages.tmpdir }}/{{ archivename }}
-    - require_in:
-      - packages-archive-wanted-target-{{ package }}-directory
-
 packages-archive-wanted-download-{{ package }}:
   cmd.run:
     - name: curl -s -L -o {{ packages.tmpdir }}/{{ archivename }} {{ archive.dl.source }}
-    - unless: test -f {{ packages.tmpdir }}/{{ archivename }}/
+    - unless: test -f {{ packages.tmpdir }}/{{ archivename }}
     - retry:
         attempts: 2
         until: True
@@ -87,12 +81,6 @@ packages-archive-wanted-install-{{ package }}:
     - onlyif: test -d {{ archive.dest }}
     - require:
       - packages-archive-wanted-download-{{ package }}
-
-packages-archive-wanted-cleanup-{{ package }}:
-  file.absent:
-    - name: {{ packages.tmpdir }}/{{ archivename }}
-    - onchanges:
-      - archive: packages-archive-wanted-install-{{ package }}
 
    {%- else %}
 
