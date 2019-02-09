@@ -31,8 +31,10 @@ held_pkgs:
     {% else %}
     - pkgs: {{ held_packages }}
     {% endif %}
+    {% if grains['os_family'] not in ['Suse'] %}
     - hold: true
     - update_holds: true
+    {% endif %}
     - require:
       - pkg: pkg_req_pkgs
         {% for dep in req_states %}
@@ -43,7 +45,9 @@ held_pkgs:
 wanted_pkgs:
   pkg.installed:
     - pkgs: {{ wanted_packages }}
+    {% if grains['os_family'] not in ['Suse'] %}
     - hold: false
+    {% endif %}
     - require:
       - pkg: pkg_req_pkgs
       {% if req_states %}
