@@ -31,6 +31,11 @@ packages:
       - campbel
       - reverse_geocode
       - indy-crypto
+    config:
+      global:
+        timeout: 120
+        default-timeout: 120
+        proxy: http://proxy.example.com:3128
   gems:
     wanted:
       - progressbar
