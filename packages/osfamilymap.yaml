@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
+Suse:
+  pips:
+    required:
+      pkgs:
+        - python-pip
+
 Debian:
   pips:
     required:
