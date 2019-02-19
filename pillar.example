@@ -24,6 +24,9 @@ packages:
         - wget
         - git
   pips:
+    #required:
+    #  pkgs:
+    #    - python2-pip
     wanted:
       - dxpy
       - attrs
