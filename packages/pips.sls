@@ -16,9 +16,14 @@ pip_req_pkgs:
 # (requires the python-pip deb/rpm installed, either by the system or listed in
 # the required packages
 {% for pn in wanted_pips %}
-{{ pn }}:
+packages pips install {{ pn }}:
+       {%- if grains.os_family in ('Suse',) %}  ##workaround https://github.com/saltstack-formulas/docker-formula/issues/198
+  cmd.run:
+    - name: /usr/bin/pip install {{ pn }}
+       {%- else %}
   pip.installed:
     - reload_modules: true
+       {%- endif %}
     - require:
       - pkg: pip_req_pkgs
       {% if req_states %}
@@ -29,6 +34,12 @@ pip_req_pkgs:
 {% endfor %}
 
 {% for upn in unwanted_pips %}
-{{ upn }}:
+packages pips remove {{ upn }}:
+       {%- if grains.os_family in ('Suse',) %}
+  cmd.run:
+    - name: /usr/bin/pip uninstall {{ pn }}
+       {%- else %}
   pip.removed
+    - name: {{ upn }}
+       {%- endif %}
 {% endfor %}
