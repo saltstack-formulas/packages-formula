@@ -22,6 +22,7 @@ packages pips install {{ pn }}:
     - name: /usr/bin/pip install {{ pn }}
        {%- else %}
   pip.installed:
+    - name: {{ pn }}
     - reload_modules: true
        {%- endif %}
     - require:
@@ -39,7 +40,7 @@ packages pips remove {{ upn }}:
   cmd.run:
     - name: /usr/bin/pip uninstall {{ pn }}
        {%- else %}
-  pip.removed
+  pip.removed:
     - name: {{ upn }}
        {%- endif %}
 {% endfor %}
