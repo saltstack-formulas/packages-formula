@@ -36,7 +36,7 @@ packages:
   archives:
     pkgs:
       required: ['curl', 'bzip2', 'gzip']
-    types: ('tar', 'zip', 'rar',)
+    types: ['tar', 'zip', 'rar']
     wanted: {}    #note: dict
     unwanted: []
     required:
