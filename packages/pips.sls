@@ -6,11 +6,23 @@
 {% set req_pkgs = packages.pips.required.pkgs %}
 {% set wanted_pips = packages.pips.wanted %}
 {% set unwanted_pips = packages.pips.unwanted %}
+{% set pip_config = packages.pips.config %}
 
 ### REQ PKGS (without these, some of the WANTED PIPS will fail to install)
 pip_req_pkgs:
   pkg.installed:
     - pkgs: {{ req_pkgs }}
+
+{% if pip_config %}
+pip_config:
+  file.managed:
+    - name: /etc/pip.conf
+    - source: salt://{{ slspath }}/files/pip.conf
+    - template: jinja
+    - makedirs: True
+    - context:
+        config: {{ pip_config|json }}
+{% endif %}
 
 ### PYTHON PKGS to install using PIP
 # (requires the python-pip deb/rpm installed, either by the system or listed in
@@ -31,6 +43,9 @@ packages pips install {{ pn }}:
         {% for dep in req_states %}
       - sls: {{ dep }}
         {% endfor %}
+      {% endif %}
+      {% if pip_config %}
+      - file: pip_config
       {% endif %}
 {% endfor %}
 
