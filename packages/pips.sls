@@ -6,22 +6,35 @@
 {% set req_pkgs = packages.pips.required.pkgs %}
 {% set wanted_pips = packages.pips.wanted %}
 {% set unwanted_pips = packages.pips.unwanted %}
+{% set pip_config = packages.pips.config %}
 
 ### REQ PKGS (without these, some of the WANTED PIPS will fail to install)
 pip_req_pkgs:
   pkg.installed:
     - pkgs: {{ req_pkgs }}
 
+{% if pip_config %}
+pip_config:
+  file.managed:
+    - name: /etc/pip.conf
+    - source: salt://{{ slspath }}/files/pip.conf
+    - template: jinja
+    - makedirs: True
+    - context:
+        config: {{ pip_config|json }}
+{% endif %}
+
 ### PYTHON PKGS to install using PIP
 # (requires the python-pip deb/rpm installed, either by the system or listed in
 # the required packages
 {% for pn in wanted_pips %}
 packages pips install {{ pn }}:
-       {%- if grains.os_family in ('Suse',) %}
+       {%- if grains.os_family in ('Suse',) %}  ##workaround https://github.com/saltstack-formulas/docker-formula/issues/198
   cmd.run:
     - name: /usr/bin/pip install {{ pn }}
        {%- else %}
   pip.installed:
+    - name: {{ pn }}
     - reload_modules: true
        {%- endif %}
     - require:
@@ -31,6 +44,9 @@ packages pips install {{ pn }}:
       - sls: {{ dep }}
         {% endfor %}
       {% endif %}
+      {% if pip_config %}
+      - file: pip_config
+      {% endif %}
 {% endfor %}
 
 {% for upn in unwanted_pips %}
@@ -39,7 +55,7 @@ packages pips remove {{ upn }}:
   cmd.run:
     - name: /usr/bin/pip uninstall {{ pn }}
        {%- else %}
-  pip.removed
+  pip.removed:
     - name: {{ upn }}
        {%- endif %}
 {% endfor %}
