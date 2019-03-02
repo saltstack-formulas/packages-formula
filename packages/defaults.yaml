@@ -13,6 +13,7 @@ packages:
   pips:
     wanted: []
     unwanted: []
+    config: []
     required:
       states: []
       pkgs: []
