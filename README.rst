@@ -172,7 +172,9 @@ for integration tests.
 Tested on
 
 * Debian/9
+* Debian/8 (with backports)
 * Centos/7
 * Fedora/27
+* Ubuntu/16.04
 * Ubuntu/18.04
-
+* Opensuse/leap

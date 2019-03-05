@@ -11,7 +11,7 @@
 ### REQ PKGS (without these, some of the WANTED PIPS will fail to install)
 pip_req_pkgs:
   pkg.installed:
-    - pkgs: {{ req_pkgs }}
+    - pkgs: {{ req_pkgs | json }}
 
 {% if pip_config %}
 pip_config:

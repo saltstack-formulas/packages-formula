@@ -10,7 +10,7 @@
 ### REQ PKGS (without these, some of the WANTED GEMS will fail to install)
 gem_req_pkgs:
   pkg.installed:
-    - pkgs: {{ req_pkgs }}
+    - pkgs: {{ req_pkgs | json }}
 
 ### GEMS to install
 # (requires the ruby/rubygem deb/rpm installed, either by the system or listed in

@@ -22,11 +22,11 @@ include:
 extend: 
   unwanted_pkgs:
     pkg.purged:
-      - pkgs: {{ unwanted_packages }}
+      - pkgs: {{ unwanted_packages | json }}
 
   pkg_req_pkgs:
     pkg.installed:
-      - pkgs: {{ req_packages }}
+      - pkgs: {{ req_packages | json }}
     {% if req_states %}
       - require:
       {% for dep in req_states %}
