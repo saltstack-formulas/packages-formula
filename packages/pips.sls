@@ -53,7 +53,7 @@ packages pips install {{ pn }}:
 packages pips remove {{ upn }}:
        {%- if grains.os_family in ('Suse',) %}
   cmd.run:
-    - name: /usr/bin/pip uninstall {{ pn }}
+    - name: /usr/bin/pip uninstall {{ upn }}
        {%- else %}
   pip.removed:
     - name: {{ upn }}

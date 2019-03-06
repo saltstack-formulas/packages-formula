@@ -5,6 +5,10 @@ Suse:
     required:
       pkgs:
         - python3-pip
+  gems:
+    required:
+      pkgs:
+        - ruby-common
 
 Debian:
   pips:

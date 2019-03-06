@@ -11,11 +11,11 @@ before_install:
 env:
   matrix:
     - INSTANCE: deb-debian-9
-    - INSTANCE: ubu-ubuntu-1604
-    - INSTANCE: ubu-ubuntu-1804
+    - INSTANCE: ubu16-ubuntu-1604
+    - INSTANCE: ubu18-ubuntu-1804
     - INSTANCE: rpm-centos-7
     - INSTANCE: fed-fedora
-    - INSTANCE: rpm-opensuse-leap-salt-minion
+    - INSTANCE: sus-opensuse-leap-salt-minion
 
 script:
   - bundle exec kitchen verify ${INSTANCE}
