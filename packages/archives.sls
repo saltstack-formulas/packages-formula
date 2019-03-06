@@ -9,7 +9,7 @@ include:
 extend:
   pkg_req_pkgs:
     pkg.installed:
-      - pkgs: {{ req_packages }}
+      - pkgs: {{ req_packages | json }}
 
 {% set wanted_archives = packages.archives.required.archives %}
 {% do wanted_archives.update( packages.archives.wanted ) %}

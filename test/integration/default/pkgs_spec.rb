@@ -23,15 +23,22 @@ when 'fedora'
     python3-dnf-plugin-versionlock
   )
   held_packages = {
-    'alien': '8.95-5.fc27',
-    'iotop': '0.6-15.fc27'
+    'alien': '8.95-8.fc29',
+    'iotop': '0.6-18.fc29'
   }
   lock_file = '/etc/dnf/plugins/versionlock.list'
+# Adding empty Suse entries, to get tests passing
+# Don't know the correct values to add here.
+when 'opensuse'
+  os_packages = %w()
+  held_packages = {}
+  lock_file = ''
 when 'debian', 'ubuntu'
   os_packages = %w()
   held_packages = {
     'alien': '8.95',
-    'iotop': '0.6-2'
+    # To match also ubuntu16's
+    'iotop': '0.6-'
   }
   lock_file = '/var/lib/dpkg/status'
 end

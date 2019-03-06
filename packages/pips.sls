@@ -11,7 +11,7 @@
 ### REQ PKGS (without these, some of the WANTED PIPS will fail to install)
 pip_req_pkgs:
   pkg.installed:
-    - pkgs: {{ req_pkgs }}
+    - pkgs: {{ req_pkgs | json }}
 
 {% if pip_config %}
 pip_config:
@@ -53,7 +53,7 @@ packages pips install {{ pn }}:
 packages pips remove {{ upn }}:
        {%- if grains.os_family in ('Suse',) %}
   cmd.run:
-    - name: /usr/bin/pip uninstall {{ pn }}
+    - name: /usr/bin/pip uninstall {{ upn }}
        {%- else %}
   pip.removed:
     - name: {{ upn }}

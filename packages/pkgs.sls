@@ -12,7 +12,7 @@
 ### PRE-REQ PKGS (without these, some of the WANTED PKGS will fail to install)
 pkg_req_pkgs:
   pkg.installed:
-    - pkgs: {{ req_packages }}
+    - pkgs: {{ req_packages | json }}
     {% if req_states %}
     - require:
       {% for dep in req_states %}
@@ -29,7 +29,7 @@ held_pkgs:
       - {{ p }}: {{ v }}
       {% endfor %}
     {% else %}
-    - pkgs: {{ held_packages }}
+    - pkgs: {{ held_packages | json }}
     {% endif %}
     {% if grains['os_family'] not in ['Suse'] %}
     - hold: true
@@ -44,7 +44,7 @@ held_pkgs:
 
 wanted_pkgs:
   pkg.installed:
-    - pkgs: {{ wanted_packages }}
+    - pkgs: {{ wanted_packages | json }}
     {% if grains['os_family'] not in ['Suse'] %}
     - hold: false
     {% endif %}
@@ -58,5 +58,5 @@ wanted_pkgs:
 
 unwanted_pkgs:
   pkg.purged:
-    - pkgs: {{ unwanted_packages }}
+    - pkgs: {{ unwanted_packages | json }}
 

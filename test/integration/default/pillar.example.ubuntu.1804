@@ -26,9 +26,6 @@ packages:
   pips:
     required:
       pkgs:
-        # Pillar parameters have precedence so, if you add a package here, you
-        # should also add the python pip package you want. Otherwise, the formula
-        # will take care of getting it if needed.
         - libpython2.7-dev
         - python-pip
     wanted:
@@ -51,13 +48,15 @@ packages:
       - diff-lcs
       - kitchen-vagrant
       - kwalify
-  snaps:
-    wanted:
-      - hello-world
-    classic:
-      - test-snapd-hello-classic
-    unwanted:
-      - goodbye-world
+  # Disable Snaps testing in Ubuntu 18 due to 
+  # https://github.com/saltstack-formulas/packages-formula/issues/44
+  # snaps:
+  #   wanted:
+  #     - hello-world
+  #   classic:
+  #     - test-snapd-hello-classic
+  #   unwanted:
+  #     - goodbye-world
   archives:
     wanted:
       terminator:
