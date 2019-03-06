@@ -21,12 +21,6 @@ platforms:
       run_command: /lib/systemd/systemd
       provision_command:
         - apt-get update && apt-get install -y udev
-  - name: debian-8-backports
-    driver_config:
-      image: debian:jessie-backports
-      run_command: /lib/systemd/systemd
-      provision_command:
-        - apt-get update && apt-get install -y udev
   - name: ubuntu-18.04
     driver_config:
       image: ubuntu:18.04
@@ -38,11 +32,15 @@ platforms:
       image: ubuntu:16.04
       run_command: /lib/systemd/systemd
       provision_command:
-        - apt-get update && apt-get install -y udev
+        - apt-get update && apt-get install -y udev locales
+        - locale-gen en_US.UTF-8
+        - update-locale LANG=en_US.UTF-8
   - name: centos-7
     driver_config:
       image: centos:7
       run_command: /usr/lib/systemd/systemd
+      provision_command:
+        - yum -y update && yum -y install udev git
   # - name: centos-6
   #   driver_config:
   #     image: centos:6
@@ -52,7 +50,7 @@ platforms:
       image: fedora
       run_command: /usr/lib/systemd/systemd
       provision_command:
-        - yum -y update && yum -y install udev
+        - yum -y update && yum -y install udev git
   # As of February 2019, there have been problems getting `opensuse` to work:
   #   * `opensuse` is deprecated
   #   * `opensuse/leap` grabs `15.x`, which doesn't run the `inspec` tests
@@ -64,7 +62,7 @@ platforms:
       image: opensuse/salt-minion
       run_command: /usr/lib/systemd/systemd
       provision_command:
-        - zypper refresh && zypper install -y udev
+        - zypper refresh && zypper install -y udev git
         - systemctl enable sshd.service
         - cat /etc/os-release
 
@@ -101,14 +99,34 @@ verifier:
 suites:
   - name: deb
     excludes:
+      - ubuntu-16.04
+      - ubuntu-18.04
       - centos-7
       - fedora
       - opensuse-leap-salt-minion
 
+  - name: ubu18
+    excludes:
+      - debian-9
+      - ubuntu-16.04
+      - centos-7
+      - fedora
+      - opensuse-leap-salt-minion
+
+  - name: ubu16
+    excludes:
+      - debian-9
+      - ubuntu-18.04
+      - centos-7
+      - fedora
+      - opensuse-leap-salt-minion
+    provisioner:
+      pillars-from-files:
+        packages.sls: test/integration/default/pillar.example.ubuntu.1604
+
   - name: fed
     excludes:
       - debian-9
-      - debian-8-backports
       - ubuntu-16.04
       - ubuntu-18.04
       - centos-7
@@ -120,7 +138,6 @@ suites:
   - name: rpm
     excludes:
       - debian-9
-      - debian-8-backports
       - ubuntu-16.04
       - ubuntu-18.04
       - fedora

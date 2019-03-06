@@ -3,7 +3,7 @@ packages:
     # A dict of "package: version" pairs:
     held:
       alien: 8.95
-      iotop: 0.6-2
+      iotop: 0.6-1
 
     # Alternativelly, held packages can also be specified as a list with
     # no versions. In this case, the package will be held in the installed
@@ -26,9 +26,6 @@ packages:
   pips:
     required:
       pkgs:
-        # Pillar parameters have precedence so, if you add a package here, you
-        # should also add the python pip package you want. Otherwise, the formula
-        # will take care of getting it if needed.
         - libpython2.7-dev
         - python-pip
     wanted:

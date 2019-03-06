@@ -31,7 +31,8 @@ when 'debian', 'ubuntu'
   os_packages = %w()
   held_packages = {
     'alien': '8.95',
-    'iotop': '0.6-2'
+    # To match also ubuntu16's
+    'iotop': '0.6-'
   }
   lock_file = '/var/lib/dpkg/status'
 end
