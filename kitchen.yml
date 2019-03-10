@@ -20,19 +20,19 @@ platforms:
       image: debian:9
       run_command: /lib/systemd/systemd
       provision_command:
-        - apt-get update && apt-get install -y udev locales
+        - apt-get update && apt-get install -y udev locales git
   - name: ubuntu-18.04
     driver_config:
       image: ubuntu:18.04
       run_command: /lib/systemd/systemd
       provision_command:
-        - apt-get update && apt-get install -y udev locales
+        - apt-get update && apt-get install -y udev locales git
   - name: ubuntu-16.04
     driver_config:
       image: ubuntu:16.04
       run_command: /lib/systemd/systemd
       provision_command:
-        - apt-get update && apt-get install -y udev locales
+        - apt-get update && apt-get install -y udev locales git
         - locale-gen en_US.UTF-8
         - update-locale LANG=en_US.UTF-8
   - name: centos-7
@@ -106,6 +106,30 @@ suites:
       - centos-7
       - fedora
       - opensuse-leap-salt-minion
+    provisioner:
+      dependencies:
+        - name: node
+          repo: git
+          source: https://github.com/saltstack-formulas/node-formula.git
+      state_top:
+        base:
+          '*':
+            - node
+            - packages
+      pillars_from_files:
+        packages.sls: pillar.example
+      pillars:
+        top.sls:
+          base:
+            '*':
+            - node
+            - packages
+        node.sls:
+          node:
+            version: 11.11.0-1nodesource1
+            install_from_ppa: True
+            ppa:
+              repository_url: https://deb.nodesource.com/node_11.x
 
   - name: ubu18
     excludes:

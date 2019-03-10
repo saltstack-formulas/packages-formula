@@ -37,3 +37,7 @@ packages formula
 0.0.9 (2018-10-03)
 
 - Add support for plain files using arcihve
+
+0.1.0 (2019-03-10)
+
+- Add npm support

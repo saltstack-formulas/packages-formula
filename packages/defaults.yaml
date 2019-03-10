@@ -23,6 +23,12 @@ packages:
     required:
       states: []
       pkgs: []
+  npms:
+    wanted: []
+    unwanted: []
+    required:
+      states: []
+      pkgs: []
   snaps:
     packages: ['snapd', 'fuse',]
     collides: []

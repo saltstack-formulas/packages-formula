@@ -43,6 +43,7 @@ packages:
         timeout: 120
         default-timeout: 120
         # proxy: http://proxy.example.com:3128
+
   gems:
     wanted:
       - progressbar
@@ -51,6 +52,7 @@ packages:
       - diff-lcs
       - kitchen-vagrant
       - kwalify
+
   snaps:
     wanted:
       - hello-world
@@ -58,6 +60,18 @@ packages:
       - test-snapd-hello-classic
     unwanted:
       - goodbye-world
+
+  npms:
+    required:
+    # pkgs:
+    #   - some_package_you_need
+      sls: ['nodejs.ppa']
+    wanted:
+      - hello-world-npm
+      - sax
+    unwanted:
+      - gist
+
   archives:
     wanted:
       terminator:
