@@ -1,3 +1,8 @@
+## FIXME! inspec's npm resource fails to check correctly (sudo issues, path issues)
+## so I added some "poor man's checks" to ensure, at least, that npms are in place
+
+npms_path = '/home/kitchen/npms'
+
 wanted_npms = {
   'hello-world-npm': '1.1.1',
   'sax': '1.2.4',
@@ -13,12 +18,16 @@ control 'Wanted/Required npm packages' do
     os.name == 'debian'
   end
 
+  describe directory(npms_path) do
+    it { should exist }
+    its('owner') { should cmp 'kitchen' }
+    its('group') { should cmp 'kitchen' }
+    its('mode') { should cmp '0755' }
+  end
+
   wanted_npms.each do |p,v|
-    describe npm(p) do
-      it { should be_installed }
-      # FIXME! Testing for version is failing, seems an issue in inspec
-      # Same happens with testing path, as it performs a cd command and it fails when using sudo
-      # its('version') { should eq v }
+    describe directory("#{npms_path}/node_modules/#{p}") do
+      it { should exist }
     end
   end
 end

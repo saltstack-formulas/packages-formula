@@ -14,7 +14,12 @@ include:
   {% endfor %}
 {% endif %}
 
-### REQ PKGS (without these, some of the WANTED PIPS will fail to install)
+# As we depend on npm installed, if this state file is invoked every time
+# if will fail with 'npm not found'. This condition makes sure it's run
+# only when explicitly asking for adding/removing npms
+{% if wanted_npms or unwanted_npms %}
+
+### REQ PKGS (without these, some of the WANTED NPMS will fail to install)
 npm_req_pkgs:
   pkg.installed:
     - pkgs: {{ req_pkgs | json }}
@@ -66,3 +71,5 @@ wanted_npms:
 {{ upn }}:
   npm.removed
 {% endfor %}
+
+{% endif %}
