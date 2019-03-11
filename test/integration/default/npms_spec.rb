@@ -4,6 +4,7 @@
 npms_path = '/home/kitchen/npms'
 
 wanted_npms = {
+  '@davidodio/hello': '2.3.0',
   'hello-world-npm': '1.1.1',
   'sax': '1.2.4',
   'coffee-script': '1.0.1'
