@@ -9,6 +9,13 @@
 {% set wanted_packages = packages.pkgs.wanted %}
 {% set unwanted_packages = packages.pkgs.unwanted %}
 
+{% if req_states %}
+include:
+  {% for dep in req_states %}
+  - {{ dep }}
+  {% endfor %}
+{% endif %}
+
 ### PRE-REQ PKGS (without these, some of the WANTED PKGS will fail to install)
 pkg_req_pkgs:
   pkg.installed:

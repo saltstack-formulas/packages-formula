@@ -7,6 +7,13 @@
 {% set wanted_npms = packages.npms.wanted %}
 {% set unwanted_npms = packages.npms.unwanted %}
 
+{% if req_states %}
+include:
+  {% for dep in req_states %}
+  - {{ dep }}
+  {% endfor %}
+{% endif %}
+
 ### REQ PKGS (without these, some of the WANTED PIPS will fail to install)
 npm_req_pkgs:
   pkg.installed:

@@ -70,8 +70,8 @@ packages:
     # env: None                  # A list of environment variables to be set prior to execution
     # force_reinstall: False     # Install the package even if it is already installed
     required:
-      pkgs:
-        - nodejs
+      states:
+        - node.pkg
     wanted:
       # Valid formats:
       #
