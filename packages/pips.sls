@@ -8,6 +8,13 @@
 {% set unwanted_pips = packages.pips.unwanted %}
 {% set pip_config = packages.pips.config %}
 
+{% if req_states %}
+include:
+  {% for dep in req_states %}
+  - {{ dep }}
+  {% endfor %}
+{% endif %}
+
 ### REQ PKGS (without these, some of the WANTED PIPS will fail to install)
 pip_req_pkgs:
   pkg.installed:

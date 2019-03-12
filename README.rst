@@ -127,6 +127,28 @@ You can specify:
 * ``required states`` on which any of the ``wanted`` packages depend for their
   correct installation (ie, ``epel`` for RedHat families).
 
+``packages.npms``
+-----------------
+
+This formula **DOES NOT** install ``nodejs/npm``, as it's outside of its scope:
+nodejs/npm that comes with the distros is usually outdated, so it's required to add
+a repo, run scripts, etc, and this formula manages packages :)
+
+You can use the `nodejs-formula <https://github.com/saltstack-formulas/node-formula>`_
+and add a dependency for it in the pillar `npms:required:sls` (see the pillar.example)
+
+You can specify:
+
+* ``wanted`` npm packages, which will be installed using npm. Requires you
+  specify the correct ``npm`` package for your distro, as a dependency
+  (see the pillar.example)
+* ``unwanted`` npm packages, which will be uninstalled using npm.
+* ``required system packages`` on which any of the ``wanted`` npm packages
+  depend for their correct installation. Usually, a ``npm`` package and/or
+  some other compiler packages are required.
+* ``required states`` on which any of the ``wanted`` packages depend for their
+  correct installation (ie, ``epel`` for RedHat families).
+
 ``packages.archives``
 -------------------
 

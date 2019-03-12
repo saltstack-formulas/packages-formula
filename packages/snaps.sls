@@ -18,6 +18,11 @@
 ### REQ PKGS (without this, SNAPS can fail to install/uninstall)
 include:
   - packages.pkgs
+  {% if req_states %}
+    {% for dep in req_states %}
+  - {{ dep }}
+    {% endfor %}
+  {% endif %}
 
 extend: 
   unwanted_pkgs:
