@@ -26,6 +26,7 @@ pkg_req_pkgs:
       - sls: {{ dep }}
       {% endfor %}
     {% endif %}
+    - retry: {{ packages.retry_options|json }}
 
 {% if held_packages != {} %}
 held_pkgs:
@@ -47,6 +48,7 @@ held_pkgs:
         {% for dep in req_states %}
       - sls: {{ dep }}
         {% endfor %}
+    - retry: {{ packages.retry_options|json }}
 {% endif %}
 
 wanted_pkgs:
@@ -62,6 +64,7 @@ wanted_pkgs:
       - sls: {{ dep }}
         {% endfor %}
       {% endif %}
+    - retry: {{ packages.retry_options|json }}
 
 unwanted_pkgs:
   pkg.purged:

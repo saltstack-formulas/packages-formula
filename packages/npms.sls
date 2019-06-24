@@ -66,6 +66,7 @@ wanted_npms:
       - sls: {{ dep }}
         {% endfor %}
       {% endif %}
+    - retry: {{ packages.retry_options|json }}
 
 {% for upn in unwanted_npms %}
 {{ upn }}:

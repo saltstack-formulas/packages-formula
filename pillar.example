@@ -122,3 +122,9 @@ packages:
   remote_pkgs:
     zoom: 'https://zoom.us/client/latest/zoom_amd64.deb'
 
+  retry_options:
+    # https://docs.saltstack.com/en/latest/ref/states/requisites.html#retrying-states
+    attempts: 5
+    until: True
+    interval: 30
+    splay: 20

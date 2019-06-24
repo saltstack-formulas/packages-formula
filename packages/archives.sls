@@ -45,11 +45,7 @@ packages-archive-wanted-download-{{ package }}:
   cmd.run:
     - name: curl -s -L -o {{ packages.tmpdir }}/{{ archivename }} {{ archive.dl.source }}
     - unless: test -f {{ packages.tmpdir }}/{{ archivename }}
-    - retry:
-        attempts: 2
-        until: True
-        interval: 60
-        splay: 10
+    - retry: {{ packages.retry_options|json }}
 
       {%- if 'hashsum' in archive.dl and archive.dl.hashsum %}
          {# see https://github.com/saltstack/salt/pull/41914 #}
@@ -96,6 +92,7 @@ packages-archive-wanted-download-{{ package }}:
        {%- else %}
     - skip_verify: True
        {%- endif %}
+    - retry: {{ packages.retry_options|json }}
 
    {% endif %} 
 {%- endfor %}

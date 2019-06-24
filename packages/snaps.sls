@@ -38,6 +38,7 @@ extend:
         - sls: {{ dep }}
       {% endfor %}
     {% endif %}
+      - retry: {{ packages.retry_options|json }}
 
 {% if packages.snaps.symlink %}
 {# classic confinement requires snaps under /snap or symlink from #}
@@ -72,6 +73,7 @@ packages-snapd-{{ snap }}-wanted:
     - require:
       - pkg: pkg_req_pkgs
       - pkg: unwanted_pkgs
+    - retry: {{ packages.retry_options|json }}
 {% endfor %}
 
 ### SNAPS to install in classic mode
@@ -84,6 +86,7 @@ packages-snapd-{{ snap }}-classic:
     - require:
       - pkg: pkg_req_pkgs
       - pkg: unwanted_pkgs
+    - retry: {{ packages.retry_options|json }}
 {% endfor %}
 
 ### SNAPS to uninstall

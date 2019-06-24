@@ -54,6 +54,7 @@ packages pips install {{ pn }}:
       {% if pip_config %}
       - file: pip_config
       {% endif %}
+    - retry: {{ packages.retry_options|json }}
 {% endfor %}
 
 {% for upn in unwanted_pips %}

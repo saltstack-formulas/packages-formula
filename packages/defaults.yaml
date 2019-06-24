@@ -48,3 +48,9 @@ packages:
     unwanted: []
     required:
       archives: {}    #note: dict
+  retry_options:
+    # https://docs.saltstack.com/en/latest/ref/states/requisites.html#retrying-states
+    attempts: 3
+    until: True
+    interval: 60
+    splay: 10
