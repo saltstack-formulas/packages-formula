@@ -18,6 +18,7 @@ include:
 gem_req_pkgs:
   pkg.installed:
     - pkgs: {{ req_pkgs | json }}
+    - retry: {{ packages.retry_options|json }}
 
 ### GEMS to install
 # (requires the ruby/rubygem deb/rpm installed, either by the system or listed in
@@ -32,6 +33,7 @@ gem_req_pkgs:
       - sls: {{ dep }}
         {% endfor %}
       {% endif %}
+    - retry: {{ packages.retry_options|json }}
 {% endfor %}
 
 {% for ugm in unwanted_gems %}
