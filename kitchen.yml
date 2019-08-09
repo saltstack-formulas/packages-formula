@@ -4,207 +4,148 @@
 # For help on this file's format, see https://kitchen.ci/
 driver:
   name: docker
-
-driver_config:
   use_sudo: false
   privileged: true
-  provision_command: mkdir -p /run/sshd
+  run_command: /lib/systemd/systemd
 
 # Make sure the platforms listed below match up with
 # the `env.matrix` instances defined in `.travis.yml`
 platforms:
-  # The `run_command` used for each platform is required to
-  # test `systemd` services in docker
-  - name: debian-9
-    driver_config:
-      image: debian:9
-      run_command: /lib/systemd/systemd
+  ## SALT `develop`
+  - name: debian-10-develop-py3
+    driver:
+      image: netmanagers/salt-develop-py3:debian-10
       provision_command:
-        - apt-get update && apt-get install -y udev locales git
-        - echo 'export PATH=${PATH}:/usr/local/go/bin' >/etc/default/golang.sh
-        - export PATH="${PATH}:/usr/local/go/bin"
-  - name: ubuntu-18.04
-    driver_config:
-      image: ubuntu:18.04
-      run_command: /lib/systemd/systemd
+        - curl -o bootstrap-salt.sh -L https://bootstrap.saltstack.com
+        - sh bootstrap-salt.sh -XdPbfrq -x python3 git develop
+  - name: ubuntu-1804-develop-py3
+    driver:
+      image: netmanagers/salt-develop-py3:ubuntu-18.04
       provision_command:
-        - apt-get update && apt-get install -y udev locales git
-        - echo 'export PATH=${PATH}:/usr/local/go/bin' >/etc/default/golang.sh
-        - export PATH="${PATH}:/usr/local/go/bin"
-  - name: ubuntu-16.04
-    driver_config:
-      image: ubuntu:16.04
-      run_command: /lib/systemd/systemd
+        - curl -o bootstrap-salt.sh -L https://bootstrap.saltstack.com
+        - sh bootstrap-salt.sh -XdPbfrq -x python3 git develop
+  - name: centos-7-develop-py3
+    driver:
+      image: netmanagers/salt-develop-py3:centos-7
       provision_command:
-        - apt-get update && apt-get install -y udev locales git
-        - locale-gen en_US.UTF-8
-        - update-locale LANG=en_US.UTF-8
-        - echo 'export PATH=${PATH}:/usr/local/go/bin' >/etc/default/golang.sh
-        - export PATH="${PATH}:/usr/local/go/bin"
-  - name: centos-7
-    driver_config:
-      image: centos:7
+        - curl -o bootstrap-salt.sh -L https://bootstrap.saltstack.com
+        - sh bootstrap-salt.sh -XdPbfrq -x python3 git develop
+  - name: fedora-30-develop-py3
+    driver:
+      image: netmanagers/salt-develop-py3:fedora-30
+      provision_command:
+        - curl -o bootstrap-salt.sh -L https://bootstrap.saltstack.com
+        - sh bootstrap-salt.sh -XdPbfrq -x python3 git develop
+  - name: opensuse-leap-15-develop-py3
+    driver:
+      image: netmanagers/salt-develop-py3:opensuse-leap-15
+      provision_command:
+        - curl -o bootstrap-salt.sh -L https://bootstrap.saltstack.com
+        - sh bootstrap-salt.sh -XdPbfrq -x python3 git develop
       run_command: /usr/lib/systemd/systemd
+  - name: amazonlinux-2-develop-py2
+    driver:
+      image: netmanagers/salt-develop-py2:amazonlinux-2
       provision_command:
-        - yum -y update && yum -y install udev git
-        # To test remote packages in RPM envs
-        - rpm --import https://zoom.us/linux/download/pubkey
-  - name: fedora
-    driver_config:
-      image: fedora
+        - curl -o bootstrap-salt.sh -L https://bootstrap.saltstack.com
+        - sh bootstrap-salt.sh -XdPbfrq -x python2 git develop
+
+  ## SALT `2019.2`
+  - name: debian-9-2019-2-py3
+    driver:
+      image: netmanagers/salt-2019.2-py3:debian-9
+  - name: ubuntu-1804-2019-2-py3
+    driver:
+      image: netmanagers/salt-2019.2-py3:ubuntu-18.04
+  - name: centos-7-2019-2-py3
+    driver:
+      image: netmanagers/salt-2019.2-py3:centos-7
+  - name: fedora-30-2019-2-py3
+    driver:
+      image: netmanagers/salt-2019.2-py3:fedora-30
+  - name: opensuse-leap-15-2019-2-py3
+    driver:
+      image: netmanagers/salt-2019.2-py3:opensuse-leap-15
       run_command: /usr/lib/systemd/systemd
-      provision_command:
-        - yum -y update && yum -y install udev git
-        # To test remote packages in RPM envs
-        - rpm --import https://zoom.us/linux/download/pubkey
-  # As of February 2019, there have been problems getting `opensuse` to work:
-  #   * `opensuse` is deprecated
-  #   * `opensuse/leap` grabs `15.x`, which doesn't run the `inspec` tests
-  #   * `opensuse/tumbleweed` doesn't install `salt-minion`
-  #   * `opensuse/leap:42.3` does work
-  #   * `opensuse/salt-minion` uses `42.3` with `salt-minion` pre-installed
-  - name: opensuse-leap-salt-minion
-    driver_config:
-      image: opensuse/salt-minion
+  - name: amazonlinux-2-2019-2-py2
+    driver:
+      image: netmanagers/salt-2019.2-py2:amazonlinux-2
+
+  ## SALT `2018.3`
+  - name: debian-9-2018-3-py2
+    driver:
+      image: netmanagers/salt-2018.3-py2:debian-9
+  - name: ubuntu-1604-2018-3-py2
+    driver:
+      image: netmanagers/salt-2018.3-py2:ubuntu-16.04
+  - name: centos-7-2018-3-py2
+    driver:
+      image: netmanagers/salt-2018.3-py2:centos-7
+  - name: fedora-29-2018-3-py2
+    driver:
+      image: netmanagers/salt-2018.3-py2:fedora-29
+  - name: opensuse-leap-15-2018-3-py2
+    driver:
+      image: netmanagers/salt-2018.3-py2:opensuse-leap-15
       run_command: /usr/lib/systemd/systemd
-      provision_command:
-        - zypper refresh && zypper install -y udev git glibc-locale
-        - systemctl enable sshd.service
-        - cat /etc/os-release
-        # To test remote packages in RPM envs
-        - rpm --import https://zoom.us/linux/download/pubkey
+  - name: amazonlinux-2-2018-3-py2
+    driver:
+      image: netmanagers/salt-2018.3-py2:amazonlinux-2
+
+  ## SALT `2017.7`
+  - name: debian-8-2017-7-py2
+    driver:
+      image: netmanagers/salt-2017.7-py2:debian-8
+  - name: ubuntu-1604-2017-7-py2
+    driver:
+      image: netmanagers/salt-2017.7-py2:ubuntu-16.04
+  - name: centos-6-2017-7-py2
+    driver:
+      image: netmanagers/salt-2017.7-py2:centos-6
+      run_command: /sbin/init
+  - name: fedora-29-2017-7-py2
+    driver:
+      image: netmanagers/salt-2017.7-py2:fedora-29
+  - name: opensuse-leap-15-2017-7-py2
+    driver:
+      image: netmanagers/salt-2017.7-py2:opensuse-leap-15
+      run_command: /usr/lib/systemd/systemd
+  - name: amazonlinux-2-2017-7-py2
+    driver:
+      image: netmanagers/salt-2017.7-py2:amazonlinux-2
 
 provisioner:
   name: salt_solo
   log_level: info
+  salt_install: none
   require_chef: false
-  salt_version: latest
   formula: packages
   salt_copy_filter:
     - .kitchen
     - .git
-  pillars_from_files:
-    packages.sls: pillar.example
-  pillars:
-    top.sls:
-      base:
-        '*':
-          - packages
-  state_top:
-    base:
-      '*':
-        - packages
 
 verifier:
+  # https://www.inspec.io/
   name: inspec
   sudo: true
   # cli, documentation, html, progress, json, json-min, json-rspec, junit
   reporter:
     - cli
-  inspec_tests:
-    - path: test/integration/default
 
 suites:
-  - name: deb
-    excludes:
-      - ubuntu-16.04
-      - ubuntu-18.04
-      - centos-7
-      - fedora
-      - opensuse-leap-salt-minion
+  - name: default
     provisioner:
-      dependencies:
-        - name: node
-          repo: git
-          source: https://github.com/saltstack-formulas/node-formula.git
       state_top:
         base:
           '*':
-            - node
             - packages
+      pillars:
+        top.sls:
+          base:
+            '*':
+              - packages
       pillars_from_files:
         packages.sls: pillar.example
-      pillars:
-        top.sls:
-          base:
-            '*':
-            - node
-            - packages
-        node.sls:
-          node:
-            version: 11.11.0-1nodesource1
-            install_from_ppa: True
-            ppa:
-              repository_url: https://deb.nodesource.com/node_11.x
-
-  - name: ubu18
-    excludes:
-      - debian-9
-      - ubuntu-16.04
-      - centos-7
-      - fedora
-      - opensuse-leap-salt-minion
-    provisioner:
-      pillars_from_files:
-        packages.sls: test/integration/default/pillar.example.ubuntu.1804
-
-  - name: ubu16
-    excludes:
-      - debian-9
-      - ubuntu-18.04
-      - centos-7
-      - fedora
-      - opensuse-leap-salt-minion
-    provisioner:
-      pillars_from_files:
-        packages.sls: test/integration/default/pillar.example.ubuntu.1604
-
-  - name: fed
-    excludes:
-      - debian-9
-      - ubuntu-16.04
-      - ubuntu-18.04
-      - centos-7
-      - opensuse-leap-salt-minion
-    provisioner:
-      pillars_from_files:
-        packages.sls: test/integration/default/pillar.example.fedora
-
-  - name: sus
-    excludes:
-      - debian-9
-      - ubuntu-16.04
-      - ubuntu-18.04
-      - centos-7
-      - fedora
-    provisioner:
-      pillars_from_files:
-        packages.sls: test/integration/default/pillar.example.opensuse
-
-  - name: rpm
-    excludes:
-      - debian-9
-      - ubuntu-16.04
-      - ubuntu-18.04
-      - fedora
-      - opensuse-leap-salt-minion
-    provisioner:
-      dependencies:
-        - name: epel
-          repo: git
-          source: https://github.com/saltstack-formulas/epel-formula.git
-      state_top:
-        base:
-          '*':
-            - epel
-            - packages
-      pillars_from_files:
-        packages.sls: test/integration/default/pillar.example.redhat
-      pillars:
-        top.sls:
-          base:
-            '*':
-            - epel
-            - packages
-        epel.sls:
-          disabled: false
+    verifier:
+      inspec_tests:
+        - path: test/integration/default
