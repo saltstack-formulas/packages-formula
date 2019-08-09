@@ -23,26 +23,26 @@ packages:
       pkgs:
         - wget
         - git
-  pips:
-    required:
-      pkgs:
-        # Pillar parameters have precedence so, if you add a package here, you
-        # should also add the python pip package you want. Otherwise, the formula
-        # will take care of getting it if needed.
-        - libpython2.7-dev
-        - python-pip
-    wanted:
-      - dxpy
-      - attrs
-    unwanted:
-      - campbel
-      - reverse_geocode
-      - indy-crypto
-    config:
-      global:
-        timeout: 120
-        default-timeout: 120
-        # proxy: http://proxy.example.com:3128
+#  pips:
+#    required:
+#      pkgs:
+#        # Pillar parameters have precedence so, if you add a package here, you
+#        # should also add the python pip package you want. Otherwise, the formula
+#        # will take care of getting it if needed.
+#        - libpython2.7-dev
+#        - python-pip
+#    wanted:
+#      - dxpy
+#      - attrs
+#    unwanted:
+#      - campbel
+#      - reverse_geocode
+#      - indy-crypto
+#    config:
+#      global:
+#        timeout: 120
+#        default-timeout: 120
+#        # proxy: http://proxy.example.com:3128
 
   gems:
     wanted:
@@ -69,31 +69,31 @@ packages:
       - github.com/golang/example/hello
       - github.com/golang/example/outyet
 
-  npms:
-    dir: /home/kitchen/npms      # The target directory in which to install the package, or None for global installation
-    user: kitchen                # The user to run NPM with (and to assign to `dir`)
-    group: kitchen               # The group to assign to `dir`
-    mode: 0755                 # The permissions to assign to `dir`
-    # registry: None             # The NPM registry from which to install the package 
-    # env: None                  # A list of environment variables to be set prior to execution
-    # force_reinstall: False     # Install the package even if it is already installed
-    required:
-      states:
-        - node.pkg
-    wanted:
-      # Valid formats:
-      #
-      # @google-cloud/bigquery@^0.9.6
-      # @foobar
-      # buffer-equal-constant-time@1.0.1
-      # coffee-script
-      # You need to quote the package if it starts with '@'
-      - '@davidodio/hello@2.3.0'
-      - hello-world-npm
-      - sax
-      - coffee-script@1.0.1
-    unwanted:
-      - gist
+#  npms:
+#    dir: /home/kitchen/npms      # The target directory in which to install the package, or None for global installation
+#    user: kitchen                # The user to run NPM with (and to assign to `dir`)
+#    group: kitchen               # The group to assign to `dir`
+#    mode: 0755                 # The permissions to assign to `dir`
+#    # registry: None             # The NPM registry from which to install the package 
+#    # env: None                  # A list of environment variables to be set prior to execution
+#    # force_reinstall: False     # Install the package even if it is already installed
+#    required:
+#      states:
+#        - node.pkg
+#    wanted:
+#      # Valid formats:
+#      #
+#      # @google-cloud/bigquery@^0.9.6
+#      # @foobar
+#      # buffer-equal-constant-time@1.0.1
+#      # coffee-script
+#      # You need to quote the package if it starts with '@'
+#      - '@davidodio/hello@2.3.0'
+#      - hello-world-npm
+#      - sax
+#      - coffee-script@1.0.1
+#    unwanted:
+#      - gist
 
   archives:
     wanted:
