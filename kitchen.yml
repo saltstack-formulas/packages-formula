@@ -133,7 +133,7 @@ verifier:
     - cli
 
 suites:
-  - name: default
+  - name: debian
     includes:
       - debian-10-develop-py3
       - debian-9-2019-2-py3
@@ -155,3 +155,24 @@ suites:
       inspec_tests:
         - path: test/integration/default
 
+  - name: ubuntu
+    includes:
+      - ubuntu-1804-develop-py3
+      - ubuntu-1804-2019-2-py3
+      - ubuntu-1604-2018-3-py2
+      - ubuntu-1604-2017-7-py2
+    provisioner:
+      state_top:
+        base:
+          '*':
+            - packages
+      pillars:
+        top.sls:
+          base:
+            '*':
+              - packages
+      pillars_from_files:
+        packages.sls: test/salt/pillar/pillar.example.ubuntu.1804
+    verifier:
+      inspec_tests:
+        - path: test/integration/default
