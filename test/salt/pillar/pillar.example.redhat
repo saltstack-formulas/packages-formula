@@ -17,7 +17,6 @@ packages:
         - yum-plugin-versionlock
   pips:
     wanted:
-      - dxpy
       - attrs
     unwanted:
       - campbel
