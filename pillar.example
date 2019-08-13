@@ -1,9 +1,9 @@
 packages:
   pkgs:
     # A dict of "package: version" pairs:
-    held:
-      alien: 8.95
-      iotop: 0.6-2
+#    held:
+#      alien: 8.95
+#      iotop: 0.6-24
 
     # Alternativelly, held packages can also be specified as a list with
     # no versions. In this case, the package will be held in the installed

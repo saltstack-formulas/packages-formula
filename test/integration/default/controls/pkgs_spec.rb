@@ -43,6 +43,9 @@ when 'debian', 'ubuntu'
   lock_file = '/var/lib/dpkg/status'
 end
 
+## FIXME - not testing Held packages
+held_packages = {}
+
 unheld_packages = (common_packages + os_packages).flatten.uniq
 all_packages = (unheld_packages + held_packages.keys.map { |k| k.to_s }).flatten.uniq
 
