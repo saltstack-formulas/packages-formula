@@ -18,10 +18,12 @@ when 'redhat', 'centos'
   }
   lock_file = '/etc/yum/pluginconf.d/versionlock.list'
 when 'fedora'
-  os_packages = %w(
-    python2-dnf-plugin-versionlock
-    python3-dnf-plugin-versionlock
-  )
+  case os[:release]
+  when '29'
+    os_packages = ['python2-dnf-plugin-versionlock']
+  when '30'
+    os_packages = ['python3-dnf-plugin-versionlock']
+  end
   held_packages = {
     'alien': '8.95-8.fc29',
     'iotop': '0.6-18.fc29'

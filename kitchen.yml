@@ -176,3 +176,43 @@ suites:
     verifier:
       inspec_tests:
         - path: test/integration/default
+
+  - name: fedora30
+    includes:
+      - fedora-30-develop-py3
+      - fedora-30-2019-2-py3
+    provisioner:
+      state_top:
+        base:
+          '*':
+            - packages
+      pillars:
+        top.sls:
+          base:
+            '*':
+              - packages
+      pillars_from_files:
+        packages.sls: test/salt/pillar/pillar.example.fedora30
+    verifier:
+      inspec_tests:
+        - path: test/integration/default
+
+  - name: fedora29
+    includes:
+      - fedora-29-2018-3-py2
+      - fedora-29-2017-7-py2
+    provisioner:
+      state_top:
+        base:
+          '*':
+            - packages
+      pillars:
+        top.sls:
+          base:
+            '*':
+              - packages
+      pillars_from_files:
+        packages.sls: test/salt/pillar/pillar.example.fedora29
+    verifier:
+      inspec_tests:
+        - path: test/integration/default

@@ -1,8 +1,8 @@
 packages:
   pkgs:
-    held:
-      alien: 8.95-8.fc29
-      iotop: 0.6-18.fc29
+#    held:
+#      alien: 8.95-8.fc29
+#      iotop: 0.6-18.fc29
     wanted:
       - git
       - less
@@ -15,7 +15,7 @@ packages:
       pkgs:
         - git
         - python2-dnf-plugin-versionlock
-        - python3-dnf-plugin-versionlock
+#        - python3-dnf-plugin-versionlock
   # Not testing pips in FC29 because it still ships 2018.3.3
   # which breaks with pip > 18 (https://github.com/saltstack/salt/issues/49967)
   # pips:
