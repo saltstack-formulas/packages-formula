@@ -1,4 +1,11 @@
 ### REMOTE PKGS
+remote_pkgs = ['zoom']
+
+case os[:name]
+when 'opensuse'
+  remote_pkgs = []
+end
+
 control 'Remote packages' do
   title 'should be downloaded and installed'
 
