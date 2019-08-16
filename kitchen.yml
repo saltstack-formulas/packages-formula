@@ -243,6 +243,32 @@ suites:
       inspec_tests:
         - path: test/integration/default
 
+  - name: amazonlinux
+    includes:
+      - amazonlinux-2-develop-py2
+      - amazonlinux-2-2019-2-py2
+      - amazonlinux-2-2018-3-py2
+      - amazonlinux-2-2017-7-py2
+    provisioner:
+      dependencies:
+        - name: epel
+          repo: git
+          source: https://github.com/saltstack-formulas/epel-formula.git
+      state_top:
+        base:
+          '*':
+            - packages
+      pillars:
+        top.sls:
+          base:
+            '*':
+              - packages
+      pillars_from_files:
+        packages.sls: test/salt/pillar/pillar.example.amazonlinux
+    verifier:
+      inspec_tests:
+        - path: test/integration/default
+
   - name: suse
     includes:
       - opensuse-leap-15-develop-py3
@@ -250,10 +276,10 @@ suites:
       - opensuse-leap-15-2018-3-py2
       - opensuse-leap-15-2017-7-py2
     provisioner:
-      dependencies:
-        - name: epel
-          repo: git
-          source: https://github.com/saltstack-formulas/epel-formula.git
+#      dependencies:
+#        - name: epel
+#          repo: git
+#          source: https://github.com/saltstack-formulas/epel-formula.git
       state_top:
         base:
           '*':

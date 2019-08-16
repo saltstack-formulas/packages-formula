@@ -43,6 +43,10 @@ when 'debian', 'ubuntu'
     'iotop': '0.6-'
   }
   lock_file = '/var/lib/dpkg/status'
+when 'amazon'
+  common_packages.delete('fail2ban')
+  os_packages = ['git']
+  held_packages = []
 end
 
 ## FIXME - not testing Held packages
