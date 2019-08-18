@@ -2,6 +2,7 @@
 # vim: ft=yaml
 packages:
   tmpdir: /tmp/saltstack-packages-formula-archives
+  rootuser: root
   remote_pkgs: {}
   pkgs:
     held: {}
@@ -40,6 +41,9 @@ packages:
     required:
       states: []
       pkgs: []
+  golang:
+    goget: []
+    clean: []
   archives:
     pkgs:
       required: ['curl', 'bzip2', 'gzip']

@@ -32,8 +32,8 @@ npm_req_pkgs:
 npms_dir:
   file.directory:
     - name: {{ packages.npms.dir }}
-    - user: {{ 'root' if 'user' not in packages.npms else packages.npms.user }}
-    - group: {{ 'root' if 'group' not in packages.npms else packages.npms.group }}
+    - user: {{ packages.rootuser if 'user' not in packages.npms else packages.npms.user }}
+    - group: {{ packages.rootuser if 'group' not in packages.npms else packages.npms.group }}
     - mode: {{ '0755' if 'mode' not in packages.npms else packages.npms.mode }}
     - makedirs: True
 {% endif %}
