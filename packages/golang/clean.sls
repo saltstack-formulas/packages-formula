@@ -7,7 +7,7 @@
  
     {%- for package in packages.golang.clean %}
 
-packages-golang-clean-cmd-run-go-clean-{{ package }}:
+packages-golang-clean-{{ package }}-cmd-run:
   cmd.run:
     - name: go clean -i {{ package }}...
     - runas: {{ packages.rootuser }}

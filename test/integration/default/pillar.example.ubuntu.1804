@@ -81,14 +81,22 @@ packages:
           format: raw
           source: https://raw.githubusercontent.com/openstack/cinder/master/contrib/block-box/docker-compose.yml
           hashsum: 1751f8e4f6b4cddd8c4843a0f4473274
-      kubectl:
-        dest: /usr/local/bin
+      golang:
+        dest: /usr/local
         dl:
-          format: bin
-          source: https://storage.googleapis.com/kubernetes-release/release/v1.12.0/bin/darwin/amd64/kubectl
+          format: tar
+          source: https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz
+          hashsum: 66d83bfb5a9ede000e33c6579a91a29e6b101829ad41fffb5c5bb6c900e109d9
     unwanted:
       - /usr/local/boring_archive_software
 
   remote_pkgs:
     zoom: 'https://zoom.us/client/latest/zoom_amd64.deb'
 
+  golang:
+    goget:
+      - github.com/golang/example/hello
+      - github.com/golang/example/outyet
+    clean:
+      - github.com/golang/example/hello
+      - github.com/golang/example/outyet
