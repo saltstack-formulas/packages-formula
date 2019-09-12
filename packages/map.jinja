@@ -18,3 +18,10 @@
     ),
     base='packages')
 %}
+
+{#- Post-processing for specific non-YAML customisations #}
+{%- do packages.update({'kernel': grains.kernel | lower}) %}
+{%- if grains.os == 'MacOS' %}
+{%-   set macos_user = salt['cmd.run']("stat -f '%Su' /dev/console") %}
+{%-   do packages.update({'rootuser': macos_user}) %}
+{%- endif %}

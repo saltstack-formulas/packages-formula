@@ -176,6 +176,16 @@ You can specify:
 
     Centos has no native ``snapd`` package at this time.
 
+
+``packages.golang``
+-------------------
+
+You can specify:
+
+* ``clean`` golang packages, removed using ``go clean -i <item>...``.
+* ``goget`` golang packages, installed using ``go get``.
+
+
 ``packages.remote_pkgs``
 ------------------------
 
