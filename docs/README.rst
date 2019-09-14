@@ -224,6 +224,24 @@ to install, in the format:
 
 ``name: url``
 
+
+`packages.chocolatey``
+^^^^^^^^^^^^^^^^^^^^^^
+
+You can specify:
+
+* ``wanted`` chocolatey packages, which will be installed using chocolatey. Requires you
+  specify the correct ``chocolatey`` package (see the pillar.example)
+* ``unwanted`` chocolatey packages, which will be uninstalled using chocolatey.
+* ``required system packages`` on which any of the ``wanted`` system packages
+  depend for their correct installation.
+* ``required states`` on which any of the ``wanted`` packages depend for their
+  correct installation (ie, ``regedit`` for configurations).
+
+.. note::
+
+    You must configure `winrepo-ng <https://github.com/saltstack/salt-winrepo-ng>`_ in order to install chocolatey required package
+
 Testing
 -------
 
