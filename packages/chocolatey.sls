@@ -2,6 +2,7 @@
 # vim: ft=sls
 {% from "packages/map.jinja" import packages with context %}
 
+{% if packages.chocolatey %}
 {% set req_states = packages.chocolatey.required.states %}
 {% set req_pkgs = packages.chocolatey.required.pkgs %}
 {% set wanted_chocolatey = packages.chocolatey.wanted %}
@@ -20,6 +21,7 @@ chocolatey_req_pkgs:
     - retry: {{ packages.retry_options|json }}
 
 ### CHOCOLATEY PACKAGES to install
+{% if wanted_chocolatey %}
 {% for choco, settings in wanted_chocolatey.items() %}
 {{ choco }}:
   chocolatey.installed:
@@ -34,10 +36,14 @@ chocolatey_req_pkgs:
     - package_args: {{ '' if 'package_args' not in settings else settings.package_args }}
     - allow_multiple: {{ False if 'allow_multiple' not in settings else settings.allow_multiple }}
 {% endfor %}
+{% endif %}
 
 ### CHOCOLATEY PACKAGES to uninstall
+{% if unwanted_chocolatey %}
 {% for uchoco in unwanted_chocolatey %}
 {{ uchoco }}:
   chocolatey.uninstalled:
     - name: {{ uchoco }}
 {% endfor %}
+{% endif %}
+{% endif %}
