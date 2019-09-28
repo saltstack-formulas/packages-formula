@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
+---
 Suse:
   pips:
     required:
@@ -20,10 +21,6 @@ Debian:
       pkgs:
         - ruby
 RedHat:
-  pkgs:
-    required:
-      pkgs:
-        - yum-plugin-versionlock
   pips:
     required:
       states:

@@ -1,26 +1,28 @@
 ---
-RedHat:
+CentOS Linux-6:
   pkgs:
     required:
       pkgs:
         - yum-plugin-versionlock
 
-Fedora:
+CentOS Linux-7:
   pkgs:
     required:
       pkgs:
-        - python2-dnf-plugin-versionlock
+        - yum-plugin-versionlock
+
+CentOS Linux-8:
+  pkgs:
+    required:
+      pkgs:
+        - python3-dnf-plugin-versionlock
   pips:
     required:
       states: []
       pkgs:
         - gcc
-        - python2-pip
-        - python2-devel
+        - python3-pip
+        - python3-devel
   snaps:
     collides: ['snap']
     symlink: true
-
-CentOS:
-  snaps:
-    package:
