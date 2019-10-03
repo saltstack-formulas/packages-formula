@@ -1,6 +1,6 @@
 ### WANTED/REQUIRED
-case os[:name]
-when 'fedora', 'opensuse'
+case platform[:family]
+when 'fedora', 'suse'
   wanted_pips = []
 else
   wanted_pips = %w{
