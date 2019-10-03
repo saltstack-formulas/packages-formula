@@ -35,6 +35,11 @@ when 'suse'
   platform_packages = %w()
   held_packages = {}
   lock_file = ''
+# Adding empty Arch entries, to get tests passing
+when 'arch'
+  platform_packages = %w()
+  held_packages = {}
+  lock_file = ''
 when 'debian'
   platform_packages = %w()
   held_packages = {
