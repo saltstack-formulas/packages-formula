@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ### REMOTE PKGS
 remote_pkgs = ['zoom']
 
