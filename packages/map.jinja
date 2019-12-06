@@ -13,7 +13,7 @@
         merge = salt['grains.filter_by'](
             osmap,
             grain='os',
-            merge = salt['pillar.get']('packages', {}),
+            merge = salt['config.get']('packages', {}),
         ),
     ),
     base='packages')
