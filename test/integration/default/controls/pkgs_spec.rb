@@ -11,7 +11,13 @@ common_packages = %w[
 
 case platform[:family]
 when 'redhat'
-  platform_packages = %w[yum-plugin-versionlock]
+  platform_packages =
+    case platform[:name]
+    when 'amazon'
+      %w[git]
+    else
+      %w[yum-plugin-versionlock]
+    end
   held_packages = {
     # We use this test for held packages in a list,
     # with no version (current version).
@@ -20,12 +26,7 @@ when 'redhat'
   }
   lock_file = '/etc/yum/pluginconf.d/versionlock.list'
 when 'fedora'
-  case platform[:release]
-  when '29'
-    platform_packages = ['python2-dnf-plugin-versionlock']
-  when '30'
-    platform_packages = ['python3-dnf-plugin-versionlock']
-  end
+  platform_packages = ['python3-dnf-plugin-versionlock']
   held_packages = {
     'alien': '8.95-8.fc29',
     'iotop': '0.6-18.fc29'
@@ -50,10 +51,6 @@ when 'debian'
     'iotop': '0.6-'
   }
   lock_file = '/var/lib/dpkg/status'
-when 'amazon'
-  common_packages.delete('fail2ban')
-  platform_packages = ['git']
-  held_packages = []
 end
 
 # FIXME: - not testing Held packages

@@ -4,10 +4,16 @@
 control 'Wanted/Required gems' do
   title 'should be installed'
 
-  %w[
+  wanted = %w[
     progressbar
     minitest
-  ].each do |p|
+  ]
+  case platform[:name]
+  when 'amazon'
+    wanted.delete('minitest')
+  end
+
+  wanted.each do |p|
     describe gem(p) do
       it { should be_installed }
     end
