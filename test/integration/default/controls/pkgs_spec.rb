@@ -56,7 +56,7 @@ when 'amazon'
   held_packages = []
 end
 
-# # FIXME - not testing Held packages
+# FIXME: - not testing Held packages
 held_packages = {}
 
 unheld_packages = (common_packages + platform_packages).flatten.uniq
@@ -102,7 +102,8 @@ control 'Held packages' do
     when 'redhat', 'fedora'
       match_string = "#{p}-.*#{v}"
     when 'debian'
-      match_string = "^Package: #{p}\nStatus: hold ok installed\nP.*\nS.*\nI.*\nM.*\nA.*\nVersion: #{v}"
+      match_string = "^Package: #{p}\nStatus: hold ok "\
+        "installed\nP.*\nS.*\nI.*\nM.*\nA.*\nVersion: #{v}"
     end
 
     describe file(lock_file) do
