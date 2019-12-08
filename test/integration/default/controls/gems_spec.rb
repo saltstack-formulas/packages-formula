@@ -9,7 +9,7 @@ control 'Wanted/Required gems' do
     minitest
   ]
   case platform[:name]
-  when 'amazon'
+  when 'centos', 'amazon'
     wanted.delete('minitest')
   end
 

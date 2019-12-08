@@ -28,7 +28,11 @@ packages:
   gems:
     wanted:
       - progressbar
-      - minitest
+      # minitest requires Ruby version ~> 2.2.
+      # ruby 2.0.0p648 (2015-12-16) [x86_64-linux]
+      # https://stackoverflow.com/a/50931910
+      # $ sudo amazon-linux-extras install ruby2.6
+      # - minitest
     unwanted:
       - diff-lcs
       - kitchen-vagrant
