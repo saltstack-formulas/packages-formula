@@ -34,6 +34,11 @@ gem_req_pkgs:
         {% endfor %}
       {% endif %}
     - retry: {{ packages.retry_options|json }}
+    {#- Not specific to Arch but needed for the newest versions of Ruby #}
+    {%- if grains.os_family == 'Arch' %}
+    - rdoc: True
+    - ri: True
+    {%- endif %}
 {% endfor %}
 
 {% for ugm in unwanted_gems %}
