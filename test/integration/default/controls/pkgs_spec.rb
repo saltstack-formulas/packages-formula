@@ -38,11 +38,6 @@ when 'suse'
   platform_packages = %w[]
   held_packages = {}
   lock_file = ''
-# Adding empty Arch entries, to get tests passing
-when 'arch'
-  platform_packages = %w[]
-  held_packages = {}
-  lock_file = ''
 when 'debian'
   platform_packages = %w[]
   held_packages = {
@@ -51,6 +46,13 @@ when 'debian'
     'iotop': '0.6-'
   }
   lock_file = '/var/lib/dpkg/status'
+when 'linux'
+  case platform[:name]
+  when 'arch'
+    platform_packages = %w[ruby]
+    held_packages = {}
+    lock_file = ''
+  end
 end
 
 # FIXME: - not testing Held packages

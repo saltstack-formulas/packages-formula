@@ -4,7 +4,8 @@
 remote_pkgs = ['zoom']
 
 case platform[:family]
-when 'suse'
+# `linux` here is sufficient for `arch`
+when 'suse', 'linux'
   remote_pkgs = []
 end
 

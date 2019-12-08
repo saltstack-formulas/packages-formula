@@ -4,9 +4,10 @@
 packages:
   pkgs:
     held:
-      - alien
+      # - alien
       - iotop
     wanted:
+      - ruby
       - git
       - less
       - bc
@@ -17,7 +18,6 @@ packages:
     required:
       pkgs:
         - git
-        - yum-plugin-versionlock
   pips:
     wanted:
       - attrs
@@ -33,5 +33,5 @@ packages:
       - diff-lcs
       - kitchen-vagrant
       - kwalify
-  remote_pkgs:
-    zoom: 'https://zoom.us/client/latest/zoom_x86_64.rpm'
+#   remote_pkgs:
+#     zoom: 'https://zoom.us/client/latest/zoom_x86_64.tar.xz'
