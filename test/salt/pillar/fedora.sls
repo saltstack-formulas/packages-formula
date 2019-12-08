@@ -1,8 +1,11 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
 packages:
   pkgs:
-   # held:
-   #   alien: 8.95-8.fc29
-   #   iotop: 0.6-18.fc29
+    # held:
+    #   alien: 8.95-8.fc29
+    #   iotop: 0.6-18.fc29
     wanted:
       - git
       - less

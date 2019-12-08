@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
+---
 packages:
   tmpdir: /tmp/saltstack-packages-formula-archives
   rootuser: root
@@ -31,10 +32,10 @@ packages:
       states: []
       pkgs: []
   snaps:
-    packages: ['snapd', 'fuse',]
+    packages: ['snapd', 'fuse']
     collides: []
-    symlink: False
-    service: ['snapd',]
+    symlink: false
+    service: ['snapd']
     wanted: []
     classic: []
     unwanted: []
@@ -48,13 +49,13 @@ packages:
     pkgs:
       required: ['curl', 'bzip2', 'gzip']
     types: ['tar', 'zip', 'rar']
-    wanted: {}    #note: dict
+    wanted: {}  # note: dict
     unwanted: []
     required:
-      archives: {}    #note: dict
+      archives: {}  # note: dict
   retry_options:
     # https://docs.saltstack.com/en/latest/ref/states/requisites.html#retrying-states
     attempts: 3
-    until: True
+    until: true
     interval: 60
     splay: 10
