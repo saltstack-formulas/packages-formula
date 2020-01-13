@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 ---
+# Dependency (node)
+node:
+  version: 12.14.1-1nodesource1
+  install_from_ppa: true
+  ppa:
+    repository_url: https://deb.nodesource.com/node_12.x
+
 packages:
   pkgs:
     # A dict of "package: version" pairs:
@@ -57,40 +64,40 @@ packages:
       - kitchen-vagrant
       - kwalify
 
-  # snaps:
-  #   wanted:
-  #     - hello-world
-  #   classic:
-  #     - test-snapd-hello-classic
-  #   unwanted:
-  #     - goodbye-world
-  #
+  snaps:
+    wanted:
+      - hello-world
+    classic:
+      - test-snapd-hello-classic
+    unwanted:
+      - bare
+
   # yamllint disable rule:line-length
-  # npms:
-  #   dir: /home/kitchen/npms   # The target directory in which to install the package, or None for global installation
-  #   user: kitchen             # The user to run NPM with (and to assign to `dir`)
-  #   group: kitchen            # The group to assign to `dir`
-  #   mode: '0755'              # The permissions to assign to `dir`
-  #   # registry: None          # The NPM registry from which to install the package
-  #   # env: None               # A list of environment variables to be set prior to execution
-  #   # force_reinstall: False  # Install the package even if it is already installed
-  #   required:
-  #     states:
-  #       - node.pkg
-  #   wanted:
-  #     # Valid formats:
-  #     #
-  #     # @google-cloud/bigquery@^0.9.6
-  #     # @foobar
-  #     # buffer-equal-constant-time@1.0.1
-  #     # coffee-script
-  #     # You need to quote the package if it starts with '@'
-  #     - '@davidodio/hello@2.3.0'
-  #     - hello-world-npm
-  #     - sax
-  #     - coffee-script@1.0.1
-  #   unwanted:
-  #     - gist
+  npms:
+    dir: /home/kitchen/npms   # The target directory in which to install the package, or None for global installation
+    user: kitchen             # The user to run NPM with (and to assign to `dir`)
+    group: kitchen            # The group to assign to `dir`
+    mode: '0755'              # The permissions to assign to `dir`
+    # registry: None          # The NPM registry from which to install the package
+    # env: None               # A list of environment variables to be set prior to execution
+    # force_reinstall: False  # Install the package even if it is already installed
+    required:
+      states:
+        - node.pkg
+    wanted:
+      # Valid formats:
+      #
+      # @google-cloud/bigquery@^0.9.6
+      # @foobar
+      # buffer-equal-constant-time@1.0.1
+      # coffee-script
+      # You need to quote the package if it starts with '@'
+      - '@davidodio/hello@2.3.0'
+      - hello-world-npm
+      - sax
+      - coffee-script@1.0.1
+    unwanted:
+      - gist
   # yamllint enable rule:line-length
 
   archives:
@@ -133,10 +140,3 @@ packages:
 
   remote_pkgs:
     zoom: 'https://zoom.us/client/latest/zoom_amd64.deb'
-
-#   retry_options:
-#     # https://docs.saltstack.com/en/latest/ref/states/requisites.html#retrying-states
-#     attempts: 5
-#     until: true
-#     interval: 30
-#     splay: 20
