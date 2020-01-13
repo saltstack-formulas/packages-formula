@@ -109,3 +109,7 @@ packages:
     clean:
       - github.com/golang/example/hello
       - github.com/golang/example/outyet
+
+  # Override the default setting to prevent wasteful delays in Travis
+  retry_options:
+    attempts: 1

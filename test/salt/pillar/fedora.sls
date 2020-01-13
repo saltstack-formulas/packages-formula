@@ -36,3 +36,7 @@ packages:
       - kwalify
   remote_pkgs:
     zoom: 'https://zoom.us/client/latest/zoom_x86_64.rpm'
+
+  # Override the default setting to prevent wasteful delays in Travis
+  retry_options:
+    attempts: 1

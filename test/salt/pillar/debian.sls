@@ -140,3 +140,7 @@ packages:
 
   remote_pkgs:
     zoom: 'https://zoom.us/client/latest/zoom_amd64.deb'
+
+  # Override the default setting to prevent wasteful delays in Travis
+  retry_options:
+    attempts: 1

@@ -33,5 +33,9 @@ packages:
       - diff-lcs
       - kitchen-vagrant
       - kwalify
-#   remote_pkgs:
-#     zoom: 'https://zoom.us/client/latest/zoom_x86_64.tar.xz'
+  # remote_pkgs:
+  #   zoom: 'https://zoom.us/client/latest/zoom_x86_64.tar.xz'
+
+  # Override the default setting to prevent wasteful delays in Travis
+  retry_options:
+    attempts: 1
