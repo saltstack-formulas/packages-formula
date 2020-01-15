@@ -1,79 +1,101 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 ---
-stages:
-  - test
-  - commitlint
-  - name: release
-    if: branch = master AND type != pull_request
+## Machine config
+os: 'linux'
+arch: 'amd64'
+dist: 'bionic'
+version: '~> 1.0'
 
-sudo: required
-cache: bundler
-language: ruby
-dist: xenial
+## Language and cache config
+language: 'ruby'
+cache: 'bundler'
 
+## Services config
 services:
   - docker
 
-# Make sure the instances listed below match up with
-# the `platforms` defined in `kitchen.yml`
-# NOTE: Please try to select up to six instances that add some meaningful
-#       testing of the formula's behaviour. If possible, try to refrain from
-#       the classical "chosing all the instances because I want to test on
-#       another/all distro/s" trap: it will just add time to the testing (see
-#       the discussion on #121).  As an example, the set chosen below covers
-#       the most used distros families, systemd and non-systemd and the latest
-#       three supported Saltstack versions with python2 and 3.
-#       As for `kitchen.yml`, that should still contain all of the platforms,
-#       to allow for comprehensive local testing
-#       Ref: https://github.com/saltstack-formulas/template-formula/issues/118
-#       Ref: https://github.com/saltstack-formulas/template-formula/issues/121
-env:
-  matrix:
-#    - INSTANCE: debian-debian-10-develop-py3
-    # - INSTANCE: ubuntu-ubuntu-1804-develop-py3
-    # - INSTANCE: centos-centos-7-develop-py3
-    # - INSTANCE: fedora30-fedora-30-develop-py3
-#    - INSTANCE: suse-opensuse-leap-15-develop-py3
-    - INSTANCE: amazonlinux-amazonlinux-2-develop-py2
-    # - INSTANCE: debian-debian-9-2019-2-py3
-#    - INSTANCE: ubuntu-ubuntu-1804-2019-2-py3
-    # - INSTANCE: centos-centos-7-2019-2-py3
-    # - INSTANCE: fedora30-fedora-30-2019-2-py3
-#    - INSTANCE: suse-opensuse-leap-15-2019-2-py3
-    - INSTANCE: amazonlinux-amazonlinux-2-2019-2-py2
-    # - INSTANCE: debian-debian-9-2018-3-py2
-    # - INSTANCE: ubuntu-ubuntu-1604-2018-3-py2
-    # - INSTANCE: centos-centos-7-2018-3-py2
-#    - INSTANCE: fedora29-fedora-29-2018-3-py2
-#    - INSTANCE: suse-opensuse-leap-15-2018-3-py2
-    - INSTANCE: amazonlinux-amazonlinux-2-2018-3-py2
-    # - INSTANCE: debian-debian-8-2017-7-py2
-    # - INSTANCE: ubuntu-ubuntu-1604-2017-7-py2
-    # - INSTANCE: centos-centos-6-2017-7-py2
-    # - INSTANCE: fedora29-fedora-29-2017-7-py2
-#    - INSTANCE: suse-opensuse-leap-15-2017-7-py2
-    - INSTANCE: amazonlinux-amazonlinux-2-2017-7-py2
-
+## Script to run for the test stage
 script:
-  - bin/kitchen verify ${INSTANCE}
+  - bin/kitchen verify "${INSTANCE}"
 
+## Stages and jobs matrix
+stages:
+  - test
+  - name: 'release'
+    if: 'branch = master AND type != pull_request'
 jobs:
   include:
-    # Define the commitlint stage
-    - stage: commitlint
-      language: node_js
-      node_js: lts/*
-      before_install: skip
+    ## Define the test stage that runs the linters (and testing matrix, if applicable)
+
+    # Run all of the linters in a single job
+    - language: 'node_js'
+      node_js: 'lts/*'
+      env: 'Lint'
+      name: 'Lint: salt-lint, yamllint, rubocop, shellcheck & commitlint'
+      before_install: 'skip'
       script:
-        - npm install @commitlint/config-conventional -D
-        - npm install @commitlint/travis-cli -D
+        # Install and run `salt-lint`
+        - pip install --user salt-lint
+        - git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst'
+                        | xargs salt-lint
+        # Install and run `yamllint`
+        # Need at least `v1.17.0` for the `yaml-files` setting
+        - pip install --user yamllint>=1.17.0
+        - yamllint -s .
+        # Install and run `rubocop`
+        - gem install rubocop
+        - rubocop -d
+        # Run `shellcheck` (already pre-installed in Travis)
+        - shellcheck --version
+        - git ls-files -- '*.sh' '*.bash' '*.ksh'
+                        | xargs shellcheck
+        # Install and run `commitlint`
+        - npm i -D @commitlint/config-conventional
+                   @commitlint/travis-cli
         - commitlint-travis
-    # Define the release stage that runs semantic-release
-    - stage: release
-      language: node_js
-      node_js: lts/*
-      before_install: skip
+
+    ## Define the rest of the matrix based on Kitchen testing
+    # Make sure the instances listed below match up with
+    # the `platforms` defined in `kitchen.yml`
+    - env: INSTANCE=debian-debian-10-master-py3
+    # - env: INSTANCE=ubuntu-ubuntu-1804-master-py3
+    # - env: INSTANCE=centos-centos-8-master-py3
+    # - env: INSTANCE=fedora-fedora-31-master-py3
+    # - env: INSTANCE=suse-opensuse-leap-151-master-py3
+    # - env: INSTANCE=amazon-amazonlinux-2-master-py2
+    # - env: INSTANCE=arch-arch-base-latest-master-py2
+    # - env: INSTANCE=debian-debian-10-2019-2-py3
+    # - env: INSTANCE=debian-debian-9-2019-2-py3
+    - env: INSTANCE=ubuntu-ubuntu-1804-2019-2-py3
+    # - env: INSTANCE=centos-centos-8-2019-2-py3
+    # - env: INSTANCE=fedora-fedora-31-2019-2-py3
+    - env: INSTANCE=suse-opensuse-leap-151-2019-2-py3
+    # - env: INSTANCE=centos-centos-7-2019-2-py2
+    - env: INSTANCE=amazon-amazonlinux-2-2019-2-py2
+    # - env: INSTANCE=arch-arch-base-latest-2019-2-py2
+    - env: INSTANCE=fedora-fedora-30-2018-3-py3
+    # - env: INSTANCE=debian-debian-9-2018-3-py2
+    # - env: INSTANCE=ubuntu-ubuntu-1604-2018-3-py2
+    - env: INSTANCE=centos-centos-7-2018-3-py2
+    # - env: INSTANCE=suse-opensuse-leap-151-2018-3-py2
+    # - env: INSTANCE=amazon-amazonlinux-2-2018-3-py2
+    # - env: INSTANCE=arch-arch-base-latest-2018-3-py2
+    # - env: INSTANCE=debian-debian-8-2017-7-py2
+    # - env: INSTANCE=ubuntu-ubuntu-1604-2017-7-py2
+    # - env: INSTANCE=centos-centos-6-2017-7-py2
+    # - env: INSTANCE=fedora-fedora-30-2017-7-py2
+    # - env: INSTANCE=suse-opensuse-leap-151-2017-7-py2
+    # - env: INSTANCE=amazon-amazonlinux-2-2017-7-py2
+    - env: INSTANCE=arch-arch-base-latest-2017-7-py2
+
+    ## Define the release stage that runs `semantic-release`
+    - stage: 'release'
+      language: 'node_js'
+      node_js: 'lts/*'
+      env: 'Release'
+      name: 'Run semantic-release inc. file updates to AUTHORS, CHANGELOG & FORMULA'
+      before_install: 'skip'
       script:
         # Update `AUTHORS.md`
         - export MAINTAINER_TOKEN=${GH_TOKEN}
@@ -81,12 +103,14 @@ jobs:
         - maintainer contributor
 
         # Install all dependencies required for `semantic-release`
-        - npm install @semantic-release/changelog@3 -D
-        - npm install @semantic-release/exec@3 -D
-        - npm install @semantic-release/git@7 -D
+        - npm i -D @semantic-release/changelog@3
+                   @semantic-release/exec@3
+                   @semantic-release/git@7
       deploy:
-        provider: script
-        skip_cleanup: true
-        script:
-          # Run `semantic-release`
-          - npx semantic-release@15
+        provider: 'script'
+        # Opt-in to `dpl v2` to complete the Travis build config validation (beta)
+        # * https://docs.travis-ci.com/user/build-config-validation
+        # Deprecated `skip_cleanup` can now be avoided, `cleanup: false` is by default
+        edge: true
+        # Run `semantic-release`
+        script: 'npx semantic-release@15.14'
