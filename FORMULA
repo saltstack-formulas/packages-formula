@@ -1,7 +1,7 @@
 name: packages
 os: Debian, Ubuntu, Raspbian, RedHat, Fedora, CentOS, Suse, openSUSE
 os_family: Debian, RedHat, Suse
-version: 3.2.1
+version: 0.8.0
 release: 1
 minimum_version: 2017.7
 summary: packages formula
