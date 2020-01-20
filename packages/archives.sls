@@ -94,5 +94,5 @@ packages-archive-wanted-download-{{ package }}:
        {%- endif %}
     - retry: {{ packages.retry_options|json }}
 
-   {% endif %} 
+   {% endif %}
 {%- endfor %}

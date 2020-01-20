@@ -9,3 +9,4 @@ include:
   - packages.npms
   - packages.archives
   - packages.snaps
+  - packages.golang

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 go_path = '/home/kitchen/go'
 
 # GO GET
@@ -13,10 +15,11 @@ control 'go get github.com/golang/example/hello' do
     it { should be_executable }
   end
 
-  %w(
+  %w[
     github.com/golang/example/hello
-  ).each do |f|
+  ].each do |f|
     describe file("#{go_path}/src/#{f}") do
       it { should exist }
     end
   end
+end

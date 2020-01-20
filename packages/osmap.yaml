@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
 Fedora:
   pkgs:
     required:
@@ -11,9 +14,9 @@ Fedora:
         - python2-pip
         - python2-devel
   snaps:
-    collides: ['snap',]
-    symlink: True
+    collides: ['snap']
+    symlink: true
 
-Centos:
+CentOS:
   snaps:
-    package:
+    packages: []

@@ -1,8 +1,11 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
 packages:
   pkgs:
-    held:
-      alien: 8.95-8.fc29
-      iotop: 0.6-18.fc29
+    # held:
+    #   alien: 8.95-8.fc29
+    #   iotop: 0.6-18.fc29
     wanted:
       - git
       - less
@@ -14,18 +17,15 @@ packages:
     required:
       pkgs:
         - git
-        - python2-dnf-plugin-versionlock
         - python3-dnf-plugin-versionlock
-  # Not testing pips in FC29 because it still ships 2018.3.3
-  # which breaks with pip > 18 (https://github.com/saltstack/salt/issues/49967)
-  # pips:
-  #   wanted:
-  #     - dxpy
-  #     - attrs
-  #   unwanted:
-  #     - campbel
-  #     - reverse_geocode
-  #     - indy-crypto
+  pips:
+    wanted:
+      # - dxpy
+      - attrs
+    unwanted:
+      - campbel
+      - reverse_geocode
+      - indy-crypto
   gems:
     wanted:
       - progressbar
@@ -36,3 +36,7 @@ packages:
       - kwalify
   remote_pkgs:
     zoom: 'https://zoom.us/client/latest/zoom_x86_64.rpm'
+
+  # Override the default setting to prevent wasteful delays in Travis
+  retry_options:
+    attempts: 1

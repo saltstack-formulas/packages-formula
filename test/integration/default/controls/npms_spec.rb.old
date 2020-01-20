@@ -16,7 +16,7 @@ control 'Wanted/Required npm packages' do
   desc '(only testing in the Debian platform, as the node-formula dependency is too specific)'
 
   only_if do
-    os.name == 'debian'
+    platform.name == 'debian'
   end
 
   describe directory(npms_path) do
@@ -39,7 +39,7 @@ control 'Unwanted npm packages' do
   desc '(only testing in the Debian platform, as the node-formula dependency is too specific)'
 
   only_if do
-    os.name == 'debian'
+    platform.name == 'debian'
   end
 
   %w{

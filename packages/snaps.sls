@@ -24,7 +24,7 @@ include:
     {% endfor %}
   {% endif %}
 
-extend: 
+extend:
   unwanted_pkgs:
     pkg.purged:
       - pkgs: {{ unwanted_packages | json }}

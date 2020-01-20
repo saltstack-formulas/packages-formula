@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
-{% from "packages/map.jinja" import packages with context %}
+
+{#- Get the `tplroot` from `tpldir` #}
+{%- set tplroot = tpldir.split('/')[0] %}
+{%- from tplroot ~ "/map.jinja" import packages with context %}
 
 {% set req_states = packages.pips.required.states %}
 {% set req_pkgs = packages.pips.required.pkgs %}
@@ -24,7 +27,7 @@ pip_req_pkgs:
 pip_config:
   file.managed:
     - name: /etc/pip.conf
-    - source: salt://{{ slspath }}/files/pip.conf
+    - source: salt://{{ tplroot }}/files/pip.conf
     - template: jinja
     - makedirs: True
     - context:

@@ -1,3 +1,13 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+# Dependency (golang)
+golang:
+  pkg:
+    name: golang
+    use_upstream_repo: false
+    use_upstream_archive: false
+
 packages:
   pkgs:
     # A dict of "package: version" pairs:
@@ -48,7 +58,7 @@ packages:
       - diff-lcs
       - kitchen-vagrant
       - kwalify
-  # Disable Snaps testing in Ubuntu 18 due to 
+  # Disable Snaps testing in Ubuntu 18 due to
   # https://github.com/saltstack-formulas/packages-formula/issues/44
   # snaps:
   #   wanted:
@@ -61,32 +71,31 @@ packages:
     wanted:
       terminator:
         dest: /usr/local/terminator/
-        options: '--strip-components=1'  #recommended option, but beware tarbombs
+        options: '--strip-components=1'  # recommended option, but beware tarbombs
         dl:
           format: tar
+          # yamllint disable rule:line-length
           source: https://launchpad.net/terminator/gtk3/1.91/+download/terminator-1.91.tar.gz
-          #hashurl: https://launchpad.net/terminator/gtk3/1.91/+download/terminator-1.91.tar.gz/+md5
+          # hashurl: https://launchpad.net/terminator/gtk3/1.91/+download/terminator-1.91.tar.gz/+md5
+          # yamllint enable rule:line-length
           hashsum: md5=2eed999d7a41f2e18eaa511bbbf80f58
       phantomjs:
-        dest: /usr/local/src/    #beware tarbombs
+        dest: /usr/local/src/  # beware tarbombs
         user: root
         mode: '0700'
         dl:
           format: tar
+          # yamllint disable rule:line-length
           source: https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
           hashsum: md5=1c947d57fce2f21ce0b43fe2ed7cd361
+          # yamllint enable rule:line-length
       blockbox:
         dest: /usr/local/src/
         dl:
           format: raw
+          # yamllint disable-line rule:line-length
           source: https://raw.githubusercontent.com/openstack/cinder/master/contrib/block-box/docker-compose.yml
           hashsum: 1751f8e4f6b4cddd8c4843a0f4473274
-      golang:
-        dest: /usr/local
-        dl:
-          format: tar
-          source: https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz
-          hashsum: 66d83bfb5a9ede000e33c6579a91a29e6b101829ad41fffb5c5bb6c900e109d9
     unwanted:
       - /usr/local/boring_archive_software
 
@@ -100,3 +109,7 @@ packages:
     clean:
       - github.com/golang/example/hello
       - github.com/golang/example/outyet
+
+  # Override the default setting to prevent wasteful delays in Travis
+  retry_options:
+    attempts: 1
