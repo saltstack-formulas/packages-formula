@@ -27,8 +27,6 @@ RedHat:
         - yum-plugin-versionlock
   pips:
     required:
-      states:
-        - epel
       pkgs:
         - gcc
         - python-devel
