@@ -39,7 +39,8 @@ packages:
         - libpython2.7-dev
         - python-pip
     wanted:
-      - dxpy
+      # TODO: Investigate why this is longer working; OK when running locally
+      # - dxpy
       - attrs
     unwanted:
       - campbel
