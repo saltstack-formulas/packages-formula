@@ -36,8 +36,8 @@ packages:
         - libpython2.7-dev
         - python-pip
       states:
-          # if grains.os_family == 'RedHat'
-          # not required if installing python-pip
+        # if grains.os_family == 'RedHat'
+        # not required if installing python-pip
         - epel
 
     wanted:
