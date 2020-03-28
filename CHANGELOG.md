@@ -1,5 +1,29 @@
 # Changelog
 
+# [0.9.0](https://github.com/saltstack-formulas/packages-formula/compare/v0.8.0...v0.9.0) (2020-03-28)
+
+
+### Bug Fixes
+
+* **lint:** remove whitespace ([c03bb25](https://github.com/saltstack-formulas/packages-formula/commit/c03bb255317716543c092431adf19cac2c0e7463))
+
+
+### Continuous Integration
+
+* **kitchen:** avoid using bootstrap for `master` instances [skip ci] ([d93e3d2](https://github.com/saltstack-formulas/packages-formula/commit/d93e3d2584b2a5a0e65458b65a104f188568251b))
+* **kitchen:** reinstall `udev` since removed from pre-salted images ([a81f2dd](https://github.com/saltstack-formulas/packages-formula/commit/a81f2dd4b337ebe2a898ed8ed91e585e5f19b254))
+
+
+### Features
+
+* **centos:** epel only needed for py-pip ([a0dd96d](https://github.com/saltstack-formulas/packages-formula/commit/a0dd96d6635306a675f89b2b607db4abc4096251))
+
+
+### Tests
+
+* **pillar:** disable `dxpy` on Ubuntu (works locally) ([155bdeb](https://github.com/saltstack-formulas/packages-formula/commit/155bdeb7b92d2d06a8d2147e21ad46dff9433aee)), closes [verify#L4793-L4859](https://github.com/verify/issues/L4793-L4859)
+* **pillar:** update `node` version for Debian ([a9f120f](https://github.com/saltstack-formulas/packages-formula/commit/a9f120fa6aea35e96ff3d1ef2338bfaeb742afdf))
+
 # [0.8.0](https://github.com/saltstack-formulas/packages-formula/compare/v0.7.0...v0.8.0) (2020-01-20)
 
 
