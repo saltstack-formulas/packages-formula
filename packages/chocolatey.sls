@@ -2,6 +2,8 @@
 # vim: ft=sls
 {% from "packages/map.jinja" import packages with context %}
 
+{% if grains['os'] == 'Windows' %}
+
 {% if packages.chocolatey %}
 {% set req_states = packages.chocolatey.required.states %}
 {% set req_pkgs = packages.chocolatey.required.pkgs %}
@@ -46,4 +48,6 @@ chocolatey_req_pkgs:
     - name: {{ uchoco }}
 {% endfor %}
 {% endif %}
+{% endif %}
+
 {% endif %}
