@@ -10,3 +10,4 @@ include:
   - packages.archives
   - packages.snaps
   - packages.golang
+  - packages.chocolatey

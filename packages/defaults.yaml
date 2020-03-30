@@ -25,6 +25,12 @@ packages:
     required:
       states: []
       pkgs: []
+  chocolatey:
+    wanted: []
+    unwanted: []
+    required:
+      states: []
+      pkgs: []
   npms:
     wanted: []
     unwanted: []

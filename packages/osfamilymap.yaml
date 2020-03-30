@@ -46,3 +46,9 @@ FreeBSD:
       pkgs:
         - lang/ruby25
         - devel/ruby-gems
+
+Windows:
+  chocolatey:
+    required:
+      pkgs:
+        - chocolatey

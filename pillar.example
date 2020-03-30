@@ -62,6 +62,17 @@ packages:
       - kitchen-vagrant
       - kwalify
 
+  chocolatey:
+    wanted:
+      firefox:
+        install_args: "l=fr-FR"
+      packagename:
+        version: '12.04'
+        source: 'mychocolatey/source'
+        force: true
+    unwanted:
+      - googlechrome
+
   snaps:
     wanted:
       - hello-world
