@@ -1,5 +1,23 @@
 # Changelog
 
+# [0.10.0](https://github.com/saltstack-formulas/packages-formula/compare/v0.9.0...v0.10.0) (2020-03-30)
+
+
+### Bug Fixes
+
+* **chocolatey:** ensure states only run on Windows systems ([c1d680a](https://github.com/saltstack-formulas/packages-formula/commit/c1d680a9dd0863497ca004dcf41378fa0e5707f9))
+* **chocolatey:** verify chocolatey dicts are not empty ([385b223](https://github.com/saltstack-formulas/packages-formula/commit/385b2238f4c8bc9389728cc6f90e320bc74b077c))
+
+
+### Documentation
+
+* **changelog:** merge old changelog into the new one ([070172d](https://github.com/saltstack-formulas/packages-formula/commit/070172db89f2762b11c73c8d149619ce1f197167))
+
+
+### Features
+
+* **chocolatey:** add chocolatey management support ([c0c1195](https://github.com/saltstack-formulas/packages-formula/commit/c0c119524228e30ed19f6fe8714d47b06915ff43))
+
 # [0.9.0](https://github.com/saltstack-formulas/packages-formula/compare/v0.8.0...v0.9.0) (2020-03-28)
 
 

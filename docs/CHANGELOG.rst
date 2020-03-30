@@ -2,6 +2,28 @@
 Changelog
 =========
 
+`0.10.0 <https://github.com/saltstack-formulas/packages-formula/compare/v0.9.0...v0.10.0>`_ (2020-03-30)
+------------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **chocolatey:** ensure states only run on Windows systems (\ `c1d680a <https://github.com/saltstack-formulas/packages-formula/commit/c1d680a9dd0863497ca004dcf41378fa0e5707f9>`_\ )
+* **chocolatey:** verify chocolatey dicts are not empty (\ `385b223 <https://github.com/saltstack-formulas/packages-formula/commit/385b2238f4c8bc9389728cc6f90e320bc74b077c>`_\ )
+
+Documentation
+^^^^^^^^^^^^^
+
+
+* **changelog:** merge old changelog into the new one (\ `070172d <https://github.com/saltstack-formulas/packages-formula/commit/070172db89f2762b11c73c8d149619ce1f197167>`_\ )
+
+Features
+^^^^^^^^
+
+
+* **chocolatey:** add chocolatey management support (\ `c0c1195 <https://github.com/saltstack-formulas/packages-formula/commit/c0c119524228e30ed19f6fe8714d47b06915ff43>`_\ )
+
 `0.9.0 <https://github.com/saltstack-formulas/packages-formula/compare/v0.8.0...v0.9.0>`_ (2020-03-28)
 ----------------------------------------------------------------------------------------------------------
 
@@ -92,56 +114,3 @@ Tests
 * **pillar:** use single ubuntu pillar (\ `c69cb5a <https://github.com/saltstack-formulas/packages-formula/commit/c69cb5a792186a8a1600987087389229ddf7a67a>`_\ )
 * **pillar:** use specific pillar for ``debian`` (\ `adf1523 <https://github.com/saltstack-formulas/packages-formula/commit/adf1523e08bfeff8d635052a8942b48326e507cb>`_\ )
 * fix existing tests (\ `8e75c9d <https://github.com/saltstack-formulas/packages-formula/commit/8e75c9d5c0c4af5fe4e56ecfcdfcc7ea7486d4dc>`_\ )
-
-----
-
-0.1.0 (2019-03-10)
-------------------
-
-* Add npm support
-
-0.0.9 (2018-10-03)
-------------------
-
-* Add support for plain files using archive
-
-0.0.8 (2018-08-23)
-------------------
-
-* Add archive support
-
-0.0.7 (2018-07-11)
-------------------
-
-* Fix pip/gems for FreeBSD
-
-0.0.6 (2018-04-09)
-------------------
-
-* Add snap with classic confinement support
-
-0.0.5 (2018-03-14)
-------------------
-
-* Add snap support
-
-0.0.4 (2018-03-06)
-------------------
-
-* Allow to specify held system packages also as a list (#10)
-
-0.0.3 (2018-03-02)
-------------------
-
-* Allow to hold/unhold system packages (#8)
-
-0.0.2 (2018-02-23)
-------------------
-
-* Add Fedora support
-* Add more tests
-
-0.0.1 (2018-02-12)
-------------------
-
-* Initial version
