@@ -64,7 +64,6 @@ jobs:
     # - env: INSTANCE=fedora-fedora-31-master-py3
     # - env: INSTANCE=suse-opensuse-leap-151-master-py3
     # - env: INSTANCE=amazon-amazonlinux-2-master-py3
-    # - env: INSTANCE=arch-arch-base-latest-master-py2
     # - env: INSTANCE=debian-debian-10-2019-2-py3
     # - env: INSTANCE=debian-debian-9-2019-2-py3
     - env: INSTANCE=ubuntu-ubuntu-1804-2019-2-py3
