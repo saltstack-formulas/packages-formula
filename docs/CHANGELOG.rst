@@ -2,6 +2,21 @@
 Changelog
 =========
 
+`0.10.2 <https://github.com/saltstack-formulas/packages-formula/compare/v0.10.1...v0.10.2>`_ (2020-06-01)
+-------------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **pillar:** update ``node.pkg`` => ``node.package`` (\ `a6d3c98 <https://github.com/saltstack-formulas/packages-formula/commit/a6d3c98ae7cc3949feb060c95817250513536e8f>`_\ )
+
+Documentation
+^^^^^^^^^^^^^
+
+
+* **readme:** fix various issues inc. not rendering properly [skip ci] (\ `5701df0 <https://github.com/saltstack-formulas/packages-formula/commit/5701df06a9f60d1c3aa717d9a295655c14075223>`_\ )
+
 `0.10.1 <https://github.com/saltstack-formulas/packages-formula/compare/v0.10.0...v0.10.1>`_ (2020-06-01)
 -------------------------------------------------------------------------------------------------------------
 
