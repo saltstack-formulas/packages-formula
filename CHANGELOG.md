@@ -1,5 +1,17 @@
 # Changelog
 
+# [0.11.0](https://github.com/saltstack-formulas/packages-formula/compare/v0.10.2...v0.11.0) (2020-06-01)
+
+
+### Continuous Integration
+
+* **kitchen+travis:** use latest pre-salted images ([bfcdd9c](https://github.com/saltstack-formulas/packages-formula/commit/bfcdd9cd591837723f8773005e0574815489b61a))
+
+
+### Features
+
+* **fedora:** update for Python 3 ([0175a48](https://github.com/saltstack-formulas/packages-formula/commit/0175a4811285c4a11f2fa3ac6e4507bc913c0a1d))
+
 ## [0.10.2](https://github.com/saltstack-formulas/packages-formula/compare/v0.10.1...v0.10.2) (2020-06-01)
 
 
