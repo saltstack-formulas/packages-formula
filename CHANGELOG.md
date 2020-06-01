@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.10.1](https://github.com/saltstack-formulas/packages-formula/compare/v0.10.0...v0.10.1) (2020-06-01)
+
+
+### Bug Fixes
+
+* **python:** os default to python3 ([662a8d0](https://github.com/saltstack-formulas/packages-formula/commit/662a8d092da7c0c6fe92ad6aed974e1c87c1f58d))
+
+
+### Continuous Integration
+
+* **gemfile.lock:** add to repo with updated `Gemfile` [skip ci] ([0628bf0](https://github.com/saltstack-formulas/packages-formula/commit/0628bf029f0d80f8caab45c191ba28ef2e0af18a))
+* **kitchen+travis:** remove `master-py2-arch-base-latest` [skip ci] ([fb311a4](https://github.com/saltstack-formulas/packages-formula/commit/fb311a42074acf58c3e9e39d6281d7faf766dede))
+* **travis:** add notifications => zulip [skip ci] ([57a1b14](https://github.com/saltstack-formulas/packages-formula/commit/57a1b1449f7119206f4a7f634b61cb7a6724c494))
+* **workflows/commitlint:** add to repo [skip ci] ([9220ceb](https://github.com/saltstack-formulas/packages-formula/commit/9220ceb46b98628a8292e0f5f4cbf24164acc1d5))
+
 # [0.10.0](https://github.com/saltstack-formulas/packages-formula/compare/v0.9.0...v0.10.0) (2020-03-30)
 
 
