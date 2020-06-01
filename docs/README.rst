@@ -5,18 +5,19 @@ packages-formula
 
 |img_travis| |img_sr|
 
-.. |img_travis| image:: https://travis-ci.com/saltstack-formulas/template-formula.svg?branch=master
+.. |img_travis| image:: https://travis-ci.com/saltstack-formulas/packages-formula.svg?branch=master
    :alt: Travis CI Build Status
    :scale: 100%
-   :target: https://travis-ci.com/saltstack-formulas/template-formula
+   :target: https://travis-ci.com/saltstack-formulas/packages-formula
 .. |img_sr| image:: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
    :alt: Semantic Release
    :scale: 100%
    :target: https://github.com/semantic-release/semantic-release
 
-A simple 'packages manager' formula, to install/remove packages without further
+A simple 'packages manager' formula, to install/remove packages without further ado.
 
 .. contents:: **Table of Contents**
+   :depth: 1
 
 General notes
 -------------
@@ -37,14 +38,13 @@ Contributing to this repo
 
 **Commit message formatting is significant!!**
 
-Please see :ref:`How to contribute <CONTRIBUTING>` for more details.
+Please see `How to contribute <https://github.com/saltstack-formulas/.github/blob/master/CONTRIBUTING.rst>`_ for more details.
 
-Available states
-----------------
-
+Special notes
+-------------
 
 What this formula can do
-========================
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Many times, in the process of setting up a host/vm, you need to install/remove
 packages with no extra configuration or setup. This formula tries to help with
@@ -58,11 +58,14 @@ Debian/Redhat families), Python packages (using pip states) and Ruby gems
 It can also provide basic dependency management on certain other states/packages.
 
 What this formula can't do
-==========================
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This formula is not intended to configure packages, nor setup services or daemons.
 When you need to do that for a package, you should probably be using another
 formula.
+
+Available states
+----------------
 
 .. contents::
    :local:
@@ -91,31 +94,34 @@ Allows you to manage system's packages. You can specify:
   to your ``pkgs.required.pkgs`` one of the following packages:
 
   + CentOS
-  ```
-  packages:
-    pkgs:
-      required:
-        pkgs:
-          - yum-plugin-versionlock
-  ```
+
+    .. code-block:: yaml
+
+       packages:
+         pkgs:
+           required:
+             pkgs:
+               - yum-plugin-versionlock
 
   + Fedora > 26 with Python3:
-  ```
-  packages:
-    pkgs:
-      required:
-        pkgs:
-          - python3-dnf-plugin-versionlock
-  ```
+
+    .. code-block:: yaml
+
+       packages:
+         pkgs:
+           required:
+             pkgs:
+               - python3-dnf-plugin-versionlock
 
   + Fedora > 26 with Python2:
-  ```
-  packages:
-    pkgs:
-      required:
-        pkgs:
-          - python2-dnf-plugin-versionlock
-  ```
+
+    .. code-block:: yaml
+
+       packages:
+         pkgs:
+           required:
+             pkgs:
+               - python2-dnf-plugin-versionlock
 
 * ``wanted``: a list of packages which will be installed. Packages in this
   list will be automatically unheld so, if you want to permanently unheld a
@@ -180,7 +186,7 @@ You can specify:
   correct installation (ie, ``epel`` for RedHat families).
 
 ``packages.archives``
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 'Archive file` handler for common 'download' and 'checksum' states. All formats recognized by `salt.states.archive.extracted` (tar, rar, zip, etc) will be extracted. Alternatively `raw` formats are supported (`raw`, `bin`,) for standard and binary executable files.
 
@@ -204,11 +210,11 @@ You can specify:
 
 .. note::
 
-    Centos has no native ``snapd`` package at this time.
+   Centos has no native ``snapd`` package at this time.
 
 
 ``packages.golang``
--------------------
+^^^^^^^^^^^^^^^^^^^
 
 You can specify:
 
@@ -225,8 +231,8 @@ to install, in the format:
 ``name: url``
 
 
-`packages.chocolatey``
-^^^^^^^^^^^^^^^^^^^^^^
+``packages.chocolatey``
+^^^^^^^^^^^^^^^^^^^^^^^
 
 You can specify:
 
@@ -240,7 +246,7 @@ You can specify:
 
 .. note::
 
-    You must configure `winrepo-ng <https://github.com/saltstack/salt-winrepo-ng>`_ in order to install chocolatey required package
+   You must configure `winrepo-ng <https://github.com/saltstack/salt-winrepo-ng>`_ in order to install chocolatey required package
 
 Testing
 -------
@@ -265,7 +271,7 @@ e.g. ``debian-9-2019-2-py3``.
 ``bin/kitchen converge``
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Creates the docker instance and runs the ``template`` main state, ready for testing.
+Creates the docker instance and runs the ``packages`` main state, ready for testing.
 
 ``bin/kitchen verify``
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -286,4 +292,3 @@ Runs all of the stages above in one go: i.e. ``destroy`` + ``converge`` + ``veri
 ^^^^^^^^^^^^^^^^^^^^^
 
 Gives you SSH access to the instance for manual testing.
-
