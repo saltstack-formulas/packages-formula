@@ -83,7 +83,7 @@ packages:
     # force_reinstall: False  # Install the package even if it is already installed
     required:
       states:
-        - node.pkg
+        - node.package.install
     wanted:
       # Valid formats:
       #
