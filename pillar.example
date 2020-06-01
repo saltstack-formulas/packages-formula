@@ -101,7 +101,7 @@ packages:
     # yamllint enable rule:line-length
     required:
       states:
-        - node.pkg
+        - node.package.install
     wanted:
       # Valid formats:
       #
