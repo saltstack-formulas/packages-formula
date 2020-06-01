@@ -5,14 +5,7 @@ Fedora:
   pkgs:
     required:
       pkgs:
-        - python2-dnf-plugin-versionlock
-  pips:
-    required:
-      states: []
-      pkgs:
-        - gcc
-        - python2-pip
-        - python2-devel
+        - python3-dnf-plugin-versionlock
   snaps:
     collides: ['snap']
     symlink: true
