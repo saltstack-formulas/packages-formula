@@ -15,7 +15,7 @@ Debian:
   pips:
     required:
       pkgs:
-        - python-pip
+        - python3-pip
   gems:
     required:
       pkgs:
@@ -29,8 +29,7 @@ RedHat:
     required:
       pkgs:
         - gcc
-        - python-devel
-        - python2-pip
+        - python3-pip
   gems:
     required:
       pkgs:
@@ -40,7 +39,7 @@ FreeBSD:
   pips:
     required:
       pkgs:
-        - devel/py-pip
+        - devel/py36-pip
   gems:
     required:
       pkgs:
