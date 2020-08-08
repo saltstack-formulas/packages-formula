@@ -64,14 +64,14 @@ packages:
 
   chocolatey:
     wanted:
-      firefox:
-        install_args: "l=fr-FR"
+      Firefox:
+        package_args: "/l:en-GB"
       packagename:
         version: '12.04'
         source: 'mychocolatey/source'
         force: true
     unwanted:
-      - googlechrome
+      - GoogleChrome
 
   snaps:
     wanted:
