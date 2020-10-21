@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
-{% from "packages/map.jinja" import packages with context %}
+{%- from "packages/map.jinja" import packages with context %}
 
-{% if grains['os'] == 'Windows' %}
+{%- if grains['os'] == 'Windows' %}
 
-{% if packages.chocolatey %}
-{% set req_states = packages.chocolatey.required.states %}
-{% set req_pkgs = packages.chocolatey.required.pkgs %}
-{% set wanted_chocolatey = packages.chocolatey.wanted %}
-{% set unwanted_chocolatey = packages.chocolatey.unwanted %}
+  {%- if packages.chocolatey %}
+    {%- set req_states = packages.chocolatey.required.states %}
+    {%- set req_pkgs = packages.chocolatey.required.pkgs %}
+    {%- set wanted_chocolatey = packages.chocolatey.wanted %}
+    {%- set unwanted_chocolatey = packages.chocolatey.unwanted %}
 
-{% if req_states %}
+    {%- if wanted_chocolatey or unwanted_chocolatey %}
+      {%- if req_states %}
 include:
-  {% for dep in req_states %}
+        {%- for dep in req_states %}
   - {{ dep }}
-  {% endfor %}
-{% endif %}
+        {%- endfor %}
+      {%- endif %}
 
 chocolatey_req_pkgs:
   pkg.installed:
@@ -23,8 +24,8 @@ chocolatey_req_pkgs:
     - retry: {{ packages.retry_options|json }}
 
 ### CHOCOLATEY PACKAGES to install
-{% if wanted_chocolatey %}
-{% for choco, settings in wanted_chocolatey.items() %}
+      {%- if wanted_chocolatey %}
+        {%- for choco, settings in wanted_chocolatey.items() %}
 {{ choco }}:
   chocolatey.installed:
     - name: {{ choco }}
@@ -37,17 +38,21 @@ chocolatey_req_pkgs:
     - force_x86: {{ False if 'force_x86' not in settings else settings.force_x86 }}
     - package_args: {{ '' if 'package_args' not in settings else settings.package_args }}
     - allow_multiple: {{ False if 'allow_multiple' not in settings else settings.allow_multiple }}
-{% endfor %}
-{% endif %}
+    - require:
+      - pkg: chocolatey_req_pkgs
+        {%- endfor %}
+      {%- endif %}
 
 ### CHOCOLATEY PACKAGES to uninstall
-{% if unwanted_chocolatey %}
-{% for uchoco in unwanted_chocolatey %}
+      {%- if unwanted_chocolatey %}
+        {%- for uchoco in unwanted_chocolatey %}
 {{ uchoco }}:
   chocolatey.uninstalled:
     - name: {{ uchoco }}
-{% endfor %}
-{% endif %}
-{% endif %}
-
-{% endif %}
+    - require:
+      - pkg: chocolatey_req_pkgs
+        {%- endfor %}
+      {%- endif %}
+    {%- endif %}
+  {%- endif %}
+{%- endif %}
