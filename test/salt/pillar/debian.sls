@@ -67,8 +67,12 @@ packages:
   snaps:
     wanted:
       - hello-world
-    classic:
-      - test-snapd-hello-classic
+    # Disable Snaps testing in Debian due to an issue similar to
+    # https://github.com/saltstack-formulas/packages-formula/issues/44
+    # quite possibly, better described here
+    # https://bugs.launchpad.net/snapd/+bug/1826662
+    # classic:
+    #   - test-snapd-hello-classic
     unwanted:
       - bare
 
