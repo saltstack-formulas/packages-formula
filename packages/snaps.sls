@@ -1,28 +1,28 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
-{% from "packages/map.jinja" import packages with context %}
+{%- from "packages/map.jinja" import packages with context %}
 
 # As we are 'extend'ing pkg_req_pkgs and unwanted_pkgs, we need to concatenate
 # the attributes correctly (see #17)
-{% set req_packages = packages.pkgs.required.pkgs + packages.snaps.packages %}
-{% set req_states = packages.pkgs.required.states + packages.snaps.required.states %}
-{% set unwanted_packages = packages.pkgs.unwanted + packages.snaps.collides %}
+{%- set req_packages = packages.pkgs.required.pkgs + packages.snaps.packages %}
+{%- set req_states = packages.pkgs.required.states + packages.snaps.required.states %}
+{%- set unwanted_packages = packages.pkgs.unwanted + packages.snaps.collides %}
 
-{% set wanted_snaps = packages.snaps.wanted %}
-{% set classic_snaps = packages.snaps.classic %}
-{% set unwanted_snaps = packages.snaps.unwanted %}
+{%- set wanted_snaps = packages.snaps.wanted %}
+{%- set classic_snaps = packages.snaps.classic %}
+{%- set unwanted_snaps = packages.snaps.unwanted %}
 
 {%- if packages.snaps.packages %}
-  {% if wanted_snaps or classic_snaps or unwanted_snaps %}
+  {%- if wanted_snaps or classic_snaps or unwanted_snaps %}
 
 ### REQ PKGS (without this, SNAPS can fail to install/uninstall)
 include:
   - packages.pkgs
-  {% if req_states %}
-    {% for dep in req_states %}
+  {%- if req_states %}
+    {%- for dep in req_states %}
   - {{ dep }}
-    {% endfor %}
-  {% endif %}
+    {%- endfor %}
+  {%- endif %}
 
 extend:
   unwanted_pkgs:
@@ -32,15 +32,15 @@ extend:
   pkg_req_pkgs:
     pkg.installed:
       - pkgs: {{ req_packages | json }}
-    {% if req_states %}
+    {%- if req_states %}
       - require:
-      {% for dep in req_states %}
+      {%- for dep in req_states %}
         - sls: {{ dep }}
-      {% endfor %}
-    {% endif %}
+      {%- endfor %}
+    {%- endif %}
       - retry: {{ packages.retry_options|json }}
 
-{% if packages.snaps.symlink %}
+    {%- if packages.snaps.symlink %}
 {# classic confinement requires snaps under /snap or symlink from #}
 {# /snap to /var/lib/snapd/snap #}
 packages-snap-classic-symlink:
@@ -51,9 +51,9 @@ packages-snap-classic-symlink:
     - require:
       - pkg: pkg_req_pkgs
       - pkg: unwanted_pkgs
-{% endif %}
+    {%- endif %}
 
-{% for snap in packages.snaps.service %}
+    {%- for snap in packages.snaps.service %}
 packages-{{ snap }}-service:
   service.running:
     - name: {{ snap }}
@@ -61,10 +61,10 @@ packages-{{ snap }}-service:
     - require:
       - pkg: pkg_req_pkgs
       - pkg: unwanted_pkgs
-{% endfor %}
+    {%- endfor %}
 
 ### SNAPS to install
-{% for snap in wanted_snaps %}
+    {%- for snap in wanted_snaps %}
 packages-snapd-{{ snap }}-wanted:
   cmd.run:
     - name: snap install {{ snap }}
@@ -74,10 +74,10 @@ packages-snapd-{{ snap }}-wanted:
       - pkg: pkg_req_pkgs
       - pkg: unwanted_pkgs
     - retry: {{ packages.retry_options|json }}
-{% endfor %}
+    {%- endfor %}
 
 ### SNAPS to install in classic mode
-{% for snap in classic_snaps %}
+    {%- for snap in classic_snaps %}
 packages-snapd-{{ snap }}-classic:
   cmd.run:
     - name: snap install --classic {{ snap }}
@@ -87,10 +87,10 @@ packages-snapd-{{ snap }}-classic:
       - pkg: pkg_req_pkgs
       - pkg: unwanted_pkgs
     - retry: {{ packages.retry_options|json }}
-{% endfor %}
+    {%- endfor %}
 
 ### SNAPS to uninstall
-{% for snap in unwanted_snaps %}
+    {%- for snap in unwanted_snaps %}
 packages-snapd-{{ snap }}-unwanted:
   cmd.run:
     - name: snap remove {{ snap }}
@@ -99,7 +99,7 @@ packages-snapd-{{ snap }}-unwanted:
     - require:
       - pkg: pkg_req_pkgs
       - pkg: unwanted_pkgs
-{% endfor %}
+    {%- endfor %}
 
-  {% endif %}
-{% endif %}
+  {%- endif %}
+{%- endif %}

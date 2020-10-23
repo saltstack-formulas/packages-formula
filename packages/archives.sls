@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
-{% from "packages/map.jinja" import packages with context %}
+{%- from "packages/map.jinja" import packages with context %}
 
-{% set req_packages = packages.pkgs.required.pkgs + packages.archives.pkgs.required %}
+{%- set wanted_archives = packages.archives.required.archives %}
+{%- do wanted_archives.update( packages.archives.wanted ) %}
+{%- set unwanted_archives = packages.archives.unwanted %}
+
+{%- if wanted_archives or unwanted_archives %}
+
+{%- set req_packages = packages.pkgs.required.pkgs + packages.archives.pkgs.required %}
 include:
   - packages.pkgs
 
@@ -11,20 +17,16 @@ extend:
     pkg.installed:
       - pkgs: {{ req_packages | json }}
 
-{% set wanted_archives = packages.archives.required.archives %}
-{% do wanted_archives.update( packages.archives.wanted ) %}
-{% set unwanted_archives = packages.archives.unwanted %}
-
   # unwanted 'archive' software
-{% for file_or_directory in unwanted_archives %}
+  {%- for file_or_directory in unwanted_archives %}
 packages-archive-unwanted-{{ file_or_directory }}:
   file.absent:
     - name: {{ file_or_directory }}
-{% endfor %}
+  {%- endfor %}
 
   # wanted 'archive' software
-{% for package, archive in wanted_archives.items() %}
-   {%- set archivename = archive.dl.source.split('/')[-1] %}
+  {%- for package, archive in wanted_archives.items() %}
+    {%- set archivename = archive.dl.source.split('/')[-1] %}
 
 packages-archive-wanted-target-{{ package }}-directory:
   file.directory:
@@ -39,7 +41,7 @@ packages-archive-wanted-target-{{ package }}-directory:
     - require_in:
       - packages-archive-wanted-download-{{ package }}
 
-   {%- if 'format' in archive.dl and archive.dl.format in packages.archives.types %}
+    {%- if 'format' in archive.dl and archive.dl.format in packages.archives.types %}
 
 packages-archive-wanted-download-{{ package }}:
   cmd.run:
@@ -48,7 +50,7 @@ packages-archive-wanted-download-{{ package }}:
     - retry: {{ packages.retry_options|json }}
 
       {%- if 'hashsum' in archive.dl and archive.dl.hashsum %}
-         {# see https://github.com/saltstack/salt/pull/41914 #}
+        {# see https://github.com/saltstack/salt/pull/41914 #}
 
 packages-archive-wanted-{{ package }}-check-hashsum:
   module.run:
@@ -67,18 +69,18 @@ packages-archive-wanted-install-{{ package }}:
     - source: file://{{ packages.tmpdir }}/{{ archivename }}
     - name: {{ archive.dest }}/
     - archive_format: {{ archive.dl.format }}
-         {%- if 'hashurl' in archive.dl and archive.dl.hashurl %}
+      {%- if 'hashurl' in archive.dl and archive.dl.hashurl %}
     - source_hash: {{ archive.dl.hashurl }}
-         {%- endif %}
-         {%- if 'options' in archive and archive.options %}
+      {%- endif %}
+      {%- if 'options' in archive and archive.options %}
     - options: {{ archive.options }}
     - enforce_toplevel: {{ 'False' if 'strip-components' in archive.options else 'True' }}
-         {%- endif %}
+      {%- endif %}
     - onlyif: test -d {{ archive.dest }}
     - require:
       - packages-archive-wanted-download-{{ package }}
 
-   {%- else %}
+    {%- else %}
 
 packages-archive-wanted-download-{{ package }}:
   file.managed:
@@ -87,12 +89,13 @@ packages-archive-wanted-download-{{ package }}:
     - mode: {{ '0755' if archive.dl.format in ('bin',) else '0644' if 'mode' not in archive else archive.mode }}
     - user: {{ packages.rootuser if 'user' not in archive else archive.user }}
     - makedirs: True
-       {%- if 'hashsum' in archive.dl and archive.dl.hashsum %}
+      {%- if 'hashsum' in archive.dl and archive.dl.hashsum %}
     - source_hash: {{ archive.dl.hashsum }}
-       {%- else %}
+      {%- else %}
     - skip_verify: True
-       {%- endif %}
+      {%- endif %}
     - retry: {{ packages.retry_options|json }}
 
-   {% endif %}
-{%- endfor %}
+    {%- endif %}
+  {%- endfor %}
+{%- endif %}

@@ -67,8 +67,12 @@ packages:
   snaps:
     wanted:
       - hello-world
-    classic:
-      - test-snapd-hello-classic
+    # Disable Snaps testing in Debian due to an issue similar to
+    # https://github.com/saltstack-formulas/packages-formula/issues/44
+    # quite possibly, better described here
+    # https://bugs.launchpad.net/snapd/+bug/1826662
+    # classic:
+    #   - test-snapd-hello-classic
     unwanted:
       - bare
 
@@ -92,7 +96,7 @@ packages:
       # buffer-equal-constant-time@1.0.1
       # coffee-script
       # You need to quote the package if it starts with '@'
-      - '@davidodio/hello@2.3.0'
+      - '@low-systems/example@1.1.58'
       - hello-world-npm
       - sax
       - coffee-script@1.0.1
