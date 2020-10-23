@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.11.1](https://github.com/saltstack-formulas/packages-formula/compare/v0.11.0...v0.11.1) (2020-10-23)
+
+
+### Bug Fixes
+
+* **states:** deploy packages only if required ([c9fe187](https://github.com/saltstack-formulas/packages-formula/commit/c9fe187e1677cc2645d7ed479ab2d32749d38d30))
+
+
+### Continuous Integration
+
+* **kitchen:** use `saltimages` Docker Hub where available [skip ci] ([3a80123](https://github.com/saltstack-formulas/packages-formula/commit/3a80123db0be1d8f291c606f61634fa2c8597c5e))
+* **pre-commit:** add to formula [skip ci] ([62e73fe](https://github.com/saltstack-formulas/packages-formula/commit/62e73fe14cab553603aab6d986199c05457ddcff))
+* **pre-commit:** enable/disable `rstcheck` as relevant [skip ci] ([22fa2e8](https://github.com/saltstack-formulas/packages-formula/commit/22fa2e873719d296fab0a9af83c56732b158f275))
+* **pre-commit:** finalise `rstcheck` configuration [skip ci] ([d64b8d8](https://github.com/saltstack-formulas/packages-formula/commit/d64b8d8b73fe3ed531c58b6dfdbf5f69201e5cf2))
+
+
+### Tests
+
+* **npm:** changed package to an existing one ([8a51ae5](https://github.com/saltstack-formulas/packages-formula/commit/8a51ae5f559d5918f37bc0b3fc19da7cc3c88045))
+* **snaps:** disable classic snaps testing in debian ([bb60deb](https://github.com/saltstack-formulas/packages-formula/commit/bb60deb20bd7b5cb819f88a1257bba8343729731))
+* **ubuntu:** update for `golang` fix [skip ci] ([0226c88](https://github.com/saltstack-formulas/packages-formula/commit/0226c880b8f5b452e6be710b5d1afd3c2d62a6f4))
+
 # [0.11.0](https://github.com/saltstack-formulas/packages-formula/compare/v0.10.2...v0.11.0) (2020-06-01)
 
 
