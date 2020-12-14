@@ -65,9 +65,11 @@ packages:
       - kwalify
 
   snaps:
-    wanted:
-      - hello-world
-    # Disable Snaps testing in Debian due to an issue similar to
+    # Disable `wanted` Snap testing in Debian due to failure in GitLab CI
+    # https://gitlab.com/myii/packages-formula/-/jobs/908520657#L7446
+    # wanted:
+    #   - hello-world
+    # Disable `classic` Snap testing in Debian due to an issue similar to
     # https://github.com/saltstack-formulas/packages-formula/issues/44
     # quite possibly, better described here
     # https://bugs.launchpad.net/snapd/+bug/1826662
