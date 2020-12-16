@@ -2,6 +2,21 @@
 Changelog
 =========
 
+`0.11.2 <https://github.com/saltstack-formulas/packages-formula/compare/v0.11.1...v0.11.2>`_ (2020-12-16)
+-------------------------------------------------------------------------------------------------------------
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **gitlab-ci:** use GitLab CI as Travis CI replacement (\ `bdab6c1 <https://github.com/saltstack-formulas/packages-formula/commit/bdab6c1fceec694f3e1fedce4c0d0116735de20c>`_\ )
+
+Tests
+^^^^^
+
+
+* **debian:** disable wanted snap testing (GitLab CI failure) [skip ci] (\ `4c047c4 <https://github.com/saltstack-formulas/packages-formula/commit/4c047c4e9f4875d86ef546ab8db830a7675251f7>`_\ )
+
 `0.11.1 <https://github.com/saltstack-formulas/packages-formula/compare/v0.11.0...v0.11.1>`_ (2020-10-23)
 -------------------------------------------------------------------------------------------------------------
 
