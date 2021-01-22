@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Prepare platform "finger"
+platform_finger = system.platform[:finger].split('.').first.to_s
+
 ## Some vars
 common_packages = %w[
   git
@@ -12,16 +15,15 @@ common_packages = %w[
 case platform[:family]
 when 'redhat'
   platform_packages =
-    case platform[:name]
-    when 'amazon'
-      %w[git]
+    case platform_finger
+    when 'centos-8', 'oraclelinux-8'
+      %w[python3-dnf-plugin-versionlock]
     else
       %w[yum-plugin-versionlock]
     end
   held_packages = {
     # We use this test for held packages in a list,
     # with no version (current version).
-    'alien': '',
     'iotop': ''
   }
   lock_file = '/etc/yum/pluginconf.d/versionlock.list'
