@@ -2,6 +2,23 @@
 Changelog
 =========
 
+`0.12.0 <https://github.com/saltstack-formulas/packages-formula/compare/v0.11.2...v0.12.0>`_ (2021-02-10)
+-------------------------------------------------------------------------------------------------------------
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **commitlint:** ensure ``upstream/master`` uses main repo URL [skip ci] (\ `f893e2a <https://github.com/saltstack-formulas/packages-formula/commit/f893e2af43bf547d64cbbb3b06c27bef767c65ff>`_\ )
+* **gitlab-ci:** add ``rubocop`` linter (with ``allow_failure``\ ) [skip ci] (\ `7dcb3d8 <https://github.com/saltstack-formulas/packages-formula/commit/7dcb3d86cda7d66ae5e17b0d587c74ffaad8e24d>`_\ )
+* **pre-commit:** update hook for ``rubocop`` [skip ci] (\ `e36498e <https://github.com/saltstack-formulas/packages-formula/commit/e36498ed032a513ac924a4560c45be92b544a92a>`_\ )
+
+Features
+^^^^^^^^
+
+
+* **centos-8:** added RedHat,CentOS and Oracle linux 8 support (\ `75526cc <https://github.com/saltstack-formulas/packages-formula/commit/75526cce61433a5b5edb5708618b380655e49de1>`_\ )
+
 `0.11.2 <https://github.com/saltstack-formulas/packages-formula/compare/v0.11.1...v0.11.2>`_ (2020-12-16)
 -------------------------------------------------------------------------------------------------------------
 
