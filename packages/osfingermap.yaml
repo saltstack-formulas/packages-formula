@@ -1,0 +1,32 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+CentOS-6:
+  pkgs:
+    required:
+      pkgs:
+        - yum-plugin-versionlock
+
+CentOS Linux-7:
+  pkgs:
+    required:
+      pkgs:
+        - yum-plugin-versionlock
+
+CentOS Linux-8:
+  pkgs:
+    required:
+      pkgs:
+        - python3-dnf-plugin-versionlock
+  snaps:
+    collides: ['snap']
+    symlink: true
+
+Oracle Linux Server-8:
+  pkgs:
+    required:
+      pkgs:
+        - python3-dnf-plugin-versionlock
+  snaps:
+    collides: ['snap']
+    symlink: true

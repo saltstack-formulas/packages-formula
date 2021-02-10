@@ -126,7 +126,8 @@ rubocop:
 debian-debian-10-master-py3: {extends: '.test_instance'}
 # ubuntu-ubuntu-2004-master-py3: {extends: '.test_instance'}
 ubuntu-ubuntu-1804-master-py3: {extends: '.test_instance'}
-# centos-centos-8-master-py3: {extends: '.test_instance'}
+redhat8-centos-8-master-py3: {extends: '.test_instance'}
+redhat8-oraclelinux-8-master-py3: {extends: '.test_instance'}
 fedora-fedora-32-master-py3: {extends: '.test_instance'}
 # fedora-fedora-31-master-py3: {extends: '.test_instance'}
 # suse-opensuse-leap-152-master-py3: {extends: '.test_instance'}

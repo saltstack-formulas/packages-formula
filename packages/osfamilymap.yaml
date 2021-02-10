@@ -21,10 +21,6 @@ Debian:
       pkgs:
         - ruby
 RedHat:
-  pkgs:
-    required:
-      pkgs:
-        - yum-plugin-versionlock
   pips:
     required:
       pkgs:

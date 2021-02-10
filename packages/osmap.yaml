@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 ---
+RedHat:
+  pkgs:
+    required:
+      pkgs:
+        - yum-plugin-versionlock
+
 Fedora:
   pkgs:
     required:

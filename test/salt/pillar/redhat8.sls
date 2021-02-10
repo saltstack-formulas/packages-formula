@@ -17,7 +17,7 @@ packages:
     required:
       pkgs:
         - git
-        - yum-plugin-versionlock
+        - python3-dnf-plugin-versionlock
   pips:
     wanted:
       - attrs
