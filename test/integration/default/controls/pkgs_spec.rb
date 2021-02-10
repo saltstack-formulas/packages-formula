@@ -54,6 +54,11 @@ when 'linux'
     platform_packages = %w[ruby]
     held_packages = {}
     lock_file = ''
+  when 'gentoo'
+    # Empty for now: The `package` resource is not supported on your OS yet.
+    platform_packages = %w[]
+    held_packages = {}
+    lock_file = ''
   end
 end
 
