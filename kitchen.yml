@@ -367,6 +367,7 @@ suites:
       state_top:
         base:
           '*':
+            - packages._mapdata
             - node
             - packages
       pillars:
@@ -405,6 +406,7 @@ suites:
       state_top:
         base:
           '*':
+            - packages._mapdata
             - golang.package
             - packages
       pillars:
@@ -429,6 +431,7 @@ suites:
       state_top:
         base:
           '*':
+            - packages._mapdata
             - packages
       pillars:
         top.sls:
@@ -460,6 +463,7 @@ suites:
       state_top:
         base:
           '*':
+            - packages._mapdata
             - epel
             - packages
       pillars:
@@ -492,6 +496,7 @@ suites:
       state_top:
         base:
           '*':
+            - packages._mapdata
             - epel
             - packages
       pillars:
@@ -519,6 +524,7 @@ suites:
       state_top:
         base:
           '*':
+            - packages._mapdata
             - epel
             - packages
       pillars:
@@ -544,6 +550,7 @@ suites:
       state_top:
         base:
           '*':
+            - packages._mapdata
             - packages
       pillars:
         top.sls:
@@ -564,6 +571,7 @@ suites:
       state_top:
         base:
           '*':
+            - packages._mapdata
             - packages
       pillars:
         top.sls:
@@ -589,6 +597,7 @@ suites:
       state_top:
         base:
           '*':
+            - packages._mapdata
             - packages
       pillars:
         top.sls:
