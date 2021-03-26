@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+name: windows
+title: packages formula
+maintainer: SaltStack Formulas
+license: Apache-2.0
+summary: Verify that the packages formula is setup and configured correctly (on Windows)
+depends:
+  - name: share
+    path: test/integration/share
+supports:
+  - platform: windows
