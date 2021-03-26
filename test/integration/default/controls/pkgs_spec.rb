@@ -24,14 +24,14 @@ when 'redhat'
   held_packages = {
     # We use this test for held packages in a list,
     # with no version (current version).
-    'iotop': ''
+    iotop: ''
   }
   lock_file = '/etc/yum/pluginconf.d/versionlock.list'
 when 'fedora'
   platform_packages = ['python3-dnf-plugin-versionlock']
   held_packages = {
-    'alien': '8.95-8.fc29',
-    'iotop': '0.6-18.fc29'
+    alien: '8.95-8.fc29',
+    iotop: '0.6-18.fc29'
   }
   lock_file = '/etc/dnf/plugins/versionlock.list'
 # Adding empty Suse entries, to get tests passing
@@ -43,9 +43,9 @@ when 'suse'
 when 'debian'
   platform_packages = %w[]
   held_packages = {
-    'alien': '8.95',
+    alien: '8.95',
     # To match also ubuntu16's
-    'iotop': '0.6-'
+    iotop: '0.6-'
   }
   lock_file = '/var/lib/dpkg/status'
 when 'linux'
