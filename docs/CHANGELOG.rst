@@ -2,6 +2,38 @@
 Changelog
 =========
 
+`0.13.0 <https://github.com/saltstack-formulas/packages-formula/compare/v0.12.0...v0.13.0>`_ (2021-03-26)
+-------------------------------------------------------------------------------------------------------------
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **windows:** test using GitHub Actions (\ `e7bbefa <https://github.com/saltstack-formulas/packages-formula/commit/e7bbefa9f336f19cd7e673d49f6316291557b1e9>`_\ )
+* enable Vagrant-based testing using GitHub Actions (\ `49fc85d <https://github.com/saltstack-formulas/packages-formula/commit/49fc85dfed0fbc0c3e35f20a45f22f2353810e99>`_\ )
+* **gemfile+lock:** use ``ssf`` customised ``kitchen-docker`` repo [skip ci] (\ `bd17a49 <https://github.com/saltstack-formulas/packages-formula/commit/bd17a49de0ec6ae8fb3b59a62c1226d27148bd94>`_\ )
+* **kitchen+ci:** use latest pre-salted images (after CVE) [skip ci] (\ `c2e9774 <https://github.com/saltstack-formulas/packages-formula/commit/c2e9774dc7484ae10397c837b015ddd56a02c313>`_\ )
+* **kitchen+gitlab-ci:** use latest pre-salted images [skip ci] (\ `592e3d1 <https://github.com/saltstack-formulas/packages-formula/commit/592e3d1e4744e4d5b5ad88b1429f49bd62ed9f65>`_\ )
+
+Documentation
+^^^^^^^^^^^^^
+
+
+* **readme:** add ``Testing with Vagrant`` section (\ `d734d43 <https://github.com/saltstack-formulas/packages-formula/commit/d734d434c9e0a428cb484438e421c253e591b0d7>`_\ )
+
+Features
+^^^^^^^^
+
+
+* **gentoo:** add support and CI (\ `534a1f6 <https://github.com/saltstack-formulas/packages-formula/commit/534a1f6f2bb11e52e1b9211427c00fc1030dd687>`_\ )
+
+Tests
+^^^^^
+
+
+* **pkgs_spec:** fix ``rubocop`` violations (\ ``--enable-pending-cops``\ ) (\ `f7a6fcf <https://github.com/saltstack-formulas/packages-formula/commit/f7a6fcf707bb451a687bfbdbf33b74cace158254>`_\ )
+* standardise use of ``share`` suite & ``_mapdata`` state [skip ci] (\ `79257d5 <https://github.com/saltstack-formulas/packages-formula/commit/79257d555a867fa23e4ceda93d008bf07869b3e7>`_\ )
+
 `0.12.0 <https://github.com/saltstack-formulas/packages-formula/compare/v0.11.2...v0.12.0>`_ (2021-02-10)
 -------------------------------------------------------------------------------------------------------------
 
