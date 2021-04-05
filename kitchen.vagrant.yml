@@ -7,9 +7,15 @@ driver:
   customize:
     usbxhci: 'off'
   gui: false
-  linked_clone: true
   ssh:
     shell: /bin/sh
+  <% unless ENV['CI'] %>
+  linked_clone: true
+  synced_folders:
+    - - '.kitchen/kitchen-vagrant/%{instance_name}/vagrant'
+      - '/vagrant'
+      - 'create: true, disabled: false'
+  <% end %>
 
 platforms:
   - name: windows-81-latest-py3
@@ -19,7 +25,6 @@ platforms:
       customize: {}
       ssh: {}
     provisioner:
-      salt_install: none
       # yamllint disable rule:line-length
       init_environment: |
         # Workaround to allow `kitchen converge` to be used multiple times
@@ -30,6 +35,3 @@ platforms:
           -ErrorAction SilentlyContinue
         exit 0
       # yamllint enable rule:line-length
-
-provisioner:
-  salt_install: bootstrap
