@@ -611,6 +611,7 @@ suites:
         - path: test/integration/default
   - name: windows
     includes:
+      - windows-10-latest-py3
       - windows-81-latest-py3
       - windows-2019-latest-py3
       - windows-2016-latest-py3
