@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # vim: ft=jinja
 
-{%- import_yaml 'packages/defaults.yaml' as defaults %}
-{%- import_yaml 'packages/osfamilymap.yaml' as osfamilymap %}
-{%- import_yaml 'packages/osmap.yaml' as osmap %}
-{%- import_yaml 'packages/osfingermap.yaml' as osfingermap %}
+{%- import_yaml './defaults.yaml' as defaults %}
+{%- import_yaml './osfamilymap.yaml' as osfamilymap %}
+{%- import_yaml './osmap.yaml' as osmap %}
+{%- import_yaml './osfingermap.yaml' as osfingermap %}
 
 {%- set packages = salt['grains.filter_by'](
     defaults,

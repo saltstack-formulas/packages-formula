@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
 
-{%- from "packages/map.jinja" import packages with context %}
+{%- from "./map.jinja" import packages with context %}
 
 {%- set wanted_rem_pkgs = packages.remote_pkgs %}
 
