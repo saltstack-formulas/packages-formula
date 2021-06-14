@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.13.1](https://github.com/saltstack-formulas/packages-formula/compare/v0.13.0...v0.13.1) (2021-06-14)
+
+
+### Code Refactoring
+
+* **includes:** Use relative state include ([abe8286](https://github.com/saltstack-formulas/packages-formula/commit/abe828663efadf1696ace0e2288a405116b759f3))
+
+
+### Continuous Integration
+
+* add `arch-master` to matrix and update `.travis.yml` [skip ci] ([931d4b5](https://github.com/saltstack-formulas/packages-formula/commit/931d4b57a97d5bbdc684bebfcfaa95064b244e69))
+* **kitchen+gitlab:** adjust matrix to add `3003` [skip ci] ([5dc24b1](https://github.com/saltstack-formulas/packages-formula/commit/5dc24b18be005ad65f966514d3e6a5f1fe20407b))
+* **vagrant:** add Windows 10 pre-salted box [skip ci] ([190bd64](https://github.com/saltstack-formulas/packages-formula/commit/190bd644bfc6c5c0a7c08d69786f7f070ae71fbc))
+* **vagrant:** use pre-salted boxes & conditional local settings [skip ci] ([82e5538](https://github.com/saltstack-formulas/packages-formula/commit/82e5538dec9403dc4fd29e4f34eb36b4773356eb))
+
 # [0.13.0](https://github.com/saltstack-formulas/packages-formula/compare/v0.12.0...v0.13.0) (2021-03-26)
 
 
