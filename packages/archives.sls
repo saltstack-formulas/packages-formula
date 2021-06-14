@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
-{%- from "packages/map.jinja" import packages with context %}
+{%- from "./map.jinja" import packages with context %}
 
 {%- set wanted_archives = packages.archives.required.archives %}
 {%- do wanted_archives.update( packages.archives.wanted ) %}
@@ -10,7 +10,7 @@
 
 {%- set req_packages = packages.pkgs.required.pkgs + packages.archives.pkgs.required %}
 include:
-  - packages.pkgs
+  - .pkgs
 
 extend:
   pkg_req_pkgs:
