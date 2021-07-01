@@ -19,3 +19,11 @@ Fedora:
 CentOS:
   snaps:
     packages: []
+
+AlmaLinux:
+  snaps:
+    packages: []
+
+Rocky:
+  snaps:
+    packages: []

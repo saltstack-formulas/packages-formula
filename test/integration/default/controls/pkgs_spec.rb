@@ -16,7 +16,7 @@ case platform[:family]
 when 'redhat'
   platform_packages =
     case platform_finger
-    when 'centos-8', 'oraclelinux-8'
+    when 'centos-8', 'oraclelinux-8', 'almalinux-8', 'rockylinux-8'
       %w[python3-dnf-plugin-versionlock]
     else
       %w[yum-plugin-versionlock]

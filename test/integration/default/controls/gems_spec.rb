@@ -8,8 +8,8 @@ control 'Wanted/Required gems' do
     progressbar
     minitest
   ]
-  case platform[:name]
-  when 'centos', 'amazon', 'oracle'
+  case platform[:family]
+  when 'redhat'
     wanted.delete('minitest')
   end
 
