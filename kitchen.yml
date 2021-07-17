@@ -6,7 +6,17 @@ driver:
   name: docker
   use_sudo: false
   privileged: true
-  run_command: /lib/systemd/systemd
+  run_command: /usr/lib/systemd/systemd
+
+provisioner:
+  name: salt_solo
+  log_level: debug
+  salt_install: none
+  require_chef: false
+  formula: packages
+  salt_copy_filter:
+    - .kitchen
+    - .git
 
 platforms:
   ## SALT `tiamat`
@@ -17,6 +27,7 @@ platforms:
         - apt-get update
         - apt-get install --reinstall -y udev
         - apt-get install -y snapd
+      run_command: /lib/systemd/systemd
   - name: debian-9-tiamat-py3
     driver:
       image: saltimages/salt-tiamat-py3:debian-9
@@ -24,12 +35,15 @@ platforms:
         - apt-get update
         - apt-get install --reinstall -y udev
         - apt-get install -y snapd
+      run_command: /lib/systemd/systemd
   - name: ubuntu-2004-tiamat-py3
     driver:
       image: saltimages/salt-tiamat-py3:ubuntu-20.04
+      run_command: /lib/systemd/systemd
   - name: ubuntu-1804-tiamat-py3
     driver:
       image: saltimages/salt-tiamat-py3:ubuntu-18.04
+      run_command: /lib/systemd/systemd
   - name: centos-8-tiamat-py3
     driver:
       image: saltimages/salt-tiamat-py3:centos-8
@@ -60,6 +74,7 @@ platforms:
         - apt-get update
         - apt-get install --reinstall -y udev
         - apt-get install -y snapd
+      run_command: /lib/systemd/systemd
   - name: debian-9-master-py3
     driver:
       image: saltimages/salt-master-py3:debian-9
@@ -67,12 +82,15 @@ platforms:
         - apt-get update
         - apt-get install --reinstall -y udev
         - apt-get install -y snapd
+      run_command: /lib/systemd/systemd
   - name: ubuntu-2004-master-py3
     driver:
       image: saltimages/salt-master-py3:ubuntu-20.04
+      run_command: /lib/systemd/systemd
   - name: ubuntu-1804-master-py3
     driver:
       image: saltimages/salt-master-py3:ubuntu-18.04
+      run_command: /lib/systemd/systemd
   - name: centos-8-master-py3
     driver:
       image: saltimages/salt-master-py3:centos-8
@@ -88,7 +106,6 @@ platforms:
   - name: opensuse-leap-153-master-py3
     driver:
       image: saltimages/salt-master-py3:opensuse-leap-15.3
-      run_command: /usr/lib/systemd/systemd
     # Workaround to avoid intermittent failures on `opensuse-leap-15.3`:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
@@ -96,7 +113,6 @@ platforms:
   - name: opensuse-leap-152-master-py3
     driver:
       image: saltimages/salt-master-py3:opensuse-leap-15.2
-      run_command: /usr/lib/systemd/systemd
     # Workaround to avoid intermittent failures on `opensuse-leap-15.2`:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
@@ -104,7 +120,6 @@ platforms:
   - name: opensuse-tmbl-latest-master-py3
     driver:
       image: saltimages/salt-master-py3:opensuse-tumbleweed-latest
-      run_command: /usr/lib/systemd/systemd
     # Workaround to avoid intermittent failures on `opensuse-tumbleweed`:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
@@ -121,7 +136,6 @@ platforms:
   - name: arch-base-latest-master-py3
     driver:
       image: saltimages/salt-master-py3:arch-base-latest
-      run_command: /usr/lib/systemd/systemd
   - name: gentoo-stage3-latest-master-py3
     driver:
       image: saltimages/salt-master-py3:gentoo-stage3-latest
@@ -144,6 +158,7 @@ platforms:
         - apt-get update
         - apt-get install --reinstall -y udev
         - apt-get install -y snapd
+      run_command: /lib/systemd/systemd
   - name: debian-9-3003-1-py3
     driver:
       image: saltimages/salt-3003.1-py3:debian-9
@@ -151,12 +166,15 @@ platforms:
         - apt-get update
         - apt-get install --reinstall -y udev
         - apt-get install -y snapd
+      run_command: /lib/systemd/systemd
   - name: ubuntu-2004-3003-1-py3
     driver:
       image: saltimages/salt-3003.1-py3:ubuntu-20.04
+      run_command: /lib/systemd/systemd
   - name: ubuntu-1804-3003-1-py3
     driver:
       image: saltimages/salt-3003.1-py3:ubuntu-18.04
+      run_command: /lib/systemd/systemd
   - name: centos-8-3003-1-py3
     driver:
       image: saltimages/salt-3003.1-py3:centos-8
@@ -172,7 +190,6 @@ platforms:
   - name: opensuse-leap-153-3003-1-py3
     driver:
       image: saltimages/salt-3003.1-py3:opensuse-leap-15.3
-      run_command: /usr/lib/systemd/systemd
     # Workaround to avoid intermittent failures on `opensuse-leap-15.3`:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
@@ -180,7 +197,6 @@ platforms:
   - name: opensuse-leap-152-3003-1-py3
     driver:
       image: saltimages/salt-3003.1-py3:opensuse-leap-15.2
-      run_command: /usr/lib/systemd/systemd
     # Workaround to avoid intermittent failures on `opensuse-leap-15.2`:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
@@ -188,7 +204,6 @@ platforms:
   - name: opensuse-tmbl-latest-3003-1-py3
     driver:
       image: saltimages/salt-3003.1-py3:opensuse-tumbleweed-latest
-      run_command: /usr/lib/systemd/systemd
     # Workaround to avoid intermittent failures on `opensuse-tumbleweed`:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
@@ -205,7 +220,6 @@ platforms:
   - name: arch-base-latest-3003-1-py3
     driver:
       image: saltimages/salt-3003.1-py3:arch-base-latest
-      run_command: /usr/lib/systemd/systemd
   - name: gentoo-stage3-latest-3003-1-py3
     driver:
       image: saltimages/salt-3003.1-py3:gentoo-stage3-latest
@@ -222,6 +236,7 @@ platforms:
         - apt-get update
         - apt-get install --reinstall -y udev
         - apt-get install -y snapd
+      run_command: /lib/systemd/systemd
   - name: debian-9-3002-6-py3
     driver:
       image: saltimages/salt-3002.6-py3:debian-9
@@ -229,12 +244,15 @@ platforms:
         - apt-get update
         - apt-get install --reinstall -y udev
         - apt-get install -y snapd
+      run_command: /lib/systemd/systemd
   - name: ubuntu-2004-3002-6-py3
     driver:
       image: saltimages/salt-3002.6-py3:ubuntu-20.04
+      run_command: /lib/systemd/systemd
   - name: ubuntu-1804-3002-6-py3
     driver:
       image: saltimages/salt-3002.6-py3:ubuntu-18.04
+      run_command: /lib/systemd/systemd
   - name: centos-8-3002-6-py3
     driver:
       image: saltimages/salt-3002.6-py3:centos-8
@@ -259,7 +277,6 @@ platforms:
   - name: arch-base-latest-3002-6-py3
     driver:
       image: saltimages/salt-3002.6-py3:arch-base-latest
-      run_command: /usr/lib/systemd/systemd
   - name: gentoo-stage3-latest-3002-6-py3
     driver:
       image: saltimages/salt-3002.6-py3:gentoo-stage3-latest
@@ -272,7 +289,6 @@ platforms:
   - name: opensuse-leap-153-3002-2-py3
     driver:
       image: saltimages/salt-3002.2-py3:opensuse-leap-15.3
-      run_command: /usr/lib/systemd/systemd
     # Workaround to avoid intermittent failures on `opensuse-leap-15.3`:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
@@ -280,7 +296,6 @@ platforms:
   - name: opensuse-leap-152-3002-2-py3
     driver:
       image: saltimages/salt-3002.2-py3:opensuse-leap-15.2
-      run_command: /usr/lib/systemd/systemd
     # Workaround to avoid intermittent failures on `opensuse-leap-15.2`:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
@@ -288,7 +303,6 @@ platforms:
   - name: opensuse-tmbl-latest-3002-2-py3
     driver:
       image: saltimages/salt-3002.2-py3:opensuse-tumbleweed-latest
-      run_command: /usr/lib/systemd/systemd
     # Workaround to avoid intermittent failures on `opensuse-tumbleweed`:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
@@ -302,6 +316,7 @@ platforms:
         - apt-get update
         - apt-get install --reinstall -y udev
         - apt-get install -y snapd
+      run_command: /lib/systemd/systemd
   - name: debian-9-3001-7-py3
     driver:
       image: saltimages/salt-3001.7-py3:debian-9
@@ -309,12 +324,15 @@ platforms:
         - apt-get update
         - apt-get install --reinstall -y udev
         - apt-get install -y snapd
+      run_command: /lib/systemd/systemd
   - name: ubuntu-2004-3001-7-py3
     driver:
       image: saltimages/salt-3001.7-py3:ubuntu-20.04
+      run_command: /lib/systemd/systemd
   - name: ubuntu-1804-3001-7-py3
     driver:
       image: saltimages/salt-3001.7-py3:ubuntu-18.04
+      run_command: /lib/systemd/systemd
   - name: centos-8-3001-7-py3
     driver:
       image: saltimages/salt-3001.7-py3:centos-8
@@ -330,7 +348,6 @@ platforms:
   - name: opensuse-leap-153-3001-7-py3
     driver:
       image: saltimages/salt-3001.7-py3:opensuse-leap-15.3
-      run_command: /usr/lib/systemd/systemd
     # Workaround to avoid intermittent failures on `opensuse-leap-15.3`:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
@@ -338,7 +355,6 @@ platforms:
   - name: opensuse-leap-152-3001-7-py3
     driver:
       image: saltimages/salt-3001.7-py3:opensuse-leap-15.2
-      run_command: /usr/lib/systemd/systemd
     # Workaround to avoid intermittent failures on `opensuse-leap-15.2`:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
@@ -346,7 +362,6 @@ platforms:
   - name: opensuse-tmbl-latest-3001-7-py3
     driver:
       image: saltimages/salt-3001.7-py3:opensuse-tumbleweed-latest
-      run_command: /usr/lib/systemd/systemd
     # Workaround to avoid intermittent failures on `opensuse-tumbleweed`:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
@@ -363,7 +378,6 @@ platforms:
   - name: arch-base-latest-3001-7-py3
     driver:
       image: saltimages/salt-3001.7-py3:arch-base-latest
-      run_command: /usr/lib/systemd/systemd
   - name: gentoo-stage3-latest-3001-7-py3
     driver:
       image: saltimages/salt-3001.7-py3:gentoo-stage3-latest
@@ -380,6 +394,7 @@ platforms:
         - apt-get update
         - apt-get install --reinstall -y udev
         - apt-get install -y snapd
+      run_command: /lib/systemd/systemd
   - name: debian-9-3000-9-py3
     driver:
       image: saltimages/salt-3000.9-py3:debian-9
@@ -387,9 +402,11 @@ platforms:
         - apt-get update
         - apt-get install --reinstall -y udev
         - apt-get install -y snapd
+      run_command: /lib/systemd/systemd
   - name: ubuntu-1804-3000-9-py3
     driver:
       image: saltimages/salt-3000.9-py3:ubuntu-18.04
+      run_command: /lib/systemd/systemd
   - name: centos-8-3000-9-py3
     driver:
       image: saltimages/salt-3000.9-py3:centos-8
@@ -399,7 +416,6 @@ platforms:
   - name: opensuse-leap-153-3000-9-py3
     driver:
       image: saltimages/salt-3000.9-py3:opensuse-leap-15.3
-      run_command: /usr/lib/systemd/systemd
     # Workaround to avoid intermittent failures on `opensuse-leap-15.3`:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
@@ -407,7 +423,6 @@ platforms:
   - name: opensuse-leap-152-3000-9-py3
     driver:
       image: saltimages/salt-3000.9-py3:opensuse-leap-15.2
-      run_command: /usr/lib/systemd/systemd
     # Workaround to avoid intermittent failures on `opensuse-leap-15.2`:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
@@ -431,20 +446,10 @@ platforms:
   - name: ubuntu-1804-3000-9-py2
     driver:
       image: saltimages/salt-3000.9-py2:ubuntu-18.04
+      run_command: /lib/systemd/systemd
   - name: arch-base-latest-3000-9-py2
     driver:
       image: saltimages/salt-3000.9-py2:arch-base-latest
-      run_command: /usr/lib/systemd/systemd
-
-provisioner:
-  name: salt_solo
-  log_level: debug
-  salt_install: none
-  require_chef: false
-  formula: packages
-  salt_copy_filter:
-    - .kitchen
-    - .git
 
 verifier:
   # https://www.inspec.io/
