@@ -2,6 +2,32 @@
 Changelog
 =========
 
+`0.14.0 <https://github.com/saltstack-formulas/packages-formula/compare/v0.13.1...v0.14.0>`_ (2021-09-06)
+-------------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **rhel:** redhat enterprise 8 use dnf, not yum (\ `3e72c61 <https://github.com/saltstack-formulas/packages-formula/commit/3e72c61b20a84b985b90be811b2a72fb82aff249>`_\ )
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **3003.1:** update inc. AlmaLinux, Rocky & ``rst-lint`` [skip ci] (\ `5812d39 <https://github.com/saltstack-formulas/packages-formula/commit/5812d3913a2b401b760cdc0a77655a4f3a6e8ce8>`_\ )
+* **gemfile+lock:** use ``ssf`` customised ``inspec`` repo [skip ci] (\ `8a01261 <https://github.com/saltstack-formulas/packages-formula/commit/8a0126105d238239bffeb03ac36e0b6d5f8dd385>`_\ )
+* **kitchen:** move ``provisioner`` block & update ``run_command`` [skip ci] (\ `f733e60 <https://github.com/saltstack-formulas/packages-formula/commit/f733e6058aebaf5d2181355f93b0bbcf67341dd3>`_\ )
+* **kitchen+ci:** update with latest ``3003.2`` pre-salted images [skip ci] (\ `22bb960 <https://github.com/saltstack-formulas/packages-formula/commit/22bb960888b7fd7abe86feb4d4da0a09fe7d8c66>`_\ )
+* add Debian 11 Bullseye & update ``yamllint`` configuration [skip ci] (\ `00d778f <https://github.com/saltstack-formulas/packages-formula/commit/00d778f476239fe0f555f8cf17c0236c4bbb6cc4>`_\ )
+* **kitchen+gitlab:** remove Ubuntu 16.04 & Fedora 32 (EOL) [skip ci] (\ `e25a9a4 <https://github.com/saltstack-formulas/packages-formula/commit/e25a9a493c29b97fe4487329b1f7b82379011e66>`_\ )
+
+Features
+^^^^^^^^
+
+
+* **alma+rocky:** add platforms (based on CentOS 8) [skip ci] (\ `5ac9cde <https://github.com/saltstack-formulas/packages-formula/commit/5ac9cde4e965fbea52623aaf30078da13c05f998>`_\ )
+
 `0.13.1 <https://github.com/saltstack-formulas/packages-formula/compare/v0.13.0...v0.13.1>`_ (2021-06-14)
 -------------------------------------------------------------------------------------------------------------
 
