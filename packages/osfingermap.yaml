@@ -30,3 +30,12 @@ Oracle Linux Server-8:
   snaps:
     collides: ['snap']
     symlink: true
+
+Red Hat Enterprise Linux-8:
+  pkgs:
+    required:
+      pkgs:
+        - python3-dnf-plugin-versionlock
+  snaps:
+    collides: ['snap']
+    symlink: true
