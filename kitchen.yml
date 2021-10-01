@@ -528,6 +528,7 @@ suites:
     provisioner:
       dependencies:
         - name: node
+          branch: test-kitchen
           repo: git
           source: https://github.com/saltstack-formulas/node-formula.git
       state_top:
@@ -807,6 +808,7 @@ suites:
       state_top:
         base:
           '*':
+            - packages._mapdata
             - packages.chocolatey
       pillars:
         top.sls:
