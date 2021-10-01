@@ -1,0 +1,98 @@
+# yamllint disable rule:indentation rule:line-length
+# Fedora-33
+---
+values:
+  archives:
+    pkgs:
+      required:
+      - curl
+      - bzip2
+      - gzip
+    required:
+      archives: {}
+    types:
+    - tar
+    - zip
+    - rar
+    unwanted: []
+    wanted: {}
+  chocolatey:
+    required:
+      pkgs: []
+      states: []
+    unwanted: []
+    wanted: []
+  gems:
+    required:
+      pkgs:
+      - rubygems
+      states: []
+    unwanted:
+    - diff-lcs
+    - kitchen-vagrant
+    - kwalify
+    wanted:
+    - progressbar
+    - minitest
+  golang:
+    clean: []
+    goget: []
+  kernel: linux
+  npms:
+    required:
+      pkgs: []
+      states: []
+    unwanted: []
+    wanted: []
+  pips:
+    config: []
+    required:
+      pkgs:
+      - gcc
+      - python3-pip
+      states: []
+    unwanted:
+    - campbel
+    - reverse_geocode
+    - indy-crypto
+    wanted:
+    - attrs
+  pkgs:
+    held: {}
+    required:
+      pkgs:
+      - git
+      - python3-dnf-plugin-versionlock
+      states: []
+    unwanted:
+    - avahi-daemon
+    wanted:
+    - git
+    - less
+    - bc
+    - curl
+    - fail2ban
+  remote_pkgs:
+    zoom: https://zoom.us/client/latest/zoom_x86_64.rpm
+  retry_options:
+    attempts: 1
+    interval: 60
+    splay: 10
+    until: true
+  rootuser: root
+  snaps:
+    classic: []
+    collides:
+    - snap
+    packages:
+    - snapd
+    - fuse
+    required:
+      pkgs: []
+      states: []
+    service:
+    - snapd
+    symlink: true
+    unwanted: []
+    wanted: []
+  tmpdir: /tmp/saltstack-packages-formula-archives

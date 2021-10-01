@@ -1,0 +1,141 @@
+# yamllint disable rule:indentation rule:line-length
+# Debian-10
+---
+values:
+  archives:
+    pkgs:
+      required:
+      - curl
+      - bzip2
+      - gzip
+    required:
+      archives: {}
+    types:
+    - tar
+    - zip
+    - rar
+    unwanted:
+    - /usr/local/boring_archive_software
+    wanted:
+      blockbox:
+        dest: /usr/local/src/
+        dl:
+          format: raw
+          hashsum: 1751f8e4f6b4cddd8c4843a0f4473274
+          source: https://raw.githubusercontent.com/openstack/cinder/master/contrib/block-box/docker-compose.yml
+      kubectl:
+        dest: /usr/local/bin
+        dl:
+          format: bin
+          source: https://storage.googleapis.com/kubernetes-release/release/v1.12.0/bin/darwin/amd64/kubectl
+      phantomjs:
+        dest: /usr/local/src/
+        dl:
+          format: tar
+          hashsum: md5=1c947d57fce2f21ce0b43fe2ed7cd361
+          source: https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
+        mode: '0700'
+        user: root
+      terminator:
+        dest: /usr/local/terminator/
+        dl:
+          format: tar
+          hashsum: md5=2eed999d7a41f2e18eaa511bbbf80f58
+          source: https://launchpad.net/terminator/gtk3/1.91/+download/terminator-1.91.tar.gz
+        options: --strip-components=1
+  chocolatey:
+    required:
+      pkgs: []
+      states: []
+    unwanted: []
+    wanted: []
+  gems:
+    required:
+      pkgs:
+      - ruby
+      states: []
+    unwanted:
+    - diff-lcs
+    - kitchen-vagrant
+    - kwalify
+    wanted:
+    - progressbar
+    - minitest
+  golang:
+    clean: []
+    goget: []
+  kernel: linux
+  npms:
+    dir: /home/kitchen/npms
+    group: kitchen
+    mode: '0755'
+    required:
+      pkgs: []
+      states:
+      - node.package.install
+    unwanted:
+    - gist
+    user: kitchen
+    wanted:
+    - '@low-systems/example@1.1.58'
+    - hello-world-npm
+    - sax
+    - coffee-script@1.0.1
+  pips:
+    config:
+      global:
+        default-timeout: 120
+        timeout: 120
+    required:
+      pkgs:
+      - libpython2.7-dev
+      - python-pip
+      states: []
+    unwanted:
+    - campbel
+    - reverse_geocode
+    - indy-crypto
+    wanted:
+    - dxpy
+    - attrs
+  pkgs:
+    held:
+    - alien
+    - iotop
+    required:
+      pkgs:
+      - wget
+      - git
+      states: []
+    unwanted:
+    - avahi-daemon
+    wanted:
+    - git
+    - less
+    - bc
+    - curl
+    - fail2ban
+  remote_pkgs:
+    zoom: https://zoom.us/client/latest/zoom_amd64.deb
+  retry_options:
+    attempts: 1
+    interval: 60
+    splay: 10
+    until: true
+  rootuser: root
+  snaps:
+    classic: []
+    collides: []
+    packages:
+    - snapd
+    - fuse
+    required:
+      pkgs: []
+      states: []
+    service:
+    - snapd
+    symlink: false
+    unwanted:
+    - bare
+    wanted: []
+  tmpdir: /tmp/saltstack-packages-formula-archives
