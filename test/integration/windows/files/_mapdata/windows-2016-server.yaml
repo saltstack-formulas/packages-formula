@@ -1,0 +1,85 @@
+# yamllint disable rule:indentation rule:line-length
+# Windows-2016Server
+---
+values:
+  archives:
+    pkgs:
+      required:
+      - curl
+      - bzip2
+      - gzip
+    required:
+      archives: {}
+    types:
+    - tar
+    - zip
+    - rar
+    unwanted: []
+    wanted: {}
+  chocolatey:
+    required:
+      pkgs: []
+      states: []
+    unwanted:
+    - GoogleChrome
+    - hg
+    wanted:
+      Firefox:
+        package_args: "/l:en-GB"
+      jq:
+        force: true
+        version: '1.5'
+      notepadplusplus:
+        version: 7.8.8
+  gems:
+    required:
+      pkgs: []
+      states: []
+    unwanted: []
+    wanted: []
+  golang:
+    clean: []
+    goget: []
+  kernel: windows
+  npms:
+    required:
+      pkgs: []
+      states: []
+    unwanted: []
+    wanted: []
+  pips:
+    config: []
+    required:
+      pkgs: []
+      states: []
+    unwanted: []
+    wanted: []
+  pkgs:
+    held: {}
+    required:
+      pkgs: []
+      states: []
+    unwanted: []
+    wanted: []
+  remote_pkgs: {}
+  retry_options:
+    attempts: 3
+    interval: 60
+    splay: 10
+    until: true
+  rootuser: root
+  snaps:
+    classic: []
+    collides: []
+    packages:
+    - snapd
+    - fuse
+    required:
+      pkgs: []
+      states: []
+    service:
+    - snapd
+    symlink: false
+    unwanted: []
+    wanted: []
+  tmpdir: "/tmp/saltstack-packages-formula-archives"

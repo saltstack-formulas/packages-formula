@@ -1,0 +1,94 @@
+# yamllint disable rule:indentation rule:line-length
+# Arch
+---
+values:
+  archives:
+    pkgs:
+      required:
+      - curl
+      - bzip2
+      - gzip
+    required:
+      archives: {}
+    types:
+    - tar
+    - zip
+    - rar
+    unwanted: []
+    wanted: {}
+  chocolatey:
+    required:
+      pkgs: []
+      states: []
+    unwanted: []
+    wanted: []
+  gems:
+    required:
+      pkgs: []
+      states: []
+    unwanted:
+    - diff-lcs
+    - kitchen-vagrant
+    - kwalify
+    wanted:
+    - progressbar
+    - minitest
+  golang:
+    clean: []
+    goget: []
+  kernel: linux
+  npms:
+    required:
+      pkgs: []
+      states: []
+    unwanted: []
+    wanted: []
+  pips:
+    config: []
+    required:
+      pkgs: []
+      states: []
+    unwanted:
+    - campbel
+    - reverse_geocode
+    - indy-crypto
+    wanted:
+    - attrs
+  pkgs:
+    held:
+    - iotop
+    required:
+      pkgs:
+      - git
+      states: []
+    unwanted:
+    - avahi-daemon
+    wanted:
+    - ruby
+    - git
+    - less
+    - bc
+    - curl
+    - fail2ban
+  remote_pkgs: {}
+  retry_options:
+    attempts: 1
+    interval: 60
+    splay: 10
+    until: true
+  rootuser: root
+  snaps:
+    classic: []
+    collides: []
+    packages:
+    - snapd
+    - fuse
+    required:
+      pkgs: []
+      states: []
+    service:
+    - snapd
+    symlink: false
+    unwanted: []
+    wanted: []
+  tmpdir: /tmp/saltstack-packages-formula-archives
