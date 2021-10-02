@@ -2,6 +2,22 @@
 Changelog
 =========
 
+`0.14.1 <https://github.com/saltstack-formulas/packages-formula/compare/v0.14.0...v0.14.1>`_ (2021-10-02)
+-------------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **rubocop:** fix violation [skip ci] (\ `901d706 <https://github.com/saltstack-formulas/packages-formula/commit/901d7069ce7f523c550a08ee2a5388f93641f4cd>`_\ )
+
+Tests
+^^^^^
+
+
+* **_mapdata:** generate verification files (\ `96a1a03 <https://github.com/saltstack-formulas/packages-formula/commit/96a1a034c1e438c5695f4f03e9f79bcdf7ff9142>`_\ )
+* **map:** verify ``map.jinja`` dump using ``_mapdata`` state (\ `0fdcbd4 <https://github.com/saltstack-formulas/packages-formula/commit/0fdcbd428839d5459ed9e6503b7765a4bd320149>`_\ )
+
 `0.14.0 <https://github.com/saltstack-formulas/packages-formula/compare/v0.13.1...v0.14.0>`_ (2021-09-06)
 -------------------------------------------------------------------------------------------------------------
 
