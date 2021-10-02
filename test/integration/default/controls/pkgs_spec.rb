@@ -109,7 +109,7 @@ control 'Held packages' do
       match_string = "#{p}-.*#{v}"
     when 'debian'
       match_string = "^Package: #{p}\nStatus: hold ok "\
-        "installed\nP.*\nS.*\nI.*\nM.*\nA.*\nVersion: #{v}"
+                     "installed\nP.*\nS.*\nI.*\nM.*\nA.*\nVersion: #{v}"
     end
 
     describe file(lock_file) do
