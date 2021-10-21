@@ -26,7 +26,11 @@ packages-archive-unwanted-{{ file_or_directory }}:
 
   # wanted 'archive' software
   {%- for package, archive in wanted_archives.items() %}
-    {%- set archivename = archive.dl.source.split('/')[-1] %}
+    {%- if archive.dl.format in ('bin',) %}
+      {%- set archivename = package %}
+    {%- else %}
+      {%- set archivename = archive.dl.source.split('/')[-1] %}
+    {%- endif %}
 
 packages-archive-wanted-target-{{ package }}-directory:
   file.directory:

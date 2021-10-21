@@ -146,12 +146,14 @@ packages:
           # yamllint disable-line rule:line-length
           source: https://raw.githubusercontent.com/openstack/cinder/master/contrib/block-box/docker-compose.yml
           hashsum: 1751f8e4f6b4cddd8c4843a0f4473274
-      kubectl:
+      # If the format is "bin", the resource name will be used as the filename.
+      # Thus, the following block creates /usr/local/bin/yq
+      yq:
         dest: /usr/local/bin
         dl:
           format: bin
           # yamllint disable-line rule:line-length
-          source: https://storage.googleapis.com/kubernetes-release/release/v1.12.0/bin/darwin/amd64/kubectl
+          source: https://github.com/mikefarah/yq/releases/download/v4.13.4/yq_linux_amd64
     unwanted:
       - /usr/local/boring_archive_software
 
