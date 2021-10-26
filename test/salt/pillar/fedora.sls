@@ -20,7 +20,7 @@ packages:
         - python3-dnf-plugin-versionlock
   pips:
     wanted:
-      # - dxpy
+      - iotop
       - attrs
     unwanted:
       - campbel

@@ -42,7 +42,7 @@ packages:
         # will take care of getting it if needed.
         - libpython2.7-dev
     wanted:
-      - dxpy
+      - iotop
       - attrs
     unwanted:
       - campbel
