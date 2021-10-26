@@ -22,6 +22,16 @@ CentOS Linux-8:
     collides: ['snap']
     symlink: true
 
+Debian-9:
+  pips:
+    required:
+      pkgs:
+        # Pillar parameters have precedence so, if you add a package here, you
+        # should also add the python pip package you want. Otherwise, the formula
+        # will take care of getting it if needed.
+        - libpython2.7-dev
+        - python-pip
+
 Oracle Linux Server-8:
   pkgs:
     required:
