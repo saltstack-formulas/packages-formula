@@ -56,6 +56,8 @@ values:
     wanted:
     - progressbar
     - minitest
+    - strings: 0.1.8
+    - regexp_parser: 1.7.0
   golang:
     clean:
     - github.com/golang/example/hello

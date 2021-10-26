@@ -30,6 +30,8 @@ packages:
     wanted:
       - progressbar
       - minitest
+      - strings: 0.1.8
+      - regexp_parser: 1.7.0
     unwanted:
       - diff-lcs
       - kitchen-vagrant

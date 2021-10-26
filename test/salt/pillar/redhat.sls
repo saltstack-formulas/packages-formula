@@ -33,6 +33,8 @@ packages:
       # https://stackoverflow.com/a/50931910
       # $ sudo amazon-linux-extras install ruby2.6
       # - minitest
+      - strings: 0.1.8
+      - regexp_parser: 1.7.0
     unwanted:
       - diff-lcs
       - kitchen-vagrant
