@@ -41,9 +41,8 @@ packages:
         # should also add the python pip package you want. Otherwise, the formula
         # will take care of getting it if needed.
         - libpython2.7-dev
-        - python-pip
     wanted:
-      - dxpy
+      - iotop
       - attrs
     unwanted:
       - campbel
@@ -59,6 +58,8 @@ packages:
     wanted:
       - progressbar
       - minitest
+      - strings: 0.1.8
+      - regexp_parser: 1.7.0
     unwanted:
       - diff-lcs
       - kitchen-vagrant

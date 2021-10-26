@@ -61,6 +61,8 @@ values:
     wanted:
     - progressbar
     - minitest
+    - strings: 0.1.8
+    - regexp_parser: 1.7.0
   golang:
     clean: []
     goget: []
@@ -96,7 +98,7 @@ values:
     - reverse_geocode
     - indy-crypto
     wanted:
-    - dxpy
+    - iotop
     - attrs
   pkgs:
     held:
