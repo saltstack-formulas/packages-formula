@@ -91,14 +91,13 @@ values:
     required:
       pkgs:
       - libpython2.7-dev
-      - python-pip
       states: []
     unwanted:
     - campbel
     - reverse_geocode
     - indy-crypto
     wanted:
-    - dxpy
+    - iotop
     - attrs
   pkgs:
     held:

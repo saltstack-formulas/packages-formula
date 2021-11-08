@@ -3,10 +3,10 @@
 ---
 # Dependency (node)
 node:
-  version: 12.16.1-1nodesource1
-  install_from_ppa: true
-  ppa:
-    repository_url: https://deb.nodesource.com/node_12.x
+  version: 17.0.1-deb-1nodesource1
+  pkg:
+    version: 17.0.1-deb-1nodesource1
+    use_upstream_repo: true
 
 packages:
   pkgs:
@@ -42,7 +42,7 @@ packages:
         # will take care of getting it if needed.
         - libpython2.7-dev
     wanted:
-      - dxpy
+      - iotop
       - attrs
     unwanted:
       - campbel

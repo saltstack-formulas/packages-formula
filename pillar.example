@@ -41,7 +41,7 @@ packages:
         - epel
 
     wanted:
-      - dxpy
+      - iotop
       - attrs
     unwanted:
       - campbel

@@ -39,7 +39,7 @@ packages:
         - python-pip
     wanted:
       # TODO: Investigate why this is longer working; OK when running locally
-      # - dxpy
+      # - iotop
       - attrs
     unwanted:
       - campbel
