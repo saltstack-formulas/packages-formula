@@ -27,9 +27,25 @@ gem_req_pkgs:
 ### GEMS to install
 # (requires the ruby/rubygem deb/rpm installed, either by the system or listed in
 # the required packages
+  # Standarize gems to format { gem: version }
+  {% set gem = namespace(name = '', version = '') %}
+
   {%- for gm in wanted_gems %}
-{{ gm }}:
+    {%- if gm is mapping %}
+      {%- for k,v in gm.items() %}
+        {%- set gem.name = k %}
+        {%- set gem.version = v %}
+        {%- endfor %}
+      {%- else %}
+        {%- set gem.name = gm %}
+        {%- set gem.version = 'version_undefined' %}
+      {%- endif %}
+{{ gem.name }}-{{ gem.version }}:
   gem.installed:
+    - name: {{ gem.name }}
+      {%- if gem.version != 'version_undefined' %}
+    - version: {{ gem.version }}
+      {%- endif %}
     - require:
       - pkg: gem_req_pkgs
       {%- if req_states %}

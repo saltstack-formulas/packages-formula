@@ -447,7 +447,7 @@ suites:
     provisioner:
       dependencies:
         - name: node
-          branch: test-kitchen
+          branch: master
           repo: git
           source: https://github.com/saltstack-formulas/node-formula.git
       state_top:

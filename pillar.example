@@ -41,7 +41,7 @@ packages:
         - epel
 
     wanted:
-      - dxpy
+      - iotop
       - attrs
     unwanted:
       - campbel
@@ -57,6 +57,9 @@ packages:
     wanted:
       - progressbar
       - minitest
+      # You can also specify a desired gem version
+      - some_gem: 1.2.3
+      - other: 2.3.4
     unwanted:
       - diff-lcs
       - kitchen-vagrant

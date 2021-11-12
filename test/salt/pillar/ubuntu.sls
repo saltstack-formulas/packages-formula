@@ -39,7 +39,7 @@ packages:
         - python-pip
     wanted:
       # TODO: Investigate why this is longer working; OK when running locally
-      # - dxpy
+      # - iotop
       - attrs
     unwanted:
       - campbel
@@ -54,6 +54,8 @@ packages:
     wanted:
       - progressbar
       - minitest
+      - strings: 0.1.8
+      - regexp_parser: 1.7.0
     unwanted:
       - diff-lcs
       - kitchen-vagrant

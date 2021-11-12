@@ -6,7 +6,7 @@ packages:
     required:
       pkgs: []
     wanted:
-      Firefox:
+      firefox:
         package_args: "/l:en-GB"
       jq:
         version: '1.5'
