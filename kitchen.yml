@@ -447,9 +447,9 @@ suites:
     provisioner:
       dependencies:
         - name: node
-          branch: fix-version-usage-on-package-install
+          branch: master
           repo: git
-          source: https://github.com/netmanagers/node-formula.git
+          source: https://github.com/saltstack-formulas/node-formula.git
       state_top:
         base:
           '*':

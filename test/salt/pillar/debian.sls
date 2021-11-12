@@ -3,9 +3,7 @@
 ---
 # Dependency (node)
 node:
-  version: 17.0.1-deb-1nodesource1
   pkg:
-    version: 17.0.1-deb-1nodesource1
     use_upstream_repo: true
 
 packages:
