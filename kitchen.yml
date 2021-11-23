@@ -52,6 +52,9 @@ platforms:
     driver:
       image: saltimages/salt-tiamat-py3:ubuntu-18.04
       run_command: /lib/systemd/systemd
+  - name: centos-stream8-tiamat-py3
+    driver:
+      image: saltimages/salt-tiamat-py3:centos-stream8
   - name: centos-8-tiamat-py3
     driver:
       image: saltimages/salt-tiamat-py3:centos-8
@@ -107,6 +110,9 @@ platforms:
     driver:
       image: saltimages/salt-master-py3:ubuntu-18.04
       run_command: /lib/systemd/systemd
+  - name: centos-stream8-master-py3
+    driver:
+      image: saltimages/salt-master-py3:centos-stream8
   - name: centos-8-master-py3
     driver:
       image: saltimages/salt-master-py3:centos-8
@@ -166,6 +172,101 @@ platforms:
     driver:
       image: saltimages/salt-master-py3:rockylinux-8
 
+  ## SALT `3004.0`
+  - name: debian-11-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:debian-11
+      provision_command:
+        - apt-get update
+        - apt-get install --reinstall -y udev
+        - apt-get install -y snapd
+      run_command: /lib/systemd/systemd
+  - name: debian-10-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:debian-10
+      provision_command:
+        - apt-get update
+        - apt-get install --reinstall -y udev
+        - apt-get install -y snapd
+      run_command: /lib/systemd/systemd
+  - name: debian-9-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:debian-9
+      provision_command:
+        - apt-get update
+        - apt-get install --reinstall -y udev
+        - apt-get install -y snapd
+      run_command: /lib/systemd/systemd
+  - name: ubuntu-2004-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:ubuntu-20.04
+      run_command: /lib/systemd/systemd
+  - name: ubuntu-1804-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:ubuntu-18.04
+      run_command: /lib/systemd/systemd
+  - name: centos-stream8-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:centos-stream8
+  - name: centos-8-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:centos-8
+  - name: centos-7-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:centos-7
+  - name: fedora-34-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:fedora-34
+  - name: fedora-33-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:fedora-33
+  - name: opensuse-leap-153-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:opensuse-leap-15.3
+    # Workaround to avoid intermittent failures on `opensuse-leap-15.3`:
+    # => SCP did not finish successfully (255):  (Net::SCP::Error)
+    transport:
+      max_ssh_sessions: 1
+  - name: opensuse-leap-152-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:opensuse-leap-15.2
+    # Workaround to avoid intermittent failures on `opensuse-leap-15.2`:
+    # => SCP did not finish successfully (255):  (Net::SCP::Error)
+    transport:
+      max_ssh_sessions: 1
+  - name: opensuse-tmbl-latest-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:opensuse-tumbleweed-latest
+    # Workaround to avoid intermittent failures on `opensuse-tumbleweed`:
+    # => SCP did not finish successfully (255):  (Net::SCP::Error)
+    transport:
+      max_ssh_sessions: 1
+  - name: amazonlinux-2-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:amazonlinux-2
+  - name: oraclelinux-8-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:oraclelinux-8
+  - name: oraclelinux-7-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:oraclelinux-7
+  - name: arch-base-latest-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:arch-base-latest
+  - name: gentoo-stage3-latest-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:gentoo-stage3-latest
+      run_command: /sbin/init
+  - name: gentoo-stage3-systemd-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:gentoo-stage3-systemd
+  - name: almalinux-8-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:almalinux-8
+  - name: rockylinux-8-3004-0-py3
+    driver:
+      image: saltimages/salt-3004.0-py3:rockylinux-8
+
   ## SALT `3003.3`
   - name: debian-11-3003-3-py3
     driver:
@@ -199,6 +300,9 @@ platforms:
     driver:
       image: saltimages/salt-3003.3-py3:ubuntu-18.04
       run_command: /lib/systemd/systemd
+  - name: centos-stream8-3003-3-py3
+    driver:
+      image: saltimages/salt-3003.3-py3:centos-stream8
   - name: centos-8-3003-3-py3
     driver:
       image: saltimages/salt-3003.3-py3:centos-8
@@ -436,6 +540,9 @@ suites:
       - debian-11-master-py3
       - debian-10-master-py3
       - debian-9-master-py3
+      - debian-11-3004-0-py3
+      - debian-10-3004-0-py3
+      - debian-9-3004-0-py3
       - debian-11-3003-3-py3
       - debian-10-3003-3-py3
       - debian-9-3003-3-py3
@@ -472,6 +579,8 @@ suites:
       - ubuntu-1804-tiamat-py3
       - ubuntu-2004-master-py3
       - ubuntu-1804-master-py3
+      - ubuntu-2004-3004-0-py3
+      - ubuntu-1804-3004-0-py3
       - ubuntu-2004-3003-3-py3
       - ubuntu-1804-3003-3-py3
       - ubuntu-2004-3002-7-py3
@@ -503,6 +612,8 @@ suites:
     includes:
       - fedora-34-master-py3
       - fedora-33-master-py3
+      - fedora-34-3004-0-py3
+      - fedora-33-3004-0-py3
       - fedora-34-3003-3-py3
       - fedora-33-3003-3-py3
       - fedora-34-3002-7-py3
@@ -527,14 +638,22 @@ suites:
         - path: test/integration/default
   - name: redhat8
     includes:
+      - centos-stream8-tiamat-py3
       - centos-8-tiamat-py3
       - oraclelinux-8-tiamat-py3
       - almalinux-8-tiamat-py3
       - rockylinux-8-tiamat-py3
+      - centos-stream8-master-py3
       - centos-8-master-py3
       - oraclelinux-8-master-py3
       - almalinux-8-master-py3
       - rockylinux-8-master-py3
+      - centos-stream8-3004-0-py3
+      - centos-8-3004-0-py3
+      - oraclelinux-8-3004-0-py3
+      - almalinux-8-3004-0-py3
+      - rockylinux-8-3004-0-py3
+      - centos-stream8-3003-3-py3
       - centos-8-3003-3-py3
       - oraclelinux-8-3003-3-py3
       - almalinux-8-3003-3-py3
@@ -569,6 +688,8 @@ suites:
       - oraclelinux-7-tiamat-py3
       - centos-7-master-py3
       - oraclelinux-7-master-py3
+      - centos-7-3004-0-py3
+      - oraclelinux-7-3004-0-py3
       - centos-7-3003-3-py3
       - oraclelinux-7-3003-3-py3
       - centos-7-3002-7-py3
@@ -600,6 +721,7 @@ suites:
     includes:
       - amazonlinux-2-tiamat-py3
       - amazonlinux-2-master-py3
+      - amazonlinux-2-3004-0-py3
       - amazonlinux-2-3003-3-py3
       - amazonlinux-2-3002-7-py3
       - amazonlinux-2-3001-8-py3
@@ -629,6 +751,9 @@ suites:
       - opensuse-leap-153-master-py3
       - opensuse-leap-152-master-py3
       - opensuse-tmbl-latest-master-py3
+      - opensuse-leap-153-3004-0-py3
+      - opensuse-leap-152-3004-0-py3
+      - opensuse-tmbl-latest-3004-0-py3
       - opensuse-leap-153-3003-3-py3
       - opensuse-leap-152-3003-3-py3
       - opensuse-tmbl-latest-3003-3-py3
@@ -657,6 +782,7 @@ suites:
   - name: arch
     includes:
       - arch-base-latest-master-py3
+      - arch-base-latest-3004-0-py3
       - arch-base-latest-3003-3-py3
       - arch-base-latest-3002-7-py3
       - arch-base-latest-3001-8-py3
@@ -680,6 +806,8 @@ suites:
     includes:
       - gentoo-stage3-latest-master-py3
       - gentoo-stage3-systemd-master-py3
+      - gentoo-stage3-latest-3004-0-py3
+      - gentoo-stage3-systemd-3004-0-py3
       - gentoo-stage3-latest-3003-3-py3
       - gentoo-stage3-systemd-3003-3-py3
       - gentoo-stage3-latest-3002-7-py3
