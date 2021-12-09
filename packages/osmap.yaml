@@ -20,6 +20,10 @@ CentOS:
   snaps:
     packages: []
 
+CentOS Stream:
+  snaps:
+    packages: []
+
 AlmaLinux:
   snaps:
     packages: []

@@ -22,6 +22,15 @@ CentOS Linux-8:
     collides: ['snap']
     symlink: true
 
+CentOS Stream-8:
+  pkgs:
+    required:
+      pkgs:
+        - python3-dnf-plugin-versionlock
+  snaps:
+    collides: ['snap']
+    symlink: true
+
 Oracle Linux Server-8:
   pkgs:
     required:
