@@ -96,7 +96,6 @@ values:
     - reverse_geocode
     - indy-crypto
     wanted:
-    - dxpy
     - attrs
   pkgs:
     held:

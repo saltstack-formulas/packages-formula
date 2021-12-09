@@ -43,7 +43,8 @@ packages:
         - libpython2.7-dev
         - python-pip
     wanted:
-      - dxpy
+      # TODO: Investigate why this is longer working
+      # - dxpy
       - attrs
     unwanted:
       - campbel
