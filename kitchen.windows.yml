@@ -14,5 +14,5 @@ provisioner:
   salt_bootstrap_options: -pythonVersion 3 -version 3003.3
 
 platforms:
+  - name: windows-2022-latest-py3
   - name: windows-2019-latest-py3
-  - name: windows-2016-latest-py3
