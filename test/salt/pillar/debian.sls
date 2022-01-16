@@ -3,10 +3,8 @@
 ---
 # Dependency (node)
 node:
-  version: 12.16.1-1nodesource1
-  install_from_ppa: true
-  ppa:
-    repository_url: https://deb.nodesource.com/node_12.x
+  pkg:
+    use_upstream_repo: true    # Debian family only
 
 packages:
   pkgs:
@@ -40,8 +38,7 @@ packages:
         # Pillar parameters have precedence so, if you add a package here, you
         # should also add the python pip package you want. Otherwise, the formula
         # will take care of getting it if needed.
-        - libpython2.7-dev
-        - python-pip
+        - python3-pip
     wanted:
       # TODO: Investigate why this is longer working
       # - dxpy
