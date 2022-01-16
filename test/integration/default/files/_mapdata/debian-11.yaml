@@ -88,8 +88,7 @@ values:
         timeout: 120
     required:
       pkgs:
-      - libpython2.7-dev
-      - python-pip
+      - python3-pip
       states: []
     unwanted:
     - campbel

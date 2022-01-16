@@ -38,8 +38,7 @@ packages:
         # Pillar parameters have precedence so, if you add a package here, you
         # should also add the python pip package you want. Otherwise, the formula
         # will take care of getting it if needed.
-        - libpython2.7-dev
-        - python-pip
+        - python3-pip
     wanted:
       # TODO: Investigate why this is longer working
       # - dxpy
