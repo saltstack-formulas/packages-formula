@@ -10,7 +10,6 @@ control 'Archive packages' do
   end
 
   %w[
-    docker-compose.yml
     phantomjs-2.1.1-linux-x86_64/bin
   ].each do |f|
     describe file("/usr/local/src/#{f}") do
