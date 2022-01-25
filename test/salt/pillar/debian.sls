@@ -126,13 +126,6 @@ packages:
           source: https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
           hashsum: md5=1c947d57fce2f21ce0b43fe2ed7cd361
           # yamllint enable rule:line-length
-      blockbox:
-        dest: /usr/local/src/
-        dl:
-          format: raw
-          # yamllint disable-line rule:line-length
-          source: https://raw.githubusercontent.com/openstack/cinder/master/contrib/block-box/docker-compose.yml
-          hashsum: 1751f8e4f6b4cddd8c4843a0f4473274
       kubectl:
         dest: /usr/local/bin
         dl:

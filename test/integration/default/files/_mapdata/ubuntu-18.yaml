@@ -17,12 +17,6 @@ values:
     unwanted:
     - /usr/local/boring_archive_software
     wanted:
-      blockbox:
-        dest: /usr/local/src/
-        dl:
-          format: raw
-          hashsum: 1751f8e4f6b4cddd8c4843a0f4473274
-          source: https://raw.githubusercontent.com/openstack/cinder/master/contrib/block-box/docker-compose.yml
       phantomjs:
         dest: /usr/local/src/
         dl:
