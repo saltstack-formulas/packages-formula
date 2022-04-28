@@ -141,6 +141,7 @@ packages:
           # yamllint enable rule:line-length
       kubectl:
         dest: /usr/local/bin
+        destname: kubectl  # optional destination filename
         dl:
           format: bin
           # yamllint disable-line rule:line-length
