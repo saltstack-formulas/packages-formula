@@ -1,5 +1,26 @@
 # Changelog
 
+# [0.16.0](https://github.com/saltstack-formulas/packages-formula/compare/v0.15.0...v0.16.0) (2022-04-28)
+
+
+### Continuous Integration
+
+* **kitchen+gitlab:** update for new pre-salted images [skip ci] ([6174656](https://github.com/saltstack-formulas/packages-formula/commit/61746568cd83f9d9ccc81c393004928b03aec3af))
+* update linters to latest versions [skip ci] ([7b3dfb3](https://github.com/saltstack-formulas/packages-formula/commit/7b3dfb374fd09b1277349620cca95e5704cbc548))
+* **example:** remove blockbox as example of raw ([#86](https://github.com/saltstack-formulas/packages-formula/issues/86)) ([5712cab](https://github.com/saltstack-formulas/packages-formula/commit/5712cab43ef64088dc95214b6c97bfca0ded4a37))
+* **gemfile:** allow rubygems proxy to be provided as an env var [skip ci] ([7a53b83](https://github.com/saltstack-formulas/packages-formula/commit/7a53b839993324a82e94511d85b85fe8c660a882))
+* **kitchen+gitlab:** update for new pre-salted images [skip ci] ([c2210ab](https://github.com/saltstack-formulas/packages-formula/commit/c2210ab68a4bec5d08da47060644a66a6649b3ac))
+
+
+### Features
+
+* **archive:** make resource name the target path ([#82](https://github.com/saltstack-formulas/packages-formula/issues/82)) ([9390741](https://github.com/saltstack-formulas/packages-formula/commit/9390741d5c25a2915c93368d2100c74e7ebf335f))
+
+
+### Tests
+
+* **system:** add `build_platform_codename` [skip ci] ([fb6e67f](https://github.com/saltstack-formulas/packages-formula/commit/fb6e67f1eac5f8a68b008c7ede3bf8fb9b7cb7a0))
+
 # [0.15.0](https://github.com/saltstack-formulas/packages-formula/compare/v0.14.1...v0.15.0) (2022-01-16)
 
 

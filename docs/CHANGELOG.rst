@@ -2,6 +2,59 @@
 Changelog
 =========
 
+`0.16.0 <https://github.com/saltstack-formulas/packages-formula/compare/v0.15.0...v0.16.0>`_ (2022-04-28)
+-------------------------------------------------------------------------------------------------------------
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **kitchen+gitlab:** update for new pre-salted images [skip ci] (\ `6174656 <https://github.com/saltstack-formulas/packages-formula/commit/61746568cd83f9d9ccc81c393004928b03aec3af>`_\ )
+* update linters to latest versions [skip ci] (\ `7b3dfb3 <https://github.com/saltstack-formulas/packages-formula/commit/7b3dfb374fd09b1277349620cca95e5704cbc548>`_\ )
+* **example:** remove blockbox as example of raw (\ `#86 <https://github.com/saltstack-formulas/packages-formula/issues/86>`_\ ) (\ `5712cab <https://github.com/saltstack-formulas/packages-formula/commit/5712cab43ef64088dc95214b6c97bfca0ded4a37>`_\ )
+* **gemfile:** allow rubygems proxy to be provided as an env var [skip ci] (\ `7a53b83 <https://github.com/saltstack-formulas/packages-formula/commit/7a53b839993324a82e94511d85b85fe8c660a882>`_\ )
+* **kitchen+gitlab:** update for new pre-salted images [skip ci] (\ `c2210ab <https://github.com/saltstack-formulas/packages-formula/commit/c2210ab68a4bec5d08da47060644a66a6649b3ac>`_\ )
+
+Features
+^^^^^^^^
+
+
+* **archive:** make resource name the target path (\ `#82 <https://github.com/saltstack-formulas/packages-formula/issues/82>`_\ ) (\ `9390741 <https://github.com/saltstack-formulas/packages-formula/commit/9390741d5c25a2915c93368d2100c74e7ebf335f>`_\ )
+
+Tests
+^^^^^
+
+
+* **system:** add ``build_platform_codename`` [skip ci] (\ `fb6e67f <https://github.com/saltstack-formulas/packages-formula/commit/fb6e67f1eac5f8a68b008c7ede3bf8fb9b7cb7a0>`_\ )
+
+`0.15.0 <https://github.com/saltstack-formulas/packages-formula/compare/v0.14.1...v0.15.0>`_ (2022-01-16)
+-------------------------------------------------------------------------------------------------------------
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **kitchen:** remove ``branch`` for ``node-formula`` dependency (\ `e6d8065 <https://github.com/saltstack-formulas/packages-formula/commit/e6d80652bc4bd19d0ca3b5f54d73eeccc2effc20>`_\ )
+* **kitchen+ci:** update with ``3004`` pre-salted images/boxes [skip ci] (\ `85e8b8b <https://github.com/saltstack-formulas/packages-formula/commit/85e8b8b6597671943c79332078d0eec5cecc0b6c>`_\ )
+* **kitchen+ci:** update with latest CVE pre-salted images [skip ci] (\ `1df89bc <https://github.com/saltstack-formulas/packages-formula/commit/1df89bcba3439e2387494e909b6c1af7c7f02e60>`_\ )
+* **proxy:** replace deprecated Windows ``2016`` with ``2022`` [skip ci] (\ `769e1d6 <https://github.com/saltstack-formulas/packages-formula/commit/769e1d6555d9c4770230454f06149d12c12b7d8f>`_\ )
+* **proxy+windows:** fix setting up WinRM [skip ci] (\ `a8b6534 <https://github.com/saltstack-formulas/packages-formula/commit/a8b653431d94da9545c28af4b86215f4eac344e9>`_\ )
+* **windows:** use Salt version ``3004`` [skip ci] (\ `7c97573 <https://github.com/saltstack-formulas/packages-formula/commit/7c97573076d440b4c641322246789e1a414e740a>`_\ )
+
+Features
+^^^^^^^^
+
+
+* **os*map:** add support for CentOS Stream 8 [skip ci] (\ `5594d16 <https://github.com/saltstack-formulas/packages-formula/commit/5594d164b6e2df2648fb6549bc17f7f0c446eac9>`_\ )
+
+Tests
+^^^^^
+
+
+* **debian:** update ``node`` settings (\ `021a0b6 <https://github.com/saltstack-formulas/packages-formula/commit/021a0b6f86b6edadc8a65b1512b626f8bbaa5461>`_\ )
+* **debian:** use ``python3-pip`` (\ `79d3f7b <https://github.com/saltstack-formulas/packages-formula/commit/79d3f7b7ed82b8ca79194ef01fb6caf27f1f4eba>`_\ )
+* **pillar:** disable ``dxpy`` installation on Debian [skip ci] (\ `1f70007 <https://github.com/saltstack-formulas/packages-formula/commit/1f7000717c682f1086e6203d409e5d4c64717076>`_\ )
+
 `0.14.1 <https://github.com/saltstack-formulas/packages-formula/compare/v0.14.0...v0.14.1>`_ (2021-10-02)
 -------------------------------------------------------------------------------------------------------------
 
