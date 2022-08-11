@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
-{%- from "./map.jinja" import packages with context %}
+{%- set tplroot = tpldir.split('/')[0] %}
+{%- from tplroot ~ "/map.jinja" import packages with context %}
 
 {%- set req_states = packages.npms.required.states %}
 {%- set req_pkgs = packages.npms.required.pkgs %}
