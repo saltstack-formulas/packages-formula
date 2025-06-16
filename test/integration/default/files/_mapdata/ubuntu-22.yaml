@@ -1,5 +1,5 @@
 # yamllint disable rule:indentation rule:line-length
-# Debian-10
+# Ubuntu-22.04
 ---
 values:
   archives:
@@ -17,11 +17,6 @@ values:
     unwanted:
     - /usr/local/boring_archive_software
     wanted:
-      kubectl:
-        dest: /usr/local/bin
-        dl:
-          format: bin
-          source: https://storage.googleapis.com/kubernetes-release/release/v1.12.0/bin/darwin/amd64/kubectl
       phantomjs:
         dest: /usr/local/src/
         dl:
@@ -56,25 +51,19 @@ values:
     - progressbar
     - minitest
   golang:
-    clean: []
-    goget: []
+    clean:
+    - github.com/golang/example/hello
+    - github.com/golang/example/outyet
+    goget:
+    - github.com/golang/example/hello
+    - github.com/golang/example/outyet
   kernel: linux
   npms:
-    dir: /home/kitchen/npms
-    group: kitchen
-    mode: '0755'
     required:
       pkgs: []
-      states:
-      - node.package.install
-    unwanted:
-    - gist
-    user: kitchen
-    wanted:
-    - '@low-systems/example@1.1.58'
-    - hello-world-npm
-    - sax
-    - coffee-script@1.0.1
+      states: []
+    unwanted: []
+    wanted: []
   pips:
     config:
       global:
@@ -82,7 +71,8 @@ values:
         timeout: 120
     required:
       pkgs:
-      - python3-pip
+      - libpython2.7-dev
+      - python-pip
       states: []
     unwanted:
     - campbel
@@ -92,8 +82,8 @@ values:
     - attrs
   pkgs:
     held:
-    - alien
-    - iotop
+      alien: 8.95
+      iotop: 0.6-2
     required:
       pkgs:
       - wget
@@ -127,7 +117,6 @@ values:
     service:
     - snapd
     symlink: false
-    unwanted:
-    - bare
+    unwanted: []
     wanted: []
   tmpdir: /tmp/saltstack-packages-formula-archives

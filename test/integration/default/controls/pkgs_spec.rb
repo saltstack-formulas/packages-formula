@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# rubocop:disable Lint/RedundantCopDisableDirective
+# rubocop:disable Lint/UselessAssignment
+
 # Prepare platform "finger"
 platform_finger = system.platform[:finger].split('.').first.to_s
 
@@ -108,7 +111,7 @@ control 'Held packages' do
     when 'redhat', 'fedora'
       match_string = "#{p}-.*#{v}"
     when 'debian'
-      match_string = "^Package: #{p}\nStatus: hold ok "\
+      match_string = "^Package: #{p}\nStatus: hold ok " \
                      "installed\nP.*\nS.*\nI.*\nM.*\nA.*\nVersion: #{v}"
     end
 
@@ -129,3 +132,6 @@ control 'Unwanted packages' do
     end
   end
 end
+
+# rubocop:enable Lint/UselessAssignment
+# rubocop:enable Lint/RedundantCopDisableDirective
