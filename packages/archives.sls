@@ -46,7 +46,14 @@ packages-archive-wanted-target-{{ package }}-directory:
 packages-archive-wanted-download-{{ package }}:
   cmd.run:
     - name: curl -s -L -o {{ packages.tmpdir }}/{{ archivename }} {{ archive.dl.source }}
-    - unless: test -f {{ packages.tmpdir }}/{{ archivename }}
+      {%- if 'onlyif' in archive %}
+    - onlyif: {{ archive.onlyif }}
+      {%- endif %}
+    - unless: |
+      {%- if 'unless' in archive %}
+        {{ archive.unless }} ||
+      {%- endif %}
+        test -f {{ packages.tmpdir }}/{{ archivename }}
     - retry: {{ packages.retry_options|json }}
 
       {%- if 'hashsum' in archive.dl and archive.dl.hashsum %}
@@ -61,7 +68,12 @@ packages-archive-wanted-{{ package }}-check-hashsum:
       - packages-archive-wanted-download-{{ package }}
     - require_in:
       - archive: packages-archive-wanted-install-{{ package }}
-
+        {%- if 'onlyif' in archive %}
+    - onlyif: {{ archive.onlyif }}
+        {%- endif %}
+        {%- if 'unless' in archive %}
+    - unless: {{ archive.unless }}
+        {%- endif %}
       {%- endif %}
 
 packages-archive-wanted-install-{{ package }}:
@@ -76,7 +88,14 @@ packages-archive-wanted-install-{{ package }}:
     - options: {{ archive.options }}
     - enforce_toplevel: {{ 'False' if 'strip-components' in archive.options else 'True' }}
       {%- endif %}
-    - onlyif: test -d {{ archive.dest }}
+    - onlyif:
+      {%- if 'onlyif' in archive %}
+        {{ archive.onlyif }} &&
+      {%- endif %}
+        test -d {{ archive.dest }}
+      {%- if 'unless' in archive %}
+    - unless: {{ archive.unless }}
+      {%- endif %}
     - require:
       - packages-archive-wanted-download-{{ package }}
 
@@ -94,6 +113,13 @@ packages-archive-wanted-download-{{ package }}:
       {%- else %}
     - skip_verify: True
       {%- endif %}
+      {%- if 'onlyif' in archive %}
+    - onlyif: {{ archive.onlyif }}
+      {%- endif %}
+      {%- if 'unless' in archive %}
+    - unless: {{ archive.unless }}
+      {%- endif %}
+
     - retry: {{ packages.retry_options|json }}
 
     {%- endif %}
