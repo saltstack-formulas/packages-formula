@@ -54,7 +54,7 @@ held_pkgs:
 
 wanted_pkgs:
   pkg.installed:
-    - pkgs: {{ wanted_packages | json }}
+    - pkgs: {{ wanted_packages | unique | json }}
     {%- if grains['os_family'] not in ['Suse'] %}
     - hold: false
     {%- endif %}
