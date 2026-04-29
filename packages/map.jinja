@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 # vim: ft=jinja
+{%- set tplroot = tpldir.split('/')[0] %}
 
-{%- import_yaml './defaults.yaml' as defaults %}
-{%- import_yaml './osfamilymap.yaml' as osfamilymap %}
-{%- import_yaml './osmap.yaml' as osmap %}
-{%- import_yaml './osfingermap.yaml' as osfingermap %}
+{%- import_yaml tplroot ~ '/defaults.yaml' as defaults %}
+{%- import_yaml tplroot ~ '/osfamilymap.yaml' as osfamilymap %}
+{%- import_yaml tplroot ~ '/osmap.yaml' as osmap %}
+{%- import_yaml tplroot ~ '/osfingermap.yaml' as osfingermap %}
 
 {%- set packages = salt['grains.filter_by'](
     defaults,

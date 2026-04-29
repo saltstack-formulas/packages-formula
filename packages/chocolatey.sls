@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
-{%- from "./map.jinja" import packages with context %}
+{%- set tplroot = tpldir.split('/')[0] %}
+{%- from tplroot ~ "/map.jinja" import packages with context %}
 
 {%- if grains['os'] == 'Windows' %}
 
